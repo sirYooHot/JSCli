@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>100s倒计时</title>
+	<style>
+		body,div{margin:0;padding:0;}
+		body{color:#fff;font:16px/1.5 \5fae\8f6f\96c5\9ed1;}
+		#countdown{
+			width:300px;
+			text-align:center;
+			background:#000;
+			margin:10px auto;
+			padding:20px 0;
+		}
+		input{
+			border:0;
+			width:283px;
+			height:50px;
+			cursor:pointer;
+			margin-top:20px;
+			background: grey;
+			font-size: 18px;
+		}
+		input.cancel {
+			background-position:0 -50px;
+		}
+		span {
+			color:#000;
+			width:80px;
+			line-height:2;
+			background:#fbfbfb;
+			border:2px solid #b4b4b4;
+			margin:0 10px;
+			padding:0 10px;
+		}
+    </style>
+    <script>
+    	window.onload  = function(){
+    		var oCount = document.getElementById('countdown'),
+    		    oInput = oCount.getElementsByTagName('input')[0],
+    		    aSpan  = oCount.getElementsByTagName('span'),
+    		    timer  = null;
+    		oInput.addEventListener('click',function(){
+    			this.className == '' ? (timer = setInterval(updateTime,1000)) : clearInterval(timer);
+    			this.className = this.className === 'cancel' ? '' : 'cancel';
+    		},false);
+    		function format(a){
+    			return a.toString().replace(/^(\d)$/,'0$1');
+    		}
+    		function updateTime(){
+    			//console.log(aSpan[0].innerHTML);
+    			var remain = parseInt(aSpan[0].innerHTML.replace(/^0/,''))*60+parseInt(aSpan[1].innerHTML.replace(/^0/,''));
+    			if (remain <= 0) {
+    				clearInterval(timer);
+    				return;
+    			}
+    			remain--;
+    			aSpan[0].innerHTML = format(parseInt(remain/60));
+    			aSpan[1].innerHTML = format(remain%60);
+
+    		}
+    	}
+    </script>
+</head>
+<body>
+	<div id="countdown">
+		<span>01</span>分钟<span>40</span>秒
+		<input type="button" value="倒计时" />
+	</div>
+</body>
+</html>
