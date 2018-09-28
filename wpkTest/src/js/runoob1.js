@@ -1,0 +1,1 @@
+module.exports = document.write('this is runoob1.js')

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.class_box {
+				width: 200px; 
+				height: 100px; 
+				
+				margin: 100px auto 0; 
+				line-height: 100px; 
+				text-align: center; 
+				color: #fff;
+				background: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<!--属性节点-->
+		<div id="id_box" class="class_box" >
+			调试内容
+		</div>
+		
+		
+		<script type="text/javascript">
+			onload=function(){
+				
+				var id_box = document.getElementById("id_box");
+				
+				for(var i=0;i<id_box.attributes.length;i++){
+					console.log("nodeName: " + id_box.attributes[i].nodeName);
+					console.log("nodeType: " + id_box.attributes[i].nodeType);
+					console.log("nodeValue: " + id_box.attributes[i].nodeValue);
+					console.log("---");
+				}
+				
+			}
+		</script>
+	</body>
+</html>

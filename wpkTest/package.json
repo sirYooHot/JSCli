@@ -1,0 +1,19 @@
+{
+  "name": "wpktest",
+  "version": "1.0.0",
+  "description": "this is test",
+  "main": "bundle.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cooli",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "css-loader": "^1.0.0",
+    "jquery": "^3.3.1",
+    "style-loader": "^0.23.0"
+  }
+}
