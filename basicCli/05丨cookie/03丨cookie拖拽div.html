@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				position: absolute;
+				left: 10px;
+				top: 10px;
+				
+				width: 100px;
+				height: 100px;
+				background: red; 
+			}
+		</style>
+		<script type="text/javascript" src="../js/cookie.js" ></script>
+		<script type="text/javascript">
+			onload = function(){
+				function moveBox(evt) {
+					function moveIng(evt){
+						var oEvent = evt || event;
+						
+						oBox.style.left = oEvent.clientX - disX + "px";
+						oBox.style.top  = oEvent.clientY - disY + "px";
+						
+						oBox.innerHTML = "x:"+parseInt(oBox.style.left)+",y:"+parseInt(oBox.style.top);
+					}
+					function moveEnd(){
+						document.onmousemove = null;
+						document.onmouseup = null;
+						
+						var d  = new Date();
+						d.setDate(d.getDate()+7);
+						setCookie("left",parseInt(oBox.style.left),d);
+						setCookie("top",parseInt(oBox.style.top),d);
+					}
+					
+					var oEvent = evt || event;
+					//鼠标到box边界的距离
+					var disX = oEvent.clientX - parseInt(oBox.style.left);
+					var disY = oEvent.clientY - parseInt(oBox.style.top);
+					// 移动鼠标
+					document.onmousemove = moveIng
+					// 松开鼠标
+					document.onmouseup = moveEnd
+					
+				}
+				
+				
+				var oBox = document.getElementById("box");
+				var left = getCookie("left");
+				var top  = getCookie("top");
+				if(left){
+					oBox.style.left = left + "px";
+					oBox.style.top  = top + "px";
+					oBox.innerHTML = "x:"+left+",y:"+top;
+				}
+				//实现拖拽
+				oBox.onmousedown = moveBox
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box" style=""></div>
+	</body>
+</html>

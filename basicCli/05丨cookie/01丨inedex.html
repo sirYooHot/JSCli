@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * cookie:在浏览器上存储数据,方便下一次打开获取该数据
+			 * key = value: 键值对
+			 * key = value;
+			 * expires = date;
+			 * path = 访问路径；domain = 域名；secure
+			 */
+			
+			// document.cookie: 保存数据到浏览器(cookie后面的值会追加前面的值)
+			/** URI编码，URI解码
+			 * encodeURIComponent(): URI编码
+			 * decodeURIComponent(): URI解码
+			 */
+			
+			
+			document.cookie = "name=1";
+			document.cookie = "pass=2";
+			console.log(document.cookie);// name=1; pass=2
+			
+			// 编码解码
+			var encodeStr = encodeURIComponent("中文URI");//URI编码
+			console.log("encode:"+ encodeStr);
+			var decodeStr = decodeURIComponent("中文URI");//URI编码
+			console.log("decode:"+ decodeStr);
+			// cookie应用URI编码
+			document.cookie = "key="+ encodeURIComponent("中文value");
+			var cookie = decodeURIComponent(document.cookie);
+			
+			
+			
+			/*
+			失效日前: expires = date
+			1. 有效期内cookie可用,失效后cookie不可用
+			2. 默认值是浏览器关闭的时刻;
+			*/
+			var dateNow = new Date();
+			dateNow.setDate(dateNow.getDate()+7);// 一个星期之后的日期
+			document.cookie = 
+				"password="+ encodeURIComponent("dateNow") 
+				+";expires="+ dateNow;
+			console.log("dateNow: " + document.cookie);
+			
+			
+			
+			// 主动删除cookie: 设置失效期在当前日期之前即可
+			var dateLose = new Date();
+			document.cookie = 
+			"password="+ encodeURIComponent("password") 
+			+"; expires="+ dateLose;
+			
+			
+			// path = 访问路径(默认值: 当前文件所在的路径)
+			document.cookie = 
+				"path=" + encodeURIComponent("path") 
+				+ ";path=/";
+			
+			
+			// domain = 域名(设置访问域名)
+			document.cookie = "name = jazz";
+			document.cookie = "domain = baidu.com";
+			
+			
+			// secure: 设置安全访问(只允许https协议可以访问cookie)
+			document.cookie = "name=CooliY";
+			document.cookie = "secure";
+			console.log(document.cookie);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
