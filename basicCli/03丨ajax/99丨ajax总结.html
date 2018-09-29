@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/**
+			  * http: 户端和服务器通讯用的！
+			  * 一般是客户端向服务器发送一个请求;
+			  * 然后服务器根据这个请求，再给客户端一个响应;
+			  * 
+			  * request  ：客户端向服务器发送请求
+			  * response ：服务器根据请求作出的相应响应
+			  * 
+			  * Ajax :是一种局部刷新技术; XMLHttpRequest : Ajax的核心;
+			  * 可以访问服务器，而不用刷新整个界面;
+			  * 
+			  */
+			 
+			/*
+			1. 创建一个http请求：
+			new XMLHttpRequest();//不支持IE6
+			new ActiveXObject("Microsoft.XMLHTTP");//支持ie6
+			*/
+			
+			/* 
+			2. open(参数1, 参数2, 参数3): 准备请求
+			参数1  表示请求方式！GET,POST,
+				GET:   请求参数是放在url后面的
+				POST:  请求参数是放在请求体里的
+			参数2  表示要请求的url路径
+			参数3  是否是异步请求:
+				true   异步请求;
+				false  同步请求;
+			 */
+			
+			/*
+			解析json字符串
+			1. eval解析
+				eval解析: 最外层为数组，不错任何处理
+				eval解析：最外层是对象，则在最外面包裹一个小括号
+			2. JSON.parse()解析
+				JSON.parse(): 最外层为数组，不错任何处理
+				JSON.parse(): 最外层是对象，也不需要任何处理
+			*/
+			
+			// 创建xhr
+			function createXHR(){
+				if(window.XMLHttpRequest){
+					return new XMLHttpRequest();
+				}
+				return new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			function getXhr(){
+				var xhr = createXHR();
+				xhr.open("GET", "../virtualServer/todolist.json", true);
+				xhr.send(null);
+				// 添加监听事件
+				xhr.onreadystatechange = function(){
+					if(xhr.status==200 && xhr.readyState == 4){
+						console.log(xhr.responseText)
+						var resObj = JSON.parse(xhr.responseText);
+						console.log(resObj)
+						
+					}else{
+						console.log("xhr.status="+ xhr.status +",xhr.readyState="+ xhr.readyState);
+					}
+				}
+			};
+			getXhr()
+
+		</script>
+	</body>
+</html>

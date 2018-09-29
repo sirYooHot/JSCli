@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			onload = function(){
+				/**
+				 * 1.请求数据
+				 * 2.解析数据
+				 * 3.局部刷新网页
+				 */
+				
+				// 创建xhr
+				function createXHR(){
+					if(window.XMLHttpRequest){
+						return new XMLHttpRequest();
+					}
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				
+				
+				function getXhr(){
+					// 异步请求
+					var xhr = createXHR();
+					xhr.open("GET","../virtualServer/todolist.json", true);
+					xhr.send(null);
+					// 监听状态的改变
+					xhr.onreadystatechange = function(){
+						if(xhr.readyState==4 && xhr.status==200){
+							// 已经请求到了完整的数据
+							dealRes(xhr);
+							
+						}else {
+							console.log("请求数据不完整或者请求失败！"+ xhr.readyState +","+ xhr.status);
+						}
+					};
+				}
+				// refreshUI(xhr): 存放请求到了完整的数据
+				function dealRes(xhr){
+					console.log(xhr.responseText)
+					var jsonStr = xhr.responseText;
+					
+					var jsonObj = JSON.parse(jsonStr);
+					console.log(jsonObj)
+				}
+				
+				getXhr()
+			}
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div {
+				width: 100px;
+				height: 50px;
+				background: orange;
+				margin-bottom: 10px;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				function getStyleAttr(obj,attr){
+					if(window.getComputedStyle){
+						return getComputedStyle(obj,null)[attr];
+					}
+						return obj.currentStyle[attr];
+				}
+				function startMove(obj,attr,iTarget){
+					clearInterval(obj.timer);
+					obj.timer = setInterval(function(){
+						var current = parseInt(getStyleAttr(obj,attr));
+						var iSpeed  = (iTarget - current)/8;
+							iSpeed  = iSpeed>0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+						if(current == iTarget){
+							clearInterval(obj.timer);
+							return;
+						}
+						obj.style[attr] = current + iSpeed + "px";
+					},30);
+				}
+				
+				
+				var oDiv = document.getElementsByTagName("div");
+				for(i=0;i<oDiv.length;i++){
+					oDiv[i].onmouseover = function(){
+						startMove(this,'width',360);
+					}
+					oDiv[i].onmouseout  = function(){
+						startMove(this,"width",100);
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id=""></div>
+		<div id=""></div>
+		<div id=""></div>
+		<div id=""></div>
+	</body>
+</html>

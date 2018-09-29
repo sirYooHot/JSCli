@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				width: 100px;
+				height: 100px;
+				background: orange;
+				opacity: 0.3;
+				filter: alpha(opacity);
+				position: absolute;
+				left: 110px;
+				top: 10px;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				function getStyleAttr(obj,attr){
+					if(window.getComputedStyle){
+						return getComputedStyle(obj,null)[attr];
+					}
+					return obj.currentStyle[attr];
+				}
+				function startMove(obj,attr,iTarget){
+					clearInterval(obj.timer);
+					obj.timer = setInterval(function(){
+						var current = parseFloat(getStyleAttr(obj,attr))*100;
+						current = Math.round(current);
+						
+						var iSpeed = (iTarget - current)/5;
+							iSpeed = iSpeed>0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+						
+						if(current == iTarget){
+							clearInterval(obj.timer);
+							return;
+						}
+						obj.style.opacity = (current + iSpeed)/100;
+						obj.style.filter  = "alpha(opacity="+(current+iSpeed)+")";//兼容性
+					},100);
+				}
+				
+				
+				var oInput = document.getElementsByTagName("input")[0];
+				var oBox   = document.getElementById("box");
+				
+				oInput.onclick = function(){
+					startMove(oBox,"opacity",100);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="开始透明变化" />
+		<div id="box" ></div>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				margin: 0 auto;
+				width: 600px;
+				height: 300px;
+				text-align: center;
+				line-height: 300px;
+				background: grey;
+				color: yellow;
+				font-size: 16px;	
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="box">看我七十二变</div>
+	</body>
+	<script type="text/javascript">
+		// getStyle()：获取属性值
+		function getStyle(obj,attr){
+			if(window.getComputedStyle){
+				return getComputedStyle(obj,null)[attr];
+			}
+			return obj.currentStyle[attr];
+		}
+		
+		onload = function(){
+			var oBox = document.getElementById("box");
+			var arr = ["yellow","red","green","black","white","orange","green","blue","purple","pink"];
+			var i = 0;
+			var Size = 4;
+			var timer = setInterval(change,100);
+			function change(){
+				var fontsize = parseInt(getStyle(oBox,"font-size"));
+					oBox.style.fontSize = fontsize + Size + "px";
+//						oBox.style.color = arr[i%10];
+					oBox.style.color = arr[parseInt(Math.random()*10)];
+				i++;
+				if(i%10 == 0){
+					Size *= -1;
+				}
+			}	
+		}
+	</script>
+</html>

@@ -5,54 +5,63 @@
 		<title></title>
 	</head>
 	<body>
-		<div id="box">
-			childNodes1
+		<div id="box">childNodes1
 			<div id="box1" class="" >内容1</div>
 			<div id="box2" class="" >内容2</div>
 			<div id="box3" class="" >内容3</div>
-			<div id="box4" class="" >内容4</div>	
-			结束5
-		</div>
+			<div id="box4" class="" >内容4</div>
+		结束5</div>
 		
 		<script type="text/javascript">
+			// firstChild: 获取第一个子节点
+			// lastchild: 获取最后一个子节点
+			// parentNode: 获取父节点
+			
+			// previousSilbing: 同级上一个节点
+			// nextSibling: 同级下一个节点
 			onload=function(){
-				//---------body---------
+
 				var box = document.getElementById("box");
-				//---------childNodes: ---------
+				// childNodes
 				console.log(box.childNodes.length);
-				//---------firstChild: 获取第一个子节点---------
+				// firstChild: 获取第一个子节点
 				console.log(box.firstChild.nodeValue);
-//				console.log(box.childNodes[0].nodeValue);
-				//---------lastchild: 获取最后一个子节点---------
+				// lastchild: 获取最后一个子节点
 				console.log(box.lastChild.nodeValue);
-//				console.log(box.childNodes[box.childNodes.length-1].nodeValue);
-				//---------子元素---------
+				
 				var box1 = document.getElementById("box1");
 				var box2 = document.getElementById("box2");
 				var box3 = document.getElementById("box3");
 				var box4 = document.getElementById("box4");
-				//---------parentNode: 获取父节点---------
+				
+				// parentNode: 获取父节点
 				console.log(box1.parentNode);//box
 				console.log(box2.parentNode);//box
 				console.log(box3.parentNode);//box
 				console.log(box4.parentNode == box);//true:
-				//---------previousSilbing.nodeValue: 同级上一个节点---------
+				
+				
+				// previousSilbing.nodeValue: 同级上一个节点
 				console.log(box1.previousSibling.nodeValue);
-				//---------nextSibling: 同级下一个节点---------
-				console.log(box4.nextSibling.nodeValue);//结束
+				// nextSibling: 同级下一个节点
+				console.log(box4.nextSibling.nodeValue);//结束5
+				
 				console.log(box.ownerDocument == document);//ture
-				//---------忽略空白文本节点---------
+				
+				
+				// 忽略空白文本节点
 				function fillterWhitSpace(nodes){
 					for(var i=0;i<nodes.length;i++){
-						//--判断是否为空白节点---
+						// 判断是否为空白节点
 						if(nodes[i].nodeType == 3 && /^\s+$/.test(nodes[i].nodeValue)){
-							//---通过父节点删除子节点-->删除自身节点---
+							// 通过父节点删除子节点-->删除自身节点
 							nodes[i].parentNode.removeChild(nodes[i]);
 						}
 					}
 					return nodes;
 				}
 				
+				console.log("childNodes: " + box.childNodes.length);
 				var newNodes = fillterWhitSpace(box.childNodes);
 				console.log("newNode: " + newNodes.length);
 			}

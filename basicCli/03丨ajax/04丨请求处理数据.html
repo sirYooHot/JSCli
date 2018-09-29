@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function(){
+				// 创建一个HTTP请求
+				function createXHR(){
+					if(window.XMLHttpRequest){
+						return new XMLHttpRequest();
+					}
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				}	
+				
+				function getXhr(){
+					var xhr = createXHR();
+					xhr.open("GET", "../virtualServer/todolist.json", true);
+					xhr.send(null);
+					// 添加监听事件
+					xhr.onreadystatechange = function(){
+						if(xhr.status==200 && xhr.readyState == 4){
+							console.log(xhr.responseText)
+							var resObj = JSON.parse(xhr.responseText);
+							console.log(resObj)
+							
+						}else{
+							console.log("xhr.status="+ xhr.status +",xhr.readyState="+ xhr.readyState);
+						}
+					}
+				};
+				getXhr()
+			}
+		</script>
+	</body>
+</html>

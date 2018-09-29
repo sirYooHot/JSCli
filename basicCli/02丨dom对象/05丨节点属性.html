@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			nodeValue<em>这是斜体</em>
+		</div>
+		<p id="p01">span_innerText</p>
+		<p id="p02">span_innerText</p>
+		<div id="secbox">
+			<span>first</span>
+			<span>second</span>
+		</div>
+	</body>
+	<script type="text/javascript">
+		/**
+		 * ---------DOM的节点属性---------
+		 * 1. nodeName
+		 * 2. nodeType
+		 * 3. nodeValue
+		 */
+		
+		// 获取所有子节点 childNodes
+		/**
+		 * innerHTML和nodeValue的区别
+		 * 1.取值：
+		 * innerHTML：取元素节点的值（.innerHTML）
+		 * nodeValue：取文本，属性节点的值（.childNodes[0].nodeValue）
+		 *  
+		 * 2.赋值：
+		 * innerHTML可以解析html标签
+		 * nodeValue不可以解析html,它会原样输出
+		 */
+		
+		
+		/**
+		 * innerHTML,outHTML,innerText的区别
+		 * 1. innerHTML:元素节点包含的所有内容
+		 * 2. innerText:元素节点包含的所有文本
+		 * 3. outHTML:包含元素本身，以及该元素节点包含的所有内容
+		 */
+		
+		
+		onload=function(){
+			var Box = document.getElementById("box");
+			
+			console.log(Box.nodeName);//DIV: 元素名称
+			console.log(Box.nodeType);//1: 元素
+			console.log(Box.nodeValue);//null: 元素
+			
+			
+			// 获取所有子节点 childNodes
+			console.log("childNodes.length: " + Box.childNodes.length);
+			for(var i=0;i<Box.childNodes.length;i++){
+				console.log("nodeName: " + Box.childNodes[i].nodeName);
+				console.log("nodeType: " + Box.childNodes[i].nodeType);
+				console.log("nodeValue: " + Box.childNodes[i].nodeValue);
+			}
+			
+			
+			// innerHTML和nodeValue的区别
+			var P01 = document.getElementById("p01");
+				P01.nodeValue = "<strong>nodeValue: 'strong'标签里 内容</strong>";// 标签不能解析
+				P01.childNodes[0].nodeValue = "<strong>nodeValue: 'strong'标签里 内容</strong>";// 标签可以解析
+			console.log(P01);    
+			var P02 = document.getElementById("p02");
+			// 利用nodeValue把上面的字符串"<strong>1622棒棒哒</strong>"放进去
+			    P02.innerHTML = "<strong>innerHTML: 'strong'标签里 内容</strong>";// 标签可以解析
+			console.log(P02);
+			
+			
+			// innerHTML,outHTML,innerText的区别
+			var secBox = document.getElementById("secbox");
+			console.log("secBox.innerHTML: " + secBox.innerHTML);
+			console.log("secBox.innerText: " + secBox.innerText);
+			console.log("secBox.outHTML: " + secBox.outHTML);
+		}
+	</script>
+</html>

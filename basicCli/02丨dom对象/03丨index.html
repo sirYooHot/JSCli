@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			
+			// .value: 获取value的值
+			onload=function(){
+				
+				var Name  = document.getElementById("name");
+				var Age   = document.getElementById("age");
+				var Edu   = document.getElementById("edu");
+				var Major = document.getElementById("major");
+				var saveBtn  = document.getElementById("save");
+				var Box   = document.getElementById("box");
+				
+				saveBtn.onclick = function(){
+					var oName  = Name.value;
+					var oAge   = Age.value;
+					var oEdu   = Edu.value;
+					var oMajor = Major.value;
+					var Str = "姓名为: " + oName+"年龄为: " + oAge + "学历为: " + oEdu + "专业为: " + oMajor;
+					window.open("index.html","索引页","width:100px,height:100px,top:100px,left:100px");
+
+					Box.innerHTML = Str;
+				}
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<input id="name" type="text" name="No.1" placeholder="姓名" />
+		<input id="age" type="text" name="No.2" placeholder="年龄" />
+		<input id="edu" type="text" name="No.3" placeholder="学历" />
+		<input id="major" type="text" name="No.4" placeholder="专业" />
+		<input id="save" type="button" name="No.5" value="保存"/>
+		<div id="box">innerHTML: </div>
+	</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				
+				width: 100px;
+				height: 100px;
+				line-height: 100px;
+				background: red;
+				margin: 0 auto;
+				margin-top: 100px;
+				color: white;
+				text-align: center;
+			}
+			#remaneBox {
+				width: 100px;
+				height: 100px;
+				line-height: 100px;
+				background: orange;
+				margin: 0 auto;
+				color: white;
+				text-align: center;
+			}
+			
+			ul li {
+				width: 200px;
+				background: gray;
+				color: white;
+				border: 2px dashed orange;
+				margin: 0 auto;
+				list-style: none;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+
+		<ul id="list">
+			<li>zone</li>
+			<li>one</li>
+			<li>two</li>
+			<li>three</li>
+			<li>four</li>
+			<li>five</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		/**
+		 * DOM 文档对象模型
+		 * DOM 是树形结构！
+		 * 
+		 * DOM节点种类
+		 * 1.元素节点 : div,ul
+		 * 2.属性节点： id,style,class
+		 * 3.文本节点： <div>文本<div/>
+		 */
+		
+		// .getElementById：通过ID获取元素节点对象,如果ID不存在,则返回null
+		// .tagName：标签名称
+		// .id：获取元素节点的id，唯一的标识符（可读，可写）
+		// .innerHTML：元素节点的内容
+		// .title：（可读，可写）
+		// .zidingyi：自定义的属性节点不能够通过语法来调用
+		
+		window.onload = function(){
+			
+			// 通过ID获取元素节点对象,如果ID不存在,则返回null
+			var Box = document.getElementById("box");
+			console.log("Box: " + Box);
+			var List = document.getElementById("list");
+			console.log("List: " + List);
+			
+			
+			// .tagName：标签名称
+			console.log ("Box.tagName: " + Box.tagName);//DIV
+			console.log("List.tagName: " + List.tagName);//UL
+			
+			// 获取元素节点的id，唯一的标识符
+			console.log("Box.id: " + Box.id);
+			console.log("List.id: " + List.id);
+			
+			// 元素节点的内容: innerHTML
+			console.log("Box.innerHTML: " + Box.innerHTML);
+			console.log("List.innerHTML: " + List.innerHTML);
+			
+			// id 属性，可读，可写
+			Box.id = "remaneBox";
+			console.log("Box.id: " + Box.id);
+			
+			// title 可读，可写
+			console.log("Box.title: " + Box.title);
+			Box.title = "内容被改写。";
+			console.log("Box.title: " + Box.title);
+			
+			// className 获取class属性节点可读，可写
+			console.log(Box.className);//pox
+			Box.className = "new_box";
+			console.log(Box.className);
+			
+			
+			// 自定义的属性节点不能够通过语法来调用
+			console.log(Box.asdf);//undefined
+			console.log(Box.getAttribute("asdf"));
+			var person = {
+				name:"jack",
+				age:16,
+				id:001
+			}
+			console.log(person.name);//jack
+			Box.test = "IT是引领时代潮流的领航者！";//添加自定义属性
+			console.log(Box.test);
+		}
+	</script>
+</html>

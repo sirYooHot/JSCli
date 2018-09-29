@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style type="text/css">
+			#box {
+				width: 100px;
+				height: 100px;
+				top: 100px;
+				left: 100px;
+				position: absolute;
+				border-radius: 50%;
+				background: deepskyblue;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				//  ------公共方法_start------
+				// 获取(元素节点,属性)
+				function getStyleAttr(obj,attr){
+					if(window.getComputedStyle){
+						return getComputedStyle(obj,null)[attr];
+					}
+						return obj.currentStyle[attr];
+				}
+				// startMove()方法
+				function startMove(obj,attr,target,speed){
+					clearInterval(obj.timer);
+					obj.timer = setInterval(function(){
+						var eleValue = getStyleAttr(obj,attr);// 获取属性值
+						var current = parseInt(eleValue);// 属性值取整
+						if(current >= target){// 判断临界值
+							clearInterval(obj.timer);
+							return;
+						}
+						obj.style[attr] = current + speed + "px";// 改变属性值，产生动态效果
+					},30);
+				}
+				//  ------公共方法_end------
+				
+				// body
+				var startInput = document.getElementsByTagName("input")[0];
+				var stopInput = document.getElementsByTagName("input")[1];
+				var oBox   = document.getElementById("box");
+				
+				startInput.onclick = function(){
+					startMove(oBox,"left",500,5);
+				}
+				stopInput.onclick = function(){
+					clearInterval(oBox.timer);
+				}
+			}
+		</script>
+		<title></title>
+	</head>
+	<body>
+		<div id="box"></div>
+		<input type="button" value="点击运动" />
+		<input type="button" value="停止运动" />
+	</body>
+</html>

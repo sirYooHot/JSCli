@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				height: 100px;
+				width: 100px;
+				background: orange;
+				position: absolute;
+				left:10px;
+				top: 100px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				
+				// 获取(元素节点,属性)
+				function getStyleAttr(obj,attr){
+					if(window.getComputedStyle){
+						return getComputedStyle(obj,null)[attr];
+					}
+						return obj.currentStyle[attr];
+				}
+				
+				// body
+				var startBtn = document.getElementsByTagName("input")[0];
+				var oBox   = document.getElementById("box");
+				var stopBtn = document.getElementsByClassName('stopBtn')[0];
+				
+				// 点击按钮，移动div
+				function moveDiv() {
+					//---获取当前值：()px;
+					var oBox_left = getStyleAttr(oBox,"left")
+					var current = parseInt(oBox_left);
+					//---判断是否到达临界值，到达临界值时结束运动
+					if(current >= 1000){
+						//清楚定时器
+						clearInterval(timer);
+						//结束当前函数，代码执行结束
+						return;
+					}
+					oBox.style.left = current + 10 +"px";
+				}
+				
+				
+				
+				// 点击运动
+				function startEvent() {
+					var timer = setInterval(moveDiv, 200);
+				}
+				startBtn.onclick = startEvent;
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="匀速运动" />
+		<div id="box"></div>
+	</body>
+</html>
