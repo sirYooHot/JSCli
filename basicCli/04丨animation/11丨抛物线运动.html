@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title><style type="text/css">
+			#box {
+				width: 50px;
+				height: 50px;
+				background: orange;
+				border-radius: 50%;
+				position: absolute;
+				left: 50px;
+				top: 100px;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				var oBox = document.getElementById("box");
+				var Speedx = 10;
+				var Speedy = -20;
+				
+				var timer = setInterval(function(){
+					//垂直速度变小的向上运动
+					Speedy += 2;
+					oBox.style.left = oBox.offsetLeft + Speedx + "px";
+					oBox.style.top  = oBox.offsetTop  + Speedy + "px";
+					// 给y轴设置边界
+					var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;// 可视区域的高度
+					// 到达边界后
+					if(oBox.offsetTop >= clientHeight - oBox.offsetHeight){
+						oBox.style.top = clientHeight - oBox.offsetHeight + "px";
+						Speedy *= -0.8;
+					}
+				},30);
+				//水平速度静止后
+				var timerx = setInterval(function(){
+					--Speedx <= 0 ? clearInterval(timerx) : "";
+				},900);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>
