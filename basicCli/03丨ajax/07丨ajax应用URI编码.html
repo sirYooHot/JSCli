@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/ajax.js" ></script>
+		<script type="text/javascript">
+			var xhr = createXHR();
+			
+			// xhr.open("GET","http://localhost:8080/ajax/checkname?regname="+encodeURIComponent("CooliY"),true);
+			xhr.open("GET","../virtualServer/todolist.json", true);
+
+			// 请求头：存放私密信息，token, sign, id等
+			xhr.setRequestHeader("token","123token");
+			xhr.setRequestHeader("userid","132ID");
+			xhr.send(null);
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState==4 && xhr.status==200){
+					var deconde = decodeURIComponent(xhr.responseText)
+					console.log(deconde)
+					// 响应头的信息
+					console.log(xhr.getAllResponseHeaders());
+					console.log(xhr.getResponseHeader("Content-Type"));
+				}else{
+					console.log("readyState:"+xhr.readyState+",xhr.status:"+xhr.status);
+				}
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

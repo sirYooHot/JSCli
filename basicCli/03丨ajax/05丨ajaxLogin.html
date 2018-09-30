@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" placeholder="请输入用户名" /><span id="toast"></span>
+		<input type="password" placeholder="请输入密码" /><br />
+		<input type="button" value="注册" />
+	</body>
+	<script src="../js/common.js"></script>
+	<script type="text/javascript">
+		/**
+		 * http协议： 它是应用层面向对象的，也是基于tcp/ip的超文本传输协议;
+		 * GET,POST
+		 * 
+		 * 1.GET比POST快
+		 * 
+		 * 2.GET请求,通常是把参数放在URL后面;
+		 * 	 POST请求，参数放在请求体body中;
+		 * 
+		 * 3.GET，  传输数据量比较小;
+		 * 	 POST，理论上是无限大;-->会受到限制：
+		 * 
+		 * 4.POST请求,理论上比GET安全一些!
+		 * 	 GET可以直接看到猜出，POST在结构体里不好所以安全些
+		 * 
+		 */
+		//页面加载
+		onload = function(){
+			var oToast = document.getElementById("toast");
+			var oInput = document.getElementsByTagName("input");
+			
+			oInput[0].onblur = function(){
+				//调用接口，判断用户名是否可用;
+				var xhr = createXHR();
+				xhr.open("GET","../virtualServer/todolist.json"+this.value, true);
+				xhr.send(null);
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4 && xhr.status == 200){
+						console.log("success")
+					}else{
+						console.log(
+							"xhr.readState:"+ xhr.readyState
+							+",xhr.status:"+ xhr.status
+						);
+					}
+				}
+			}
+		}
+	</script>
+</html>

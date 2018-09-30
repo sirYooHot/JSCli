@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../js/ajax.js"></script>
+		<script type="text/javascript">
+			
+			ajax({
+				method: "GET",
+				url: "../virtualServer/todolist.json",
+				data: {
+					regname:"lisa",
+					age:14
+				},
+				async: true,
+				
+				success: function(responseText){
+					console.log("服务器返回数据: "+responseText);
+				},
+				failure: function(code){
+					console.log("请求失败: " + code);
+				}
+			});
+			
+		</script>
+	</body>
+</html>

@@ -46,6 +46,14 @@
 				JSON.parse(): 最外层是对象，也不需要任何处理
 			*/
 			
+			/**
+			 * 设置请求头！
+			 * 请求头一般是放一些私密的信息给服务器，token,sign,或者信息的id等等
+			 * xhr.setRequestHeader("token","123");
+			 * xhr.setRequestHeader("userid","CooliY");
+			 */
+			
+			
 			// 创建xhr
 			function createXHR(){
 				if(window.XMLHttpRequest){
@@ -56,10 +64,16 @@
 			function getXhr(){
 				var xhr = createXHR();
 				xhr.open("GET", "../virtualServer/todolist.json", true);
+				
+				// 请求头：存放私密信息，token, sign, id等
+				xhr.setRequestHeader("token","123token");
+				xhr.setRequestHeader("userid","132ID");
+				
 				xhr.send(null);
 				// 添加监听事件
 				xhr.onreadystatechange = function(){
 					if(xhr.status==200 && xhr.readyState == 4){
+						console.log(xhr)
 						console.log(xhr.responseText)
 						var resObj = JSON.parse(xhr.responseText);
 						console.log(resObj)
@@ -69,8 +83,8 @@
 					}
 				}
 			};
-			getXhr()
-
+			getXhr();
+			
 		</script>
 	</body>
 </html>
