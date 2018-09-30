@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box02 {
+				display: inline-block;
+				margin: 20px auto 0;
+				cursor: pointer;
+				color: #fff;
+				background: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">喝醉的旺财</div>
+		<div id="box02">喝醉的旺财</div>
+		<script type="text/javascript">
+			onload = function(){
+				var oBox = document.getElementById("box");
+				var oBox02 = document.getElementById("box02");
+				
+				
+				// 1.this -> div ：
+				oBox.onclick = function(){
+					console.log(this.id);
+				}
+				oBox.onclick();
+				// 2.this -> obj ：
+				var obj  = {
+					id: 'obj'
+				};
+				obj.test = oBox.onclick;
+				
+				obj.test();// this -> obj
+				
+				
+				// 3. window对象调用定时器中的函数：this就是 window对象
+				oBox02.onclick = function(){
+					
+					var timer =  setInterval(function(){
+						console.log(this);
+					},2000);
+					
+					setTimeout(function(){
+						console.log(this);
+						clearInterval(timer)						
+					},5000);
+				}
+			}
+			
+		</script>
+	</body>
+</html>

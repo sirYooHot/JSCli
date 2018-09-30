@@ -3,70 +3,50 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<style type="text/css">
-			#box{
-				width: 48px;
-				height: 40px;
-				background: deepskyblue;
-				position: absolute;
-				left: 10px;
-				top: 10px;
-			}
-		</style>
 		<script type="text/javascript">
 			onload = function(){
-				// body
-				var oBox =document.getElementById("box");
-				
-				//空数组：记录拖拽过程的位置
-				var arr = [];
-				// 鼠标按下-onmousedown
-				document.onmousedown = function(evt){
-					var oEvent = evt || event;
-					//鼠标位置
-					var x = oEvent.clientX;
-					var y = oEvent.clientY;
-					
-					arr.length = 0;//清空数组
-					arr.push({left: x,top: y});//保存第一个点
-					
-					document.onmousemove = function(evt){// 鼠标移动
-						var oEvent = evt || event;
-						var x = oEvent.clientX;
-						var y = oEvent.clientY;
-						//记录下每一个点
-						arr.push({left:x,top:y});
+				var Div = new Object();
+				var box = document.createElement("div");
+					box.style.width = "100px";
+					box.style.height = "100px";
+					box.style.background = "red";
+					box.style.position = "absolute";
+					box.style.left = "100px";
+					box.style.top = "100px";
+				document.body.appendChild(box);
+				Div.ele = box;
+				Div.startMove = function(){
+					Div.ele.onmousedown = function(evt){
+						var oEvt = evt || event;
+						var divX = oEvt.offsetX;
+						var divY = oEvt.offsetY;
+						box.style.background = "yellow";
+						document.onmousemove = function(evt){
+							var oEvt = evt ||event;
+							var x = oEvt.clientX - divX + "px";
+							var y = oEvt.clientY - divY + "px";
+							Div.onMove(x,y);
+						}
+						document.onmouseup =function(){
+							Div.stopMove();
+							box.style.background = "blue";
+						}
 					}
-					
-					document.onmouseup = function(){// 鼠标松开
+					//---onMove---
+					Div.onMove = function(left,top){
+						box.style.left = left;
+						box.style.top  = top;
+					}
+					//---stopMove---
+					Div.stopMove = function(){
 						document.onmousemove = null;
 						document.onmouseup   = null;
-						
-						console.log("arr.length: "+ arr.length);
-						// 执行所有的动作
-						// 获取第一个位置(x,y)
-						oBox.style.left = arr[0].left + "px";
-						oBox.style.top  = arr[0].top  + "px";
-						// 切换图片
-						oBox.style.background = "deepskyblue";
-						var i = 0;// 记录猴子所在的数组下标位置
-						var timer = setInterval(function(){
-							i++;// 移动至下一个点的位置
-							// 判断数组是否越界
-							if( i>=arr.length ){
-								clearInterval(timer);// 清除定时器
-								oBox.style.background = "dodgerblue";// 替换图片为静止状态
-							}else {
-								oBox.style.left = arr[i].left + "px";
-								oBox.style.top  = arr[i].top  + "px";
-							}
-						},1000);
 					}
 				}
+				Div.startMove();
 			}
 		</script>
 	</head>
 	<body>
-		<div id="box"></div>
 	</body>
 </html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div {
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 10px;
+				top: 10px;
+			}
+			.red {
+				background: red;
+			}
+			.yellow {
+				background: yellow;
+			}
+			.orange {
+				background: orange;
+			}
+			.deepskyblue {
+				background: deepskyblue;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				// 工程模式，生产对象
+				function createPullObj(id){
+					var pullObj = {};
+					pullObj.box = document.getElementById(id);
+					pullObj.move = function(x,y){
+						this.box.style.left = x - this.disX + "px";
+						this.box.style.top  = y - this.disY + "px";
+					}
+					pullObj.stopMove = function(){
+						document.onmousemove = null;
+						document.onmouseup   = null;
+					}
+					// startMove()
+					pullObj.startMove = function(x,y){
+						this.disX = x - this.box.offsetLeft;
+						this.disY = y - this.box.offsetTop;
+						//self: this-->div.this
+						var self = this;
+						document.onmousemove = function(evt){
+							var oEvent =evt || event;
+							self.move(oEvent.clientX,oEvent.clientY);
+						}
+						document.onmouseup = function(){
+							self.stopMove();
+						}
+					}
+					
+					// mousedown事件
+					pullObj.box.onmousedown = function(evt){
+						var oEvent = evt || event;
+						pullObj.startMove(oEvent.clientX,oEvent.clientY);
+					}
+					return pullObj;
+				}
+				
+				
+				var obj01 = createPullObj("box0");
+				createPullObj("box1");
+				createPullObj("box2");
+				createPullObj("box3");
+				console.log(
+					obj01 instanceof Object,
+					obj01 instanceof createPullObj
+				);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box0" class="red"></div>
+		<div id="box1" class="orange"></div>
+		<div id="box2" class="deepskyblue"></div>
+		<div id="box3" class="yellow"></div>
+	</body>
+</html>

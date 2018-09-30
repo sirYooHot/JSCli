@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				position: absolute;
+				left: 200px;
+				top: 200px;
+				
+				width: 200px;
+				height: 200px;
+				background: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box" ></div>
+		<script type="text/javascript">
+			onload = function(){
+				var oBox = document.getElementById("box");
+				// 1. onmousedown
+				/*oBox.onmousedown = function(evt){
+					var oEvent = evt || event;
+					var disX = oEvent.clientX - oBox.offsetLeft;
+					var disY = oEvent.clientY - oBox.offsetTop;
+					// onmousemove
+					document.onmousemove = function(evt){
+						var oEvent = evt || event;
+						oBox.style.left = oEvent.clientX - disX + "px";
+						oBox.style.top  = oEvent.clientY - disY + "px";
+					}
+					// onmouseup
+					document.onmouseup = function(){
+						document.onmousemove = null;
+						document.onmouseup   = null;
+					}
+				}*/
+				
+				// 2. 面向对象拖拽
+				var dragObj = new Object();
+				dragObj.box = document.getElementById("box");
+				
+				// 移动div方法
+				dragObj.moving = function(x, y){
+					//div的位置 = 鼠标的位置 - 偏移值
+					this.box.style.left = x;
+					this.box.style.top  = y; 
+				}
+				// 停止div方法
+				dragObj.stopMove = function(){
+					document.onmousemove = null;
+					document.onmouseup   = null;
+				}
+				dragObj.startMove = function(cltX, cltY){
+					var self = this;
+					// 存储鼠标的偏移值
+					self.disX = cltX - this.box.offsetLeft;
+					self.disY = cltY - this.box.offsetTop;
+					
+					document.onmousemove = function(evt){
+						var e = evt || event;
+						
+						// div的位置 = 鼠标的位置 - 偏移值
+						var newX = e.clientX - self.disX + "px";
+						var newY = e.clientY - self.disY + "px"; 
+						self.moving(newX, newY);
+					}
+					document.onmouseup = function(){
+						self.stopMove();
+					}
+				}
+				
+				// div上鼠标按下事件
+				dragObj.box.onmousedown = function(evt){
+					var e = evt || event;
+					// 调用对象开始移动方法
+					dragObj.startMove(e.clientX, e.clientY);
+				}
+			}
+		</script>
+	</body>
+</html>

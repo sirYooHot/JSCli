@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 匿名函数：没有定义名字；
+			 */
+			
+			// 1. fncA: 指向后面的匿名函数的对象
+			var fncA = function(name){
+				console.log("name:"+ name);
+			}
+			// fncA("雪中悍刀行");
+			
+			
+			// 2. 调用fnb里面的fnc函数
+			function fncB(){
+				//返回fnc
+				return function fnc(){
+					console.log("调用fnb中的fnc函数");
+				}
+			}
+			fncB()();// 调用fnb中的fnc函数
+			
+			
+			// 3. 普通函数，需要主动调用才能够执行
+			function fncD(name){
+				console.log("name:"+ name);
+			}
+			// fncD('苏轼');// name:苏轼
+			
+			
+			// 4. 匿名函数的自运行
+			// 写法一
+			(function(){
+				console.log("匿名函数的自运行");
+			})()
+			
+			// 写法二：自运行：fnF()函数里面的hh函数内容
+			var fnF = (function(){
+				//hh是一个普通的函数，需要主动调用
+				function hh(){
+					console.log("fnF()函数里面的hh函数内容");
+				}
+				return hh;
+			})();
+			
+			// 写法三
+			var fnE = function(){
+				console.log("fnE的自运行");
+			}
+			fnE();// 匿名函数的自运行
+			
+			var xxB =(function(n){
+				return function a(m){
+					console.log(n +"+"+ m);
+				}
+			})("x");
+			xxB("y");
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

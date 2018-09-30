@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul,li {
+				list-style: none;
+			}
+			#list li {
+				width: 200px;
+				height: 20px;
+				margin-left: 200px;
+				text-align: center;
+				background: orange;
+				margin-top: 30px;
+				
+			}
+		</style>
+		<script type="text/javascript">
+			/**
+			 * 闭包： 函数嵌套函数，内部函数会调用外部函数的变量
+			 * 变量或者参数，不会被系统回收(不会释放内存)
+			 */
+			
+			
+			// 1. 垃圾回收机制
+			function obj01(){
+				var a = 1;
+				console.log("obj01:"+ a);
+			}
+			obj01();// 1
+			// 调用完之后，变量a会被系统的垃圾回收机制回收！(把内存释放)
+			
+			
+			// 2. 作用域---------start---------
+			// 全局作用域：
+			var a = 1;
+			function obj02(){
+				a++;
+				console.log("obj02:"+a);
+			}
+			obj02();obj02();obj02();//2;3;4
+			// 局部变量：
+			function obj03(){
+				var b = 1;// 局部作用域
+				console.log("obj03:" + b++);
+			}
+			obj03();obj03();obj03();//1;1;1
+			// 2. 作用域---------end---------
+			
+			
+			// 3. 闭包的写法
+			var funcBB = (function(){
+				var a = 1;// 匿名函数(外部函数)的局部变量
+				return function(){
+					a++;
+					console.log("funcBB:"+a);
+				}
+			})();
+			funcBB();funcBB();funcBB();//2;3;4
+			
+			
+			/**
+			 * 和全局变量和局部变量比较
+			 * 1. 可以保证外部函数局部变量不被释放。
+			 * 2. 此变量，参数不可被外部调用
+			 */
+			
+			onload = function(){
+				var oUl = document.getElementById("list");
+				var oLi   = oUl.getElementsByTagName("li");
+				
+				//循环给li标签添加点击事件！
+				for(var i=0;i<oLi.length;i++){
+					
+					// 1. 常规赋值
+					/*oLi[i].index   = i;
+					oLi[i].onclick = function(){
+						console.log("<常规赋值>:"+this.index);
+					}*/
+					
+					// 2. 匿名函数自运行：(func)(i)
+					/*(function(index){
+						oLi[index].onclick = function(){
+							console.log("([index].onclick = )(i):"+ index);
+						}
+					})(i);*/
+					
+					// 3. 匿名函数自运行：.onclick = ()(i)
+					/*oLi[i].onclick = (function(index){
+						return function(){
+							console.log(".onclick = ()(i):"+ index);// 此index会一直存在内存中
+						}
+					})(i);// 一直保存至内存中，又保证不会被其他人调用*/
+				}
+			}
+			
+			
+			
+		</script>
+	</head>
+	<body>
+		<ul id="list">
+			<li>首页</li>
+			<li>榴莲馒头</li>
+			<li>狗不理包子</li>
+			<li>不辣酱香饼</li>
+			<li>葱煎蛋</li>
+		</ul>
+	</body>
+</html>

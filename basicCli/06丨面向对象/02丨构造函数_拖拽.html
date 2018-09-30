@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			.#box0 {
+				position: absolute;
+				left: 100px;
+				top: 100px;
+				
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+			.box1 {
+				position: absolute;
+				left: 100px;
+				top: 100px;
+				
+				width: 100px;
+				height: 100px;
+				background: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box0"></div>
+		<div id="box1"></div>
+		<script type="text/javascript">
+			onload = function(){
+				// 构造函数
+				function PullObj(id){
+					var self = this;
+					this.box = document.getElementById(id);
+					this.move = function(x,y){
+						this.box.style.left = x - this.disX + "px";
+						this.box.style.top  = y - this.disY + "px";
+					}
+					this.stopMove = function(){
+						document.onmousemove = null;
+						document.onmouseup   = null;						
+					}
+					this.startMove = function(x,y){
+						this.disX = x - this.box.offsetLeft;
+						this.disY = y - this.box.offsetTop;
+						document.onmousemove = function(evt){
+							var oEvent = evt || event;
+							self.move(oEvent.clientX,oEvent.clientY);
+						}
+						document.onmouseup = function(){
+							self.stopMove();
+						}
+					}
+					
+					this.box.onmousedown = function(evt){
+						var oEvent = evt || event;
+						self.startMove(oEvent.clientX,oEvent.clientY);
+					}
+				}
+				
+				
+				new PullObj("box0");
+				new PullObj("box1");
+			}
+		</script>
+	</body>
+</html>

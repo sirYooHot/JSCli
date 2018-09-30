@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			1.构造函数：
+				1. 函数名：首字母大写
+				2. this.属性 / 方法
+				3. 使用new关键字创建：实例化对象
+			*/	
+			function Person(name,age){
+				this.name = name;
+				this.age  = age;
+				this.show = function(){
+					console.log("姓名："+this.name+",年龄："+this.age);
+				}
+			}
+			
+			
+			// 调用函数
+			new Person("CooliY", 17).show();
+			
+			//构造函数：使用new关键字创建对象
+			var person01 = new Person("韩愈", 18);
+			console.log(person01 instanceof Person);// true，代表它时person类型
+			console.log(typeof Person);// function
+			
+			var person02 = new Person("柳宗元",21);
+			console.log(person02 == person01);// false
+			var personx = person02;// 引用类型 --> 对象地址引用
+			console.log(person02 == personx);// true
+			
+			
+			/**
+			 * JS没有类的概念，构造类型就是类
+			 * 1. 构造函数：就是类 ;
+			 * 2. new出来的实例化对象： 对象
+			 * 
+			 * 类就是对象的抽象
+			 * 对象就是类的具体
+			 */
+			
+			// 构造函数：动物类
+			function Animal(name,age){
+				this.name = name;
+				this.age  = age;
+				this.show = function(){
+				console.log(this.name);
+				}
+			}
+			var dog = new Animal("旺财", 18);
+			console.log(dog instanceof Person);// flase
+			console.log(person01.age == dog.age);// true 引用类型： 属性的属性值是一样的
+			console.log(person02.show == dog.show);// false 引用类型
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
