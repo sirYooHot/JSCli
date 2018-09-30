@@ -30,23 +30,27 @@
 				function createPullObj(id){
 					var pullObj = {};
 					pullObj.box = document.getElementById(id);
-					pullObj.move = function(x,y){
-						this.box.style.left = x - this.disX + "px";
-						this.box.style.top  = y - this.disY + "px";
+					pullObj.move = function(x, y){
+						this.box.style.left = x;
+						this.box.style.top  = y;
 					}
 					pullObj.stopMove = function(){
 						document.onmousemove = null;
 						document.onmouseup   = null;
 					}
-					// startMove()
-					pullObj.startMove = function(x,y){
-						this.disX = x - this.box.offsetLeft;
-						this.disY = y - this.box.offsetTop;
-						//self: this-->div.this
+					pullObj.startMove = function(x, y){
 						var self = this;
+						
+						self.disX = x - self.box.offsetLeft;
+						self.disY = y - self.box.offsetTop;
+						//self: this-->div.this
+						
 						document.onmousemove = function(evt){
-							var oEvent =evt || event;
-							self.move(oEvent.clientX,oEvent.clientY);
+							var oEvent = evt || event;
+							var newX = oEvent.clientX - self.disX + "px";
+							var newY = oEvent.clientY - self.disY + "px";
+							
+							self.move(newX, newY);
 						}
 						document.onmouseup = function(){
 							self.stopMove();

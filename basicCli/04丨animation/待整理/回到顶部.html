@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				height: 2000px;
+				width: 200;
+			}
+			#box {
+				width: 100px;
+				height: 30px;
+				background: orange;
+				position: fixed;
+				right: 30px;
+				bottom: 200px;
+				cursor: pointer;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				var box_div = document.getElementById("box");
+				var timer = null;
+				box_div.onclick = function(){
+					clearInterval(timer);
+					timer = setInterval(function(){
+						var current = document.body.scrollTop || document.documentElement.scrollTop;
+						console.log(current);
+						var iSpeed = (0 - current)/8;
+						iSpeed = Math.floor(iSpeed);
+						if(current == 0){
+							clearInterval(timer);
+							return ;
+						}
+						document.body.scrollTop = document.documentElement.scrollTop = current + iSpeed;	
+					},30);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div style="width: 1000px;height: 500px;background: red;margin: 0 auto;"></div>
+		<div style="width: 1000px;height: 500px;background: orange;margin: 0 auto;"></div>
+		<div style="width: 1000px;height: 500px;background: yellow;margin: 0 auto;"></div>
+		<div style="width: 1000px;height: 500px;background: green;margin: 0 auto;"></div>
+		<div style="width: 1000px;height: 500px;background: blue;margin: 0 auto;"></div>
+		<div style="width: 1000px;height: 500px;background: purple;margin: 0 auto;"></div>
+		<div id="box">回到顶部</div>
+	</body>
+</html>

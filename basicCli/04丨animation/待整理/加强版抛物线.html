@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title><style type="text/css">
+			#box {
+				width: 50px;
+				height: 50px;
+				background: orange;
+				border-radius: 50%;
+				position: absolute;
+				left: 50px;
+				top: 200px;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				//--------取球---------
+				var n = 0;
+				setInterval(function(){
+					function Ball(n);
+					n++;
+				},300);
+				
+				//-------------封装球----------------------
+				function Ball(n){
+					//--------body----------------
+					var oBox[n] = document.getElementsByTagName("div");
+					//设置速度(x,y)
+					var Speedx = 10;
+					var Speedy = -20;
+					//----------------定时器---------------
+					var timer = setInterval(function(){
+						//垂直速度变小的向上运动
+						Speedy += 2;
+						oBox.style.left = oBox.offsetLeft + Speedx + "px";
+						oBox.style.top  = oBox.offsetTop  + Speedy + "px";
+						//----------给y轴设置边界-----------------
+						//可视区域的高度
+						var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+						//-------到达边界后--------
+						if(oBox.offsetTop >= clientHeight - oBox.offsetHeight){
+							//
+							oBox.style.top = clientHeight - oBox.offsetHeight + "px";
+							Speedy *= -0.6;
+						}
+					},30);
+					var timerx =setInterval(function(){
+						--Speedx <= 0 ? clearInterval(timerx) : "";
+						
+					},550);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>

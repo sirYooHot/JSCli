@@ -3,50 +3,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<script type="text/javascript">
-			onload = function(){
-				var Div = new Object();
-				var box = document.createElement("div");
-					box.style.width = "100px";
-					box.style.height = "100px";
-					box.style.background = "red";
-					box.style.position = "absolute";
-					box.style.left = "100px";
-					box.style.top = "100px";
-				document.body.appendChild(box);
-				Div.ele = box;
-				Div.startMove = function(){
-					Div.ele.onmousedown = function(evt){
-						var oEvt = evt || event;
-						var divX = oEvt.offsetX;
-						var divY = oEvt.offsetY;
-						box.style.background = "yellow";
-						document.onmousemove = function(evt){
-							var oEvt = evt ||event;
-							var x = oEvt.clientX - divX + "px";
-							var y = oEvt.clientY - divY + "px";
-							Div.onMove(x,y);
-						}
-						document.onmouseup =function(){
-							Div.stopMove();
-							box.style.background = "blue";
-						}
-					}
-					//---onMove---
-					Div.onMove = function(left,top){
-						box.style.left = left;
-						box.style.top  = top;
-					}
-					//---stopMove---
-					Div.stopMove = function(){
-						document.onmousemove = null;
-						document.onmouseup   = null;
-					}
-				}
-				Div.startMove();
-			}
-		</script>
 	</head>
 	<body>
+		<script type="text/javascript">
+			window.onload = function() {
+				
+			}
+		</script>
 	</body>
 </html>

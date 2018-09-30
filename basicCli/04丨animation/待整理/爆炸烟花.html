@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				border:none;
+			}
+			body,html {
+				width: 100%;
+				height: 100%;
+				background: black;
+				overflow: hidden;
+			}
+			.fire {
+				width: 5px;
+				height: 30px;
+				background: white;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			.spark {
+				width: 6px;
+				height: 6px;
+				position: absolute;
+				border-radius: 50%;
+			}
+		</style>
+		<script type="text/javascript" src="js/move.js"></script>
+		<script type="text/javascript">
+		onload = function(){
+			//------------鼠标点击事件-----------------
+			document.onclick = function(evt){
+				var oEvent = evt || event;
+				//获取鼠标位置
+				var x = oEvent.clientX;
+				var y = oEvent.clientY;
+				//调用烟花函数
+				fireStartLaunch(x,y);
+			}
+			//----------------------烟花爆炸函数--------------------------
+			//-----创建发射过程-fireStartlaunch()-----
+			function fireStartLaunch(x,y){
+				//定义烟花(未爆炸)
+				var fireNode = document.createElement("div");
+				fireNode.className = "fire";
+				//位置
+				var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+				fireNode.style.left = x + "px";
+				fireNode.style.top  = clientHeight - fireNode.offsetHeight + "px";
+				//添加到body上
+				document.body.appendChild(fireNode);
+				//----------烟花发射动作--------------
+				startMove(fireNode,{top: y,height: 2},function(){
+					console.log("end of launch");
+					//---------boom----------
+					//移除烟花(未爆炸)
+					document.body.removeChild(fireNode);
+					//---------调用爆炸函数-------------------
+					var count = parseInt(Math.random()*30)+20;
+					for(var i =0;i<count;i++){
+						//-----调用烟花爆炸函数--小火星： n个抛物线------
+						sparkStartBoom(x,y);
+					}
+				});
+			}
+			//-------boom效果-sparkStartBoom()------
+			function sparkStartBoom(x,y){
+				//创建星火
+				var sparkNode = document.createElement("div");
+				sparkNode.className = "spark";
+				//随机一个颜色
+				sparkNode.style.background = randomColor();
+				//设置爆炸的位置
+				sparkNode.style.left = x + "px";
+				sparkNode.style.top  = y + "px";
+				//添加到body
+				document.body.appendChild(sparkNode);
+				//-----------星火抛物线效果-随机取运动方向----------------
+				var Speedx = parseInt(Math.random()*20)*(Math.random() >0.5 ? 1 : -1);
+				var Speedy = parseInt(Math.random()*20)*(Math.random() >0.5 ? 1 : -1);
+				//---------------启动定时器---------------
+				var timer = setInterval(function(){
+					Speedy ++;
+					sparkNode.style.left = sparkNode.offsetLeft + Speedx + "px";
+					sparkNode.style.top  = sparkNode.offsetTop  + Speedy + "px";
+					//---判断显示区域，超出界限就结束运动---
+					if(sparkNode.offsetLeft <0 ||sparkNode.offsetLeft >document.documentElement.clientWidth 
+						|| sparkNode.offsetTop > document.documentElement.clientHeight){
+						//移除节点
+						document.body.removeChild(sparkNode);
+						//清除定时器
+						clearInterval(timer);
+					}
+				},50);
+			}
+			//生成随机色彩
+			function randomColor(){
+				return	"rgb("+parseInt(Math.random()*256)+","+parseInt(Math.random()*256)+","+parseInt(Math.random()*256)+")";				
+			}
+		}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			function createDrag(clientx,clienty){
+				var self = this;
+				var box = document.createElement("div");
+					box.style.width = "100px";
+					box.style.height = "100px";
+					box.style.background = "red";
+					box.style.position = "absolute";
+					box.style.left = clientx + "px";
+					box.style.top = clienty + "px";
+				document.body.appendChild(box);
+				
+				this.ele = box;
+				this.onMove = function(left,top){
+					self.ele.style.left = left;
+					self.ele.style.top  = top;
+				}
+				this.stopMove = function(){
+					document.onmousemove = null;
+					document.onmouseup   = null;
+				}
+				
+				this.startMove = (function(){
+					self.ele.onmousedown = function(evt){
+						var oEvt = evt || event;
+						var divX = oEvt.offsetX;
+						var divY = oEvt.offsetY;
+						self.ele.style.background = "yellow";
+						document.onmousemove = function(evt){
+							var oEvt = evt || event;
+							var x = oEvt.clientX - divX + "px";
+							var y = oEvt.clientY - divY + "px";
+							self.onMove(x,y);
+						}
+						document.onmouseup = function(){
+							self.stopMove();
+							self.ele.style.background = "green";
+						}
+					}
+				})();
+				
+			}
+			onload = function(){
+				var div0 = new createDrag(100,100);
+				var div1 = new createDrag(200,200);
+				var div2 = new createDrag(300,300);
+				var div3 = new createDrag(400,200);
+				var div4 = new createDrag(500,100);
+				var div5 = new createDrag(600,200);
+				var div6 = new createDrag(700,300);
+				var div7 = new createDrag(800,200);
+				var div8 = new createDrag(900,100);
+				var div9 = new createDrag(1000,200);
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
