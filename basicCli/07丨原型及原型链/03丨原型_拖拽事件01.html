@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				width: 100px;
+				height: 100px;
+				left: 10px;
+				top: 50px;
+				position: absolute;
+				background: red;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				// 使用原型之前要创建一个构造函数
+				function PullBox(){}
+				// 给原型对象添加box
+				PullBox.prototype.box = document.getElementById("box");
+				
+				PullBox.prototype.Move = function(x,y){
+					this.box.style.left = x - this.disX + "px";
+					this.box.style.top  = y - this.disY + "px";
+				}
+				PullBox.prototype.stopMove = function(){
+					document.onmousemove = null;
+					document.onmouseup   = null;
+				}
+				
+				PullBox.prototype.startMove = function(x,y){
+					this.disX = this.box.offsetLeft;
+					this.disY = this.box.offsetTop;
+					var self = this;
+					document.onmousemove = function(evt){
+						var oEvent = evt || event;
+						self.Move(oEvent.clientX,oEvent.clientY);
+					}
+					document.onmouseup = function(){
+						self.stopMove();
+					}
+				}
+				
+				// 点击事件
+				var pullBox = new PullBox();
+				pullBox.box.onmousedown = function(evt){
+					var oEvent = evt || event;
+					pullBox.startMove(oEvent.clientX,oEvent.clientY);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>

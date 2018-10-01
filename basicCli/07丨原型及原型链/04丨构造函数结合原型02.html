@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			onload = function(){
+				Box.prototype.onMove = function(box,left,top){
+					 box.style.left = left;
+					box.style.top  = top;
+				}
+				Box.prototype.stopMove = function(){
+					document.onmousemove = null;
+					document.onmouseup   = null;
+				}
+				function Box(clientX, clientY, colorValue){
+					var self = this;
+					
+					var box = document.createElement("div");
+						box.style.width = "100px";
+						box.style.height = "100px";
+						box.style.background = colorValue;
+						box.style.position = "absolute";
+						box.style.left = clientX + "px";
+						box.style.top = clientY + "px";
+					document.body.appendChild(box);
+					this.ele = box;
+					
+					this.startMove = function(){
+						self.ele.onmousedown = function(evt){
+							var oEvt = evt || event;
+							var divX = oEvt.offsetX;
+							var divY = oEvt.offsetY;
+							box.style.background = "lightgray";
+							document.onmousemove = function(evt){
+								var oEvt = evt || event;
+								var x = oEvt.clientX - divX + "px";
+								var y = oEvt.clientY - divY + "px";
+								self.onMove(box,x,y);
+							}
+							document.onmouseup = function(){
+								self.stopMove();
+								box.style.background = colorValue;
+							}
+						}
+					}
+				}
+				
+				var box_a = new Box(0, 0,'red');box_a.startMove();
+				var box_b = new Box(100, 100, 'orange');box_b.startMove();
+				var box_c = new Box(200, 200, 'yellow');box_c.startMove();
+				var box_d = new Box(300, 300, 'blue');box_d.startMove();
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

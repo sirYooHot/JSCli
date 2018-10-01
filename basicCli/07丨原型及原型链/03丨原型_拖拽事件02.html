@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			onload = function(){
+				function Box(){};
+				var box = new Box();
+				var ibox = document.createElement("div");
+					ibox.style.width = "100px";
+					ibox.style.height = "100px";
+					ibox.style.background = "red";
+					ibox.style.position = "absolute";
+					ibox.style.left = "0px";
+					ibox.style.top = "0px";
+				document.body.appendChild(ibox);
+				Box.prototype.ele = ibox;
+				
+				Box.prototype.onMove = function(left,top){
+					box.ele.style.left = left;
+					box.ele.style.top  = top;
+				}
+				Box.prototype.stopMove = function(){
+					document.onmousemove = null;
+					document.onmouseup   = null;
+				}
+				
+				Box.prototype.startMove = function(){
+					
+					ibox.onmousedown = function(evt){
+						var oEvt = evt || event;
+						var divX = oEvt.offsetX;
+						var divY = oEvt.offsetY;
+						ibox.style.background = "yellow";
+						document.onmousemove = function(evt){
+							var oEvt = evt || event;
+							var x = oEvt.clientX - divX + "px";
+							var y = oEvt.clientY - divY + "px";
+							box.onMove(x,y);
+						}
+						document.onmouseup = function(){
+							box.stopMove();
+							ibox.style.background = "blue";
+						}
+					}
+				}
+				
+				box.startMove();
+				var box_a = new Box();
+				box_a.startMove();
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

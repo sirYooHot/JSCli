@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title><script type="text/javascript">
+			/**
+			 * 组合继承： 原型链 + 借用构造函数(对象冒充)
+			 * 借用构造函数来(对象冒充)，继承属性
+			 * 可以使用原型链来继承方法
+			 */
+			//父类
+			function Person(_name, _age){
+				this.name = _name;
+				this.age  = _age;
+			}
+			// 在原型中写方法
+			Person.prototype.show = function(){
+				console.log(this.name +";"+ this.age);
+			}
+			// 子类：对象冒充：继承属性并且初始化
+			function Employee(_name, _age, _gender){
+				Person.call(this, _name, _age);
+				this.gender = _gender;
+			}
+			Employee.prototype = new Person();// 使用原型链来继承
+			var emp = new Employee("输入的名字", '输入的年龄', "输入的性别");
+			console.log(emp.name);
+			console.log(emp.age);
+			console.log(emp.gender);
+			
+			
+			// 父类
+			function Cat(_fur){
+				this.fur = _fur;
+			}
+			function Tomcat(_fur, _friend){
+				Cat.call(this, _fur);
+				this.friend = _friend;
+			}
+			Tomcat.prototype = new Cat();
+			// 父类的原型方法
+			Cat.prototype.eat = function(){
+				console.log("eat");
+			}
+			// 子类的原型方法
+			Tomcat.prototype.eat = function(){
+				console.log("只吃面包");
+			}
+			Tomcat.prototype.catchMouse = function(){
+				console.log("抓老鼠");
+			}
+			
+			// tom
+			var tom = new Tomcat("软毛","有女朋友");
+			console.log(tom.fur);
+			console.log(tom.friend);
+			tom.eat();
+			tom.catchMouse();
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

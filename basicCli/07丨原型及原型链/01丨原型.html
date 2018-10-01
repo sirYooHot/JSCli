@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**
+			 * 构造函数
+			 * 普通函数用new关键字创建就是构造函数；
+			 * 构造函数即是类
+			 * 
+			 */
+			// new Person：不占内存
+			
+			/**
+			 * 1. 原型：是类(构造函数)自带的属性prototype
+			 * 任何一个函数都具备的属性
+			 * 该属性是有个指针，指向一个对象
+			 * 原型可以被任何一个构造函数共享其属性
+			 * 
+			 * 作用：可以通过prototype属性给类添加自定义属性或者方法
+			 * 优点：原型创建的自定义属性和方法是共享的(节省内存)，构造函数创建的属性和函数则是私有的
+			 * 
+			 */
+			
+			/**2. prototype、protptype、__proto_
+			 * 
+			 * 2.1 constructor: 原型的属性 --> 指向构造函数本身
+			 * 构造函数的.prototype.constructor === 构造函数
+			 * 
+			 * 2.2 protptype: 构造函数的属性 --> 指向原型
+			 * __proto__: 是实例对象的属性, 指向构造函数所指的原型
+			 * 
+			 * 实例化对象.__proto_ === 构造函数.prototype
+			 * 
+			 * 
+			 * 2.3 使用字面量创建原型的问题：
+			 * (构造函数.prototype.constructor === 构造函数)// false
+			 * 
+			 */
+			
+			/*
+			3. 实例化对象与构造函数及其原型的关系
+				1. isPrototypeof(): 是原型对象的方法，可以判断此对象是否指向该原型
+					1. 查找对象的属性：查找实例对象中，是否存在该属性，如果有就返回该属性的值
+					2. 如果没有，查找原型对象中是否存在该属性！如果存在，则返回该属性的值
+				2. 实例化对象上, 能够使用的属性方法:
+					1. 构造函数的原型，添加自定义属性
+					2. delete: 直接删除对象属性
+					3. 先从构造函数中取值，未找到再从原型中取值
+				3. 实例化对象上, 使用属性的来源:
+					1. hasOwnProperty() 判断是否为实例对象的属性（不会去原型中找）
+					2. in: 判断某属性是否存在构造函数或者原型中
+					3. 判断某属性是否仅存在原型中: (in方法判断)==true && (hasOwnProperty)==false
+			*/
+
+
+			function Box(name){
+				this.name = name;
+				this.show = function(){
+					console.log(this.name);
+				};
+			}
+			var box_a = new Box("box");
+			var box_b = new Box("box");
+			// 1.1  实例化对象的中的func：彼此独立的内存空间
+			console.log(box_a.name == box_b.name);//true: 两个字符串是否相等
+			console.log(box_a.show == box_b.show);//false: 函数的内存地址不一样
+			
+			
+			
+			// 2.1
+			console.log(Box.prototype.constructor === Box);// true
+			console.log(box_a.__proto__ === Box.prototype);// true
+			// 2.2 使用字面量创建原型的问题：(构造函数.prototype.constructor === 构造函数)// false
+			function Student_a(){};
+			Student_a.prototype = {
+				name: "jazz",
+				age: 20
+			}
+			console.log(Student_a.prototype.constructor === Student_a);// false
+			
+			
+			
+			// 3.1 实例化对象的原型是否为构造函数的原型
+			console.log(Box.prototype.isPrototypeOf(box_a));// true
+			// 3.2.1
+			Box.prototype.type = "构造函数的原型上的type属性值";
+			Box.prototype.name = "构造函数的原型上的name属性值";
+			console.log(box_a.type);// 构造函数的原型上的type属性值
+			// 3.2.2
+			delete box_a.name;// 删除box_a对象中的name属性
+			// 3.2.3
+			console.log(box_a.name);// box删除对象中的属性后 prototype.name
+			
+			
+			// 3.3.1 hasOwnProperty 判断属性是否存在构造函数中；
+			console.log(box_a.hasOwnProperty("name"));// true
+			console.log(box_a.hasOwnProperty("type"));// false
+			// 3.3.2 in: 判断某属性是否存在构造函数或者原型中
+			console.log("type" in box_a);// true
+			// 3.3.3  判断某属性是否仅存在原型中
+			// ("type" in box_a) == true && (box_a.hasOwnProperty("type")) == false
+			
+			
+		</script>
+	</body>
+</html>

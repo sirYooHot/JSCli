@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			1. 构造函数原型上的属性及方法：
+				1. 字面量创建构造函数的原型属性及方法;
+				2. 构造器指回自身: constructor: Person;
+				3. 原型上的属性及方法被所有的实例化对象所共享;
+			2. 原型的缺点：
+				1. 所有的对象都是共享的，一个修改全局影响
+				2. 不能像构造函数创建对象一样赋值： var person = new Person("jazz",20,"boy");
+			*/
+			function Person(){};
+			// 1.1
+			Person.prototype = {
+				// 1.2  构造器指回自身
+				constructor: Person,
+				name: "lisa",
+				family: ["father","mother","brother","sister"],
+				myshow: function(){
+					console.log(this.name,this.family);
+				}
+			}
+			console.log(Person.prototype.constructor === Person)
+			
+			// 1.3  原型上的属性及方法被所有的实例化对象所共享
+			var person_a = new Person();
+			person_a.myshow();// ["father","mother","brother","sister"]
+			person_a.family.push("uncle");
+			person_a.myshow();// ["father","mother","brother","sister","uncle"]
+			var person_b = new Person();
+			person_b.myshow();// ["father","mother","brother","sister","uncle"] 与原初始型值不一致
+			console.log(person_b.myshow === person_a.myshow)// true
+			
+			
+			
+			// 2. 使用构造函数结合原型
+			function Student(name,age,family){
+				this.name = name;
+				this.age = age;
+				this.family = family;
+			}
+			Student.prototype = {
+				constructor: Student,
+				myshow: function(){
+					console.log(this.name,this.age,this.family);
+				}
+			}
+			// 2.1 构造函数的属性及方法是私有的
+			var Student_a = new Student("black",20,["father","mother","brother","sister"]);
+			var Student_b = new Student("blue",22,["father","mother","brother","sister","uncle"]);
+			
+			// 2.2 构造函数的属性及方法是共享的
+			Student_a.myshow();// ["father", "mother", "brother", "sister"]
+			Student_b.myshow();// ["father", "mother", "brother", "sister", "uncle"]
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

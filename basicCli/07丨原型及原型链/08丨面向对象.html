@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			
+			//工厂模式；createObj
+			function createObj(_name,_age){
+				var obj = new Object();
+				obj.name = _name;
+				obj.age  = _age;
+				obj.show = function(){
+					console.log("show");
+				}
+				return obj;
+			}
+			obj1 = createObj("Joson",20);
+			obj2 = createObj("Alice",20);
+			
+			// 构造函数：Person
+			function Person(_name,_age){
+				this.name = _name;
+				this.age  = _age;
+				this.show = function(){
+					console.log("show");
+				}
+			}
+			var person1 = new Person("jazz",20);
+			var person2 = new Person("blue",21);
+			
+			/**
+			 * 构造函数首字母要大写，要用new关键字创建实例对象
+			 * 闭包：保持局部变量不被内存释放
+			 * 匿名函数的自运行
+			 */
+			var fn = function(){
+				console.log("fn");
+			}
+			fn();
+			// 函数自执行
+			(function(){
+					console.log("fn");
+			})();
+			// 传参
+			var first = (function(m){
+				console.log("m:"+m);
+				function second(n){
+					console.log("n："+n);
+				}
+				return second;
+			})(3);//4 --> m
+			first("B");//B --> n
+			
+			
+			// 函数嵌套函数内部使用外部函数放入变量或者参数
+			/**
+			 * 1. 有全局变量的不会被释放的特点
+			 * 2. 有局部变量不可以被外部访问的特点
+			 */
+			//---this关键字---
+			var oBox = {id: "oBox"};
+			oBox.onclick = function(){
+				console.log(this.id);
+			}
+			var obj  = {id: "Myobj"};
+			obj.test = oBox.onclick;
+			oBox.onclick();
+			obj.test();
+			// 定时器,延时器中：this.代表window
+			// 原型： 函数自带属性，prototype对象
+			
+			function Person(){};
+			Person.prototype.name = "Swift";
+			Person.prototype.show = function(){
+				console.log("hello swift");
+			};
+			var person1 = new Person();
+			console.log(person1.name);// Swift
+			var person2 = new Person();
+			console.log(person2.name);// Swift
+			/**
+			 * 访问属性：
+			 * 1. 先查找对象中是否拥有这个属性：如果有就返回该属性的值，如果没有再从原型中找
+			 * 2. 在从原型对象中查找这个属性，如果有，则返回该属性，如果没有，则undefined
+			 * 
+			 * 原型的缺点：
+			 * 1. 所有对象使用相同的原型数据，只要有一个对象对原型的数据进行修改，则其他对象的该属性值也修改了。
+			 * 2. 数据没办法初始化，不同的对象使用的都是相同的初始化数据。
+			 */
+			/**
+			 * 构造函数 + 原型
+			 * 构造函数： 能够传参数(可以初始化数据)，不同的对象的属性或者方法，在内存中都是独立的
+			 * 原型对象：可以把公共的属性，或者方法写到这里；
+			 * 属性: 使用构造函数；
+			 * 方法: 使用原型；
+			 */
+			// 组合继承（原型链+对象冒充）
+		//父类
+		//一般使用构造函数包含属性，使用原型包含方法
+		function Cat(_name,_age){
+			this.name = _name;
+			this.age = _age;
+		}
+		//子类
+		function Tomcat(_name,_age,_fur) {
+			//对象冒充
+			Cat.call(this,_name,_age);
+			this.fur = _fur;
+		}
+		Tomcat.prototype = new Cat();//原型链继承
+		
+		Cat.prototype.show = function() {
+			console.log(this.name +","+ this.age);
+		}
+		
+		var tomcat = new Tomcat("tom",6,"毛毛");
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

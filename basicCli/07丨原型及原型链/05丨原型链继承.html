@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**
+			 * 继承
+			 * Animal：  
+			 * Human:  
+			 */
+			function Person(){
+				this.name = "name";
+			}
+			function Employee(){
+				this.age = 'Elyage';
+			}
+			var person = new Person();
+			Employee.prototype = person;			
+			console.log(Employee.prototype.name);
+			
+			
+			// 1. 继承作用
+			var employee = new Employee();
+			console.log(employee.age);// 私有属性
+			console.log(employee.name);// 原型属性
+			console.log(employee.__proto__.name);// 原型属性
+			
+			
+			
+			// 2. 原型链继承
+			function Manager(){
+				this.gender = "male"
+			}
+			Manager.prototype = new Employee();// 继承了employee,使用原型链继承
+			var manager = new Manager();
+			console.log(manager.gender);// 私有属性
+			console.log(manager.age);// 继承父辈属性
+			console.log(manager.name);// 继承祖父辈属性
+			
+			
+			// Cat函、GarfieldCat、Tomcat原型链继承场景：---------start
+			// Cat函数
+			function Cat(){
+				this.fur = "软毛";
+				this.eat = function(){
+					console.log("各种吃");
+				}
+				this.miao = function(){
+					console.log("喵~");
+				}
+			}
+			// GarfieldCat
+			function GarfieldCat(){
+				this.glassess = "戴眼镜";
+				this.talk = function(){
+					console.log("会说话");
+				}
+				this.eat = function(){
+					console.log("只吃肉");//重新赋值eat属性
+				}
+			}
+			GarfieldCat.prototype = new Cat();
+			// Tomcat
+			function Tomcat(){
+				this.friend = "有朋友";
+				this.catchMouse = function() {
+					console.log("会抓老鼠");
+				}
+				this.eat = function(){
+					console.log("吃面包");
+				}
+			}
+			Tomcat.prototype = new Cat();
+			
+			// 创建一只加菲猫
+			var garfieldCat = new GarfieldCat();
+			console.log(garfieldCat.glassess);// 私有属性
+			// 创建一直汤姆猫
+			var tomcat = new Tomcat();
+			tomcat.catchMouse();// 私有方法
+			tomcat.miao();// 原型Cat上的共有方法
+			// Cat函、GarfieldCat、Tomcat原型链继承场景：---------end
+		</script>
+	</body>
+</html>

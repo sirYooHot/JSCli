@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div {
+				width: 100px;
+				height: 100px;
+				left: 10px;
+				top: 50px;
+				position: absolute;
+			}
+			.red {
+				background: red;
+			}
+			.yellow {
+				background: yellow;
+			}
+		</style>
+		<script type="text/javascript">
+			/**
+			 * 
+			 * 构造函数+原型
+			 * 构造函数需要传参数，保存的东西都是私有的属性和方法
+			 * 原型：公共的属性和方法
+			 */
+			//属性：box通常都是私有的
+			//方法：startMove，moving，stopMove，通常是共有
+			onload = function(){
+				
+				PullBox.prototype.Move = function(x,y){
+					this.box.style.left = x - this.disX + "px";
+					this.box.style.top  = y - this.disY + "px";
+				}
+				PullBox.prototype.stopMove = function(){
+					document.onmousemove = null;
+					document.onmouseup   = null;
+				}
+				PullBox.prototype.startMove = function(x,y){
+					var self = this;
+					
+					this.disX = x - this.box.offsetLeft;
+					this.disY = y - this.box.offsetTop;
+					document.onmousemove = function(evt){
+						var oEvent = evt ||event;
+						self.Move(oEvent.clientX,oEvent.clientY);
+					}
+					document.onmouseup   = function(){
+						self.stopMove();
+					}
+				}
+				
+				function PullBox(id){
+					var self = this;
+					
+					this.box = document.getElementById(id);
+					self.box.onmousedown = function(evt){
+						var oEvent = evt || event;
+						self.startMove(oEvent.clientX,oEvent.clientY);
+					}
+				}
+				var box1 = new PullBox("box1");
+				var box2 = new PullBox("box2");
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box1" class="red"></div>
+		<div id="box2" class="yellow"></div>
+	</body>
+</html>

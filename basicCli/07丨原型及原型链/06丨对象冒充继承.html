@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 借用Person
+			 * 对象冒充： thisPerson
+			 * this实际上是通过new创建Employee对象
+			 * employee.name = _name;
+			 * employee.age  = _age;
+			 * 
+			 */
+			function Person(_name,_age){
+				this.name = _name;
+				this.age  = _age; 
+			}
+			function Employee(_name, _age, _gender){
+				//Person.call(this, _name, _age);
+				Person.apply(this, [_name, _age]);//参数使用数组
+				this.gender = _gender;
+			}
+			Employee.prototype = new Person();
+			// 子类对象
+			var employee = new Employee("李太白", 22, "男");
+			console.log(employee.gender);
+			console.log(employee.age);
+			console.log(employee.name);
+			employee.name ="诗仙";
+			console.log(employee.name);//诗仙
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
