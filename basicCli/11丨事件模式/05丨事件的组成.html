@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				width: 100px;
+				height: 100px;
+				margin-bottom: 20px;
+				background: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<input type="button" value="按钮1" />
+		<input type="button" value="按钮2" />
+		<input type="button" value="按钮3" />
+		<script type="text/javascript">
+			/**
+			 * 事件的组成部分
+			 * 1.document 事件的触发对象
+			 * 2.onclick  事件的处理函数
+			 * 3.function 事件的执行函数
+			 */
+			document.onclick = function(){
+				console.log("触发了点击事件.");
+			}
+			window.onload = function(){
+				// this: 指针,触发事件的对象
+				var box = document.getElementById("box");
+				box.onclick = function(){
+					console.log("id:"+ this.id);
+				}
+				
+				var Input = document.getElementsByTagName("input");
+				for(var i=0;i<Input.length;i++){
+					 Input[i].myindex = i;
+					 Input[i].onclick = function(){
+					 	// 获取按钮本身的value值
+					 	// 使用this，这里的this，表示你触发的事件对象
+					 	console.log("value:"+ this.value);
+					 	console.log("index:"+ this.myindex);
+					 }
+				}
+			}		
+		</script>
+	</body>
+</html>

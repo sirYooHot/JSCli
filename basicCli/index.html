@@ -3,10 +3,69 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<script type="text/javascript">
-			window.onload = function() {}
-		</script>
 	</head>
 	<body>
+		<script type="text/javascript">
+			// event对象 ->事件对象， 通过浏览器传到执行函数中
+			// 普通函数
+			function func(name){
+				console.log(arguments.length);//1
+				console.log(name);
+			}
+			func("Jazz");
+			// 在事件里
+			document.onclick = function(){
+				console.log(arguments.length);//1,说明隐藏一个参数
+				// MouseEvent {isTrusted: true, screenX: 256, screenY: 299, clientX: 256, clientY: 238…}
+				console.log(arguments[0]);
+			}
+			document.onclick = function(evt){
+				console.log("evt: " + evt);
+				console.log(window.event);//Event
+			}
+			/**
+			 * window.event 可以获取到事件对象，event
+			 * evt          在ie不兼容
+			 * window.event 在火狐不兼容
+			 * 谷歌浏览器都支持
+			 */
+			document.onclick = function(evt){
+				// var oEvent = evt || window.event;
+				var oEvent = evt || event;
+				console.log("oEvent: " + oEvent);
+			}
+			// event对象的属性
+			/**
+			 * button
+			 *  0: 鼠标的左键被点击
+			 * 	1: 鼠标的中间键被点击
+			 * 	2:  鼠标的右键被点击
+			 */
+			document.onclick = function(evt){
+				var oEvent = evt || event;
+				switch(oEvent.button){
+					case 0:
+					console.log("左键被点击");
+					break;
+					case 1:
+					console.log("中间键被点击");
+					break;
+					case 2:
+					console.log("右键被点击");
+					break;
+					default:
+					console.log("其他");
+					break;
+				}
+			}
+			// 2. 可视区域，屏幕区域
+			document.onclick = function(evt){
+				var oEvent = evt || event;
+				//可视区域
+				console.log("oEvent.clientX: " + oEvent.clientX + ",oEvent.clientY: " + oEvent.clientY);
+				//屏幕区域
+				console.log("oEvent.screenX: " + oEvent.screenX + ",oEvent.screenY: " + oEvent.screenY);
+			}
+		</script>
 	</body>
 </html>

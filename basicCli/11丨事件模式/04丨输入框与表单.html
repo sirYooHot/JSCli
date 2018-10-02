@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body style="height: 100px;">
+		<form>
+			<input type="text" value="1622班~" />
+			<input type="submit" />
+			<input type="reset"/>
+		</form>
+		<script type="text/javascript">
+			onload = function(){
+				// onselect: 当选择文本框内容时,触发
+				// onchange: 文本框内容修改，并且失去焦点的时候触发
+				// onfocus: 获取焦点时触发
+				// onblur: 失去焦点时触发
+				
+				var Input = document.getElementsByTagName("input");
+				Input[0].onselect = function(){
+					console.log("当选择文本框内容时，触发");
+				}
+				Input[0].onchange = function(){
+					console.log("文本框内容修改，并且失去焦点的时候触发");
+				}
+				Input[0].onfocus = function(){
+					console.log("获取焦点时触发");
+				}
+				Input[0].onblur = function(){
+					console.log("失去焦点时触发");
+				}
+				
+				
+				
+				// onsubmit: form节点上，点击提交按钮时触发的
+				// onreset:  form节点上，点击了重置按钮时触发！
+				// onunload: 界面卸载时触发
+				var Form = document.getElementsByTagName("form")[0];
+				Form.onsubmit = function(){
+					console.log("节点上，点击提交按钮时触发的");
+				}
+				Form.onreset = function(){
+					console.log("form节点上，点击了重置按钮时触发！");
+				}
+				window.onunload = function(){
+					console.log("界面卸载时触发！");
+				}
+			}
+		</script>
+	</body>
+</html>

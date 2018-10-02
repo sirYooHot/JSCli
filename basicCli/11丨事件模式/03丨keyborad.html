@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css"></style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			onload = function(){
+				/**
+				 * 键盘事件: 由键盘上的按钮触发的！
+				 * 使用window对象或者document对象调用
+				 */
+				
+				// 1. onkeydown: 键盘上任意一个键按下时触发
+				window.onkeydown = function(){
+					console.log("按键已按下！");
+				}
+				// 2. onkeypress: 键盘上字母键按下
+				window.onkeypress = function(){
+					console.log("字母键已按下！");
+				}
+				// 3. onkeyup: 键盘上的按键松开的时候触发
+				window.onkeyup = function(){
+					console.log("按键已松开！");
+				}
+			}
+		</script>
+	</body>
+</html>

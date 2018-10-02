@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				position: absolute;
+				left: 50px;
+				top: 50px;
+				
+				width: 100px;
+				height: 100px;
+				background: red; 
+			}
+		</style>
+		<script type="text/javascript">
+			/**
+			 * 事件处理函数：on+函数名字
+			 * onclick,onload,onkeydown等
+			 * 注意！都是小写字母
+			 * 
+			 * JS事件: 
+			 * 1. 鼠标事件
+			 * 2. 键盘事件
+			 * 3. html事件
+			 */
+			onload = function(){
+				var Input = document.getElementsByTagName("input");
+				
+				/*
+				1. 鼠标的点击事件
+					1. onclick: 鼠标的单击事件
+					2. ondblclick: 鼠标的双击事件
+					3. onmousedown: 鼠标的按下事件
+					4. onmouseup: 鼠标的抬起事件
+				*/	
+				Input[0].onclick=function(){
+					alert("鼠标点击了");
+				}
+				Input[1].ondblclick = function(){
+					alert("双击了鼠标");
+				}
+				Input[2].onmousedown = function(){
+					alert("鼠标按下了！");
+				}
+				Input[3].onmouseup = function(){
+					alert("鼠标抬起了！");
+				}
+				
+				/*
+				2. 鼠标移动事件
+					1. onmouseover: 鼠标移入事件
+					2. onmouseout: 鼠标移出事件
+					3. onmousemove: 鼠标移动事件
+				*/
+				var Box = document.getElementById("box");
+				Box.onmouseover=function(){
+					console.log("鼠标已经进入box");
+				}
+				Box.onmouseout = function(){
+					console.log("鼠标已经出去box");
+				}
+				Box.onmousemove = function(){
+					console.log("鼠标在box中移动");
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="单击：onclick" />
+		<input type="button" value="双击：ondblclick" />
+		<input type="button" value="鼠标按下：onmousedown" />
+		<input type="button" value="鼠标抬起：onmouseup" />
+		<div id="box" style="" </div>
+	</body>
+</html>
