@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**
+			 * 1. window.event 可以获取到事件对象，event
+			 * evt          在ie不兼容
+			 * window.event 在火狐不兼容
+			 * 谷歌浏览器都支持
+			 */
+			/*document.onclick = function(evt){
+				// var oEvent = evt || window.event;
+				var e = evt || event;
+				console.log(e);
+			}*/
+			
+			// event对象的属性
+			
+			
+			/**
+			 * 2. button
+			 *  0: 鼠标的左键被点击
+			 * 	1: 鼠标的中间键被点击
+			 * 	2:  鼠标的右键被点击
+			 */
+			/*document.onclick = function(evt){
+				var oEvent = evt || event;
+				switch(oEvent.button){
+					case 0:
+						console.log("左键被点击");
+					break;
+					case 1:
+						console.log("中间键被点击");
+					break;
+					case 2:
+						console.log("右键被点击");
+					break;
+					default:
+						console.log("其他");
+					break;
+				}
+			}*/
+			
+			
+			
+			// 3. 可视区域，屏幕区域
+			/*document.onclick = function(evt){
+				var e = evt || event;
+				//可视区域
+				console.log("clientX,Y:"+ e.clientX +","+ e.clientY);
+				//屏幕区域
+				console.log("screenX,Y:"+ e.screenX +","+ e.screenY);
+			}*/
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function() {
+				/**
+				 * 事件模式 ，事件模型
+				 * 1.内联模式：
+				 *   写在window.onload函数中，无法被内联模式调用
+				 * 
+				 * 2.脚本模式:
+				 *	 就是用脚本的方式调用，可以让html和js分离
+				 * 事件的组成部分
+				 *    1. document 事件的触发对象
+				 *    2. onclick  事件的处理函数
+				 *    3. function 事件的执行函数
+				 */
+				
+				/**
+				 * 事件处理函数：
+				 * 	  1. on+函数名字
+				 *    2. 都是小写字母
+				 * 
+				 * JS事件: 
+				 *    1. 鼠标事件
+				 *    2. 键盘事件
+				 *    3. html事件
+				 * 
+				 * 
+				 * 1.1. 鼠标点击事件
+				 * onclick:    鼠标点击事件,在这里按下，并且在这里抬起，抬起的时候才会触发
+				 * ondblclick: 鼠标的双击事件，快速练习点击两下触发
+				 * onmousedown:鼠标的按下事件
+				 * onmouseup:  鼠标的抬起事件
+				 * 
+				 * 1.2. 鼠标移动事件
+			     * onmouseenter / onmouseover: 鼠标移入事件
+				 * onmouserleave / onmouseout: 鼠标移出事件
+				 * onmousemove:                鼠标移动事件
+				 * 
+				 * 
+				 * 2.1. 键盘事件: 由键盘上的按钮触发的, 使用window对象或者document对象调用
+				 * 
+				 * onkeydown:  键盘上任意一个键按下时触发
+				 * onkeypress: 键盘上字母键按下
+				 * onkeyup:    键盘上的按键松开的时候触发
+				 * onselect:   当选择文本框内容时,触发
+				 * onchange:   文本框内容修改，并且失去焦点的时候触发
+				 * onfocus:    获取焦点时触发
+				 * onblur:     失去焦点时触发
+				 * onsubmit:   form节点上，点击提交按钮时触发的
+			  	 * onreset: form节点上，点击了重置按钮时触发！
+			  	 * onunload: 界面卸载时触发！
+				 * 
+				 * 
+				 * 
+				 */
+				    
+				/**
+				 * 事件对象: 通过浏览器传到执行函数中
+				 * window.event 可以获取到事件对象，event
+				 * evt          在ie不兼容
+				 * window.event 在火狐不兼容
+				 * 谷歌浏览器都支持
+				 */
+				// 可视区域，屏幕区域
+				document.onclick = function(evt){
+					var e = evt || event;
+					//可视区域
+					console.log("clientX,Y:"+ e.clientX +","+ e.clientY);
+					//屏幕区域
+					console.log("screenX,Y:"+ e.screenX +","+ e.screenY);
+				}
+				
+				/**
+				 * 键码
+				 * keyCode 可以用来获取按键的编码
+				 * 空格 32 
+				 * 方向键 左: 37，上: 38，右: 39，下： 40
+				 * 大写字母(A-Z: 65~90, a-z: 97~122)
+				 * 数字(0-9： 48~57)
+				 */
+				
+				// 键码通常和onkeydown一起使用
+				document.onkeydown = function(evt){
+					var e = evt || event;
+					console.log(e.keyCode);
+				}
+				
+				/**
+				 * charCode: 字符编码
+				 * String.fromCharCode(e.charCode): 字符解码
+				 * 
+				 * 
+				 * 就是我们的charCode属性，值就是ascii码值
+				 * 字符键：
+				 * 	  1. 数字，
+				 *    2. 字母：大写、小写
+				 *    3. 字符、空格、回车
+				 * 
+				 * 和键码的区别，就是小写字母的范围(97~122)
+				 * 
+				 */
+				document.onkeypress = function(evt){
+					var e = evt || event;
+					console.log("charCode:"+ e.charCode);
+					console.log("str:"+ String.fromCharCode(e.charCode));
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**
+			 * 正则表达式： 匹配字符串，是否符合指定规则
+			 * 
+			 * 一般用户表单验证
+			 */
+			
+			/*
+			1. 正则表达式的创建方式
+				1. 使用new关键字;
+				2. 字面量的方式创建一个正则表达式;
+				3. 带字符模式
+			*/
+			var box01 = new RegExp("box");// 这里传入一个参数，参数为需要的字符串；
+			var box02 = /box/;
+			var box03 = RegExp("box","gi");
+			console.log(typeof box);// object
+			
+			
+			
+			/*
+			2. 正则表达式匹配字符串
+				1. test() 返回true，则符合，返回false，则不符合
+				2. exec() 返回数组则符合，返回null则不符合
+			*/
+			var str = "this is box Box boX BOX";
+			var pattern01 = /box/gi;
+			var pattern02 = /BOX/gi;
+			console.log(pattern01.test(str));// true
+			console.log(pattern02.exec(str));// 
+			
+			var result = "";
+			while(result = pattern01.exec(str)){
+				console.log(result);
+			}
+			
+			
+			
+			/*
+			3.字符串提供的正则表达式方法（函数）
+				1. match(): 查找并返回数组
+				2. repalce(): 查找并替换，返回新的数组
+				3. search(): 查找，并且返回找到的字符串的下标，找不到返回-1
+				4. split(): 拆分字符串，如果可以拆分，返回拆分数组，否则返回原数组
+			*/
+			var str = "this is box Box boX BOX";
+			console.log(str.match(/Box/gi));
+			console.log(str.replace(/box/gi, "yeah"));
+			console.log(str.search(/box/gi));
+			console.log(str.split(" "));
+			
+		</script>
+	</body>
+</html>
