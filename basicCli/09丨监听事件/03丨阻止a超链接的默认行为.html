@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.linA {
+				display: block;
+				
+				width: 200px;
+				margin: 0 auto;
+				margin-top: 50px;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				
+				var linkA = document.getElementsByClassName("linA")[0];
+				
+				linkA.onclick = function(){
+					if(confirm("确认是否跳转")){
+						return true;
+					}else{
+						return false;
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<a href="https://www.baidu.com/" class="linA">百度一下，你就知道</a>
+	</body>
+</html>

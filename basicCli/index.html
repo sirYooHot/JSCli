@@ -4,113 +4,39 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
-			* {
-				margin: 0;
-				padding: 0;
-				border: none;
-			}
-			body,html {
-				width: 100%;
-				height: 100%;
-				background: black;
-				overflow: hidden;
-			}
-			.fire {
-				width: 3px;
-				height: 50px;
-				position: absolute;
-			}
-			.spark {
-				width: 3px;
-				height: 3px;
-				position: absolute;
-			}
+		#box {
+			margin-top: 100px;
+			margin-left: 100px;
+			background-color:red;
+			width:100px;
+			height:200px;
+		}	
 		</style>
-	</head>
-	<body>
 		<script type="text/javascript">
-			
-			//烟花
-			function Fire(targetPoint){
+			onload = function(){
+				var Box = document.getElementById("box");
 				
-				this.ele = document.createElement("div");
-				
-				//初始化烟花
-				this.init = function(){
-					this.ele.className = "fire";
-					this.ele.style.background = randomColor();
-					this.ele.style.left = targetPoint.left + "px";
-					this.ele.style.top  = document.documentElement.clientHeight + "px";
-					document.body.appendChild(this.ele);
-					return this;
+				//oBox.style oBox的style属性
+				/**
+				 * 如果内联样式:oBox.style是可以获取样式的值
+				 * 如果是内部样式(style标签中)，就必须使用一下方式了。
+				 */
+				//-------getStyle()---------
+				if (window.getComputedStyle){//判断是否为IE9+,谷歌，获取
+					//这种方式可以获取oBox的css样式(style标签中)
+					var Style = window.getComputedStyle(Box,null);
+					console.log("width: " + Style.width,"height: " + Style.height);
+				}else{//ie8以下
+					var Style = Box.currentStyle;//
+					console.log("width: " + Style.width,"height: " + Style.height);
 				}
-				
-				//发射
-				this.launch = function(){
-					var self = this;
-					animate(this.ele,{top: targetPoint.top,height: 3},{callback: function(){
-							self.boom();
-					}});
-				}
-				
-				//爆炸
-				this.boom = function(){
-					document.body.removeChild(this.ele);
-					var count = parseInt(Math.random()*30) + 30;
-					for(var i=0;i<count;i++){
-						var spark = new Spark(targetPoint);
-						spark.init().fall();
-					}
-				}
-				
-			}
-			
-			//爆炸烟花
-			function Spark(startPoint){
-				
-				this.ele = document.createElement("div");
-				
-				//星火初始化
-				this.init = function(){
-					this.ele.className = "spark";
-					this.ele.style.background = randomColor();
-					this.ele.style.left = startPoint.left + "px";
-					this.ele.style.top  = startPoint.top  + "px";
-					document.body.appendChild(this.ele);
-					return this;
-				}
-				
-				//星火掉落
-				this.fall = function(){
-					var self = this;
-					var speedx = parseInt(Math.random()*20)*(Math.random()>0.5? 1 : -1);
-					var speedy = parseInt(Math.random()*20)*(Math.random()>0.5? 1 : -1);
-					var timer = setInterval(function(){
-						var x = self.ele.offsetLeft + speedx;
-						var y = self.ele.offsetTop  + speedy; 
-						if(x>document.documentElement.clientWidth || x<0 || y>document.documentElement.clientHeight){
-							document.body.removeChild(self.ele);
-							clearInterval(timer);
-						}
-						speedy++;
-						self.ele.style.left = x + "px";
-						self.ele.style.top  = y + "px";
-					},30);
-				}
-				
-			}
-			
-			//随机色
-			function randomColor(){
-				return "rgba("+parseInt(Math.random()*256)+","+parseInt(Math.random()*256)+","+parseInt(Math.random()*256)+",1)";
-			}
-			
-			//点击目标位置
-			document.onclick = function(evt){
-				var e = evt || event;
-				var fire = new Fire({left: e.clientX,top: e.clientY});
-				fire.init().launch();
+				//---------利用三目运算来获取---------
+				var Style = window.getComputedStyle ? window.getComputedStyle(Box,null) : box.currentStyle;
+				console.log("width: " + Style.width,"height: " + Style.height);
 			}
 		</script>
+	</head>
+	<body>
+		<div id="box"></div>
 	</body>
 </html>

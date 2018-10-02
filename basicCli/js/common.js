@@ -7,9 +7,9 @@ function createXHR(){
 }
 
 // 获取(元素节点,属性)
-function getStyleAttr(obj,attr){
+function getStyleAttr(obj, attr){
 	if(window.getComputedStyle){
-		return getComputedStyle(obj,null)[attr];
+		return getComputedStyle(obj, null)[attr];
 	}
 		return obj.currentStyle[attr];
 }

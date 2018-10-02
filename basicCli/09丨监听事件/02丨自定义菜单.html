@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			#box {
+				width: 500px;
+				height: 500px;
+				margin: 50px auto 0;
+				background: grey;
+			}
+			#list {
+				width: 60px;
+				height: 90px;
+				border: 1px solid white;
+				background: pink;
+				position:absolute;
+				display: none;
+				list-style: none;
+			}
+			li {
+				width: 60px;
+				height: 29px;
+				line-height: 29px;
+				text-align: center;
+				border-bottom: 1px dotted white;
+				cursor: pointer;
+			}
+			li:last-child {
+				border-bottom: 0;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="box"></div>
+		<ul id="list" >
+			<li>剪切</li>
+			<li>复制</li>
+			<li>粘贴</li>
+		</ul>
+		
+		<script type="text/javascript">
+			onload = function(){
+				
+				// 1. 先去掉浏览器自带的鼠标右键
+				document.oncontextmenu = function (){
+					return false;// 阻止默认的鼠标右键菜单
+				}
+				
+				var Box  = document.getElementById("box");
+				var List = document.getElementById("list");
+				var Li = List.getElementsByTagName("li");
+				
+				
+				// 添加鼠标按下事件
+				Box.onmousedown = function(evt){
+					oEvt = evt || event;
+					if(oEvt.button == 2){// 按下鼠标右键
+						// 修改list位置
+						List.style.left = oEvt.clientX + "px";
+						List.style.top  = oEvt.clientY + "px";
+						// 显示出来
+						List.style.display = "block";
+					}
+				}
+				// 添加点击事件，隐藏右键菜单
+				document.onclick = function(){
+					List.style.display = "none";// 隐藏
+				}
+				
+				for(var i=0;i<Li.length;i++){
+					Li[i].index = i;
+					Li[i].onclick = function(){
+						var index = this.index;
+						
+						if(index == 0){
+							console.log("剪切");
+						}else if(index == 1){
+							console.log("复制");
+						}else if(index == 2){
+							console.log("粘贴");
+						}else {
+							console.log("未知");
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

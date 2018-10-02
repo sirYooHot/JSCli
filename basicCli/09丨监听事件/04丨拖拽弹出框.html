@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#container {
+				width: 300px;
+				height: 300px;
+				background: gray;
+				margin: 0 auto;
+				margin-top: 30px;
+				border-radius: 5px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			#title {
+				width: 100%;
+				background: orange;
+				padding: 5px 0;
+				overflow: hidden;
+				border-top-left-radius: 5px;
+				border-top-right-radius: 5px;
+				cursor: pointer;
+			}
+			#close {
+				width: 50px;
+				line-height: 30px;
+				margin-left: 10px;
+				font-size: 16px;
+				color: white;
+				border: 2px dashed black;
+				text-align: center;
+				float: left;
+				cursor: pointer;
+			}
+			#close:hover {
+				background-color: #000000;
+				opacity: 0.6;
+			}
+		</style>
+		<script type="text/javascript">
+			function getStyle(obj, attr){
+				if(window.getComputedStyle){
+					return window.getComputedStyle(obj, null)[attr];
+				}else{
+					return obj.currentStyle[attr];
+				}
+			}
+			
+			onload = function(){
+				
+				var container = document.getElementById("container");
+				var title 	  = document.getElementById("title");
+				var close	  = document.getElementById("close");
+				
+				function startMove(left,top){
+					container.style.left = left;
+					container.style.top  = top;
+				}
+				function stopMove(){
+					document.onmousemove = null;
+					document.onmouseup   = null;
+				}
+				title.onmousedown = function(evt){
+					var oEvt = evt || event;
+					var divX = oEvt.clientX - parseInt(getStyle(container,"left"));
+					var divY = oEvt.clientY - parseInt(getStyle(container,"top"));
+					document.onmousemove = function(evt){
+						oEvt = evt ||event;
+						var x = oEvt.clientX - divX + "px";
+						var y = oEvt.clientY - divY + "px";
+						startMove(x,y);
+					}
+					document.onmouseup = function(){
+						stopMove();
+					}
+				}
+				
+				
+				close.onclick = function(){
+					container.style.display = "none";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="title">
+				<div id="close">
+					close
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

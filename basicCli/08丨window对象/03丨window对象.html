@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+		// window对象，是BOM里的核心内容
+		
+		
+		
+		// 1. window.onload： 在页面资源加载完毕的时候调用
+		// 2. confirm("提示框提示内容"); //boolean
+		/**
+		 * 3. prompt(参数1,参数2)
+		 * 参数1.提示信息
+		 * 参数2.输入框的默认值
+		 * return 返回值为输入框的内容
+		 */
+		/**
+		 * 4. open(参数1,参数2)	window()
+		 * 参数1. 要打开的网页
+		 * 
+		 * 参数2. 是设置打开网页的window.name
+		 *       _parent是在当前窗口打开网页，、
+		 *       _blank(默认值)是在新的窗口下打开
+		 * 
+		 * 参数3. 是设置打开网页的窗口大小跟位置；
+		 */
+		
+		
+		window.onload = function() {
+			
+			window.alert("加载完毕");
+			
+			var a = confirm("Dove:Do you love me?");
+			if(a){// 点击确定就会返回为真
+				console.log("yes");
+			}else {// 点击取消就会返回为假
+				console.log("no");
+			}
+			
+			var num = prompt("参数1.提示信息","参数2.输入框的默认值");
+			console.log(num);
+			
+			
+			// open("index.html","索引页");
+			// open("index.html","_parent");
+			// open("index.html","_blank");
+			// open("index.html","_blank","width=400,height=300,top=200,left=100");
+		}
+		
+	</script>	
+	</head>
+	<body>
+	</body>
+</html>

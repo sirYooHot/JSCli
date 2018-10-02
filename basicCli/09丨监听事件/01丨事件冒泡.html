@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			#box {
+				position: absolute;
+				left: 30px;
+				top: 50px;
+				
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<input type="button" value="按钮" />
+		</div>
+		
+		<script type="text/javascript">
+			onload = function(){
+				
+				/**
+				 * 事件的冒泡
+				 * 事件传递机制：界面上，从上层往下层传递事件
+				 * 
+				 * 目前大部分浏览器默认的都是冒泡事件传递方式
+				 * 
+				 * 阻止事件冒泡：
+				 * e.cancelBubble = true;//支持IE
+				 * e.stopPropagation();//支持非IE
+				 * 
+				 */
+				/**
+				 * 事件捕获
+				 * 事件传递机制：界面上，从下层，往上层传递事件
+				 * 
+				 * 事件的target属性，用来存放触发事件的节点对象
+				 * 
+				 */
+				// 
+				
+				
+				var Box = document.getElementById("box");
+				var Input = document.getElementsByTagName("input")[0];
+				
+				
+				// document 添加点击事件
+				document.onclick = function(evt){
+					var e = evt || event;
+					console.log(e.target);
+					e.cancelBubble = true;//支持IE
+					e.stopPropagation();//支持非IE
+				}
+				// box 添加点击事件
+				Box.onclick = function(evt){
+					var e = evt || event;
+					console.log(e.target);
+					e.cancelBubble = true;//支持IE
+					e.stopPropagation();//支持非IE
+				}
+				
+				// input 添加点击事件
+				Input.onclick = function(evt){
+					var e = evt || event;
+					console.log(e.target);
+					e.cancelBubble = true;//支持IE
+					e.stopPropagation();//支持非IE
+				}
+				
+				
+				/*document.onclick = function(){
+					console.log("document");
+				}
+				document.documentElement.onclick = function(){
+					console.log("html");
+				}
+				document.body.onclick = function(){
+					console.log("body");
+				}
+				Box.onclick = function(){
+					console.log("div");
+				}
+				Input.onclick = function(evt){
+					console.log("input");
+					//阻止事件冒泡！
+					oEvent = evt || event;
+					oEvent.cancelBubble = true;//支持IE
+					oEvent.stopPropagation();//支持非IE
+				}*/
+			}
+		</script>
+	</body>
+</html>
