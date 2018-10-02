@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		#box {
+			margin-top: 100px;
+			margin-left: 100px;
+			background-color:red;
+			width:100px;
+			height:200px;
+		}	
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				var Box = document.getElementById("box");
+				
+				// oBox.style oBox的style属性
+				/**
+				 * 内联样式: 是可以获取样式的值-oBox.style 
+				 * 内部样式(style标签中): 就必须使用一下方式
+				 * 
+				 * window.getComputedStyle： 判断是否为IE9+,谷歌，获取
+				 * 
+				 * 对象.currentStyle：ie8以下
+				 * 
+				 */
+				// getStyle
+				if (window.getComputedStyle){
+					var Style = window.getComputedStyle(Box, null);
+				}else{
+					var Style = Box.currentStyle;
+					console.log(Style.width, Style.height);
+				}
+				// 利用三目运算来获取
+				var Style = window.getComputedStyle ? window.getComputedStyle(Box,null) : box.currentStyle;
+				console.log(Style.width, Style.height);
+				
+				function getStyleAttr(obj, attr){
+					return window.getComputedStyle) ? getComputedStyle(obj, null)[attr] : obj.currentStyle[attr];
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>

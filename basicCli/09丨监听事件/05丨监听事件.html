@@ -20,18 +20,14 @@
 				 */
 				var Input01 = document.getElementsByTagName("input")[0];
 				var Input02 = document.getElementsByTagName("input")[1];
-				
-				Input01.addEventListener("click", Btn, false);
-				
-				function Btn(){
+				function Input01Func(){
 					alert("点击了button按钮");
 				}
-				
-				
-				function lisenterInpu01(){
-					Input01.removeEventListener("click", Btn);
+				function Input02Func(){
+					Input01.removeEventListener("click", Input01Func);
 				}
-				Input02.addEventListener("click", lisenterInpu01, false);
+				Input01.addEventListener("click", Input01Func, false);
+				Input02.addEventListener("click", Input02Func, false);
 			}
 		</script>
 	</head>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css"></style>
+		
+	</head>
+	<body>
+		<script type="text/javascript">
+			onload = function(){
+				/**
+				 * 事件的冒泡
+				 * 事件传递机制：界面上，从上层往下层传递事件
+				 * 
+				 * 目前大部分浏览器默认的都是冒泡事件传递方式
+				 * 
+				 * 阻止事件冒泡：
+				 * e.cancelBubble = true;//支持IE
+				 * e.stopPropagation();//支持非IE
+				 * 
+				 */
+				/**
+				 * 事件捕获
+				 * 事件传递机制：界面上，从下层，往上层传递事件
+				 * 
+				 * 事件的e.target属性，用来存放触发事件的节点对象
+				 * 
+				 */
+				
+				
+				
+				
+				// 目前大部分浏览器默认的都是冒泡事件传递方式
+				Input.onclick = function(evt){
+					var e = evt || event;
+					console.log(e.target);
+					e.cancelBubble = true;//支持IE
+					e.stopPropagation();//支持非IE
+				}
+				
+				// 先去掉浏览器自带的鼠标右键
+				document.oncontextmenu = function (){
+					//阻止默认的鼠标右键菜单
+					return false;
+				}
+				
+				// 阻止a超链接的默认行为
+				A_baidu.onclick = function(){
+					if(confirm("确认是否跳转")){
+						return true;
+					}else{
+						return false;
+					}
+				}
+				
+				
+				/** 
+				 * addEventListener(参数1, 参数2, 参数3): 使用监听器添加事件
+				 * 参数1: 事件的名称
+				 * 参数2: 事件执行的函数
+				 * 参数3: 
+				 *       false -> 冒泡的事件传递方式;
+				 *       true  -> 捕获事件传递方式
+				 * 
+				 * removeEventListener(参数1, 参数2): 移除监听事件
+				 * 参数1: 事件的名称
+				 * 参数2: 事件执行的函数
+				 * 
+				 */
+				var Input01 = document.getElementsByTagName("input")[0];
+				var Input02 = document.getElementsByTagName("input")[1];
+				function Input01Func(){
+					alert("点击了button按钮");
+				}
+				function Input02Func(){
+					Input01.removeEventListener("click", Input01Func);
+				}
+				Input01.addEventListener("click", Input01Func, false);
+				Input02.addEventListener("click", Input02Func, false);
+			}
+		</script>
+	</body>
+</html>
