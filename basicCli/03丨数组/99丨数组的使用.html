@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function() {
+				/**
+				* 数组的使用
+				* 1.用for循环历遍；
+				* 2.for in 循环历遍；
+				*/
+				
+				1. 数组方法
+					Push()尾部添加 	pop()尾部删除
+					Unshift()头部添加 	shift()头部删除
+				
+				2. 数组元素添加、删除、排序等方法：
+					Array.length 数组的大小
+				
+					Array.push( )尾部添加
+					Array.pop( )()尾部删除
+					Array.unshift( )头部添加
+					Array.shift( )头部删除
+				
+					Array.concat( ) 拼接数组;// 追加数据,不改变原数组
+					Array.join( ) 将数组元素连接转为字符串
+				
+					Array.toString( ) 将数组转换成字符串
+					Array.toLocaleString( ) 把数组转换成局部字符串
+				
+					Array.sort( ) 对数组元素进行排序;// 升序排序，会改变原数组的顺序
+					Array.reverse( ) 颠倒数组中元素的顺序;// 逆向排序，会修改原数组的顺序
+				
+					Array.slice( ) 返回数组的一部分;// 取出数组中制定区域的数据,不会改变原数组
+					Array.splice( ) 插入、删除或替换数组的元素
+					
+					// splice(参数1,参数2,参数3): 取出数组中指定区域的数组,会改变原数组
+					/**
+					 * 参数1: 选取元素的索引
+					 * 参数2: 截取元素的长度
+					 * 参数3: 添加数据的内容
+					 */
+				
+				3. 伪数组（类数组）：
+				无法直接调用数组方法或期望length属性有什么特殊的行为，但仍可以对真正数组遍历方法来遍历它们。
+				典型类型：
+					1、调用函数的argument参数，
+					2、调用getElementsByTagName,
+					3、调用document.childNodes,
+					它们都返回NodeList对象都属于伪数组。
+				
+				伪数组转化为标准数组：
+					使用Array.prototype.slice.call(fakeArray)将数组转化为Array对象。
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

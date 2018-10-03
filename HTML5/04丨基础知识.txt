@@ -41,6 +41,7 @@
 	07. animate.css
 		github地址: https://github.com/daneden/animate.css
 	
+	08. Lodash
 	
 
 ---------------------------------------------------------------
@@ -80,3 +81,13 @@
 				top:50%-(div一半的高);
 			}
 		
+
+---------------------------------------------------------------
+事件委托是什么
+符合W3C标准的事件绑定addEventLisntener /attachEvent
+让利用事件冒泡的原理，让自己的所触发的事件，让他的父元素代替执行
+
+delegate： 方法基于一组特定的根元素将处理程序附加到匹配选择器的所有元素（现有的或将来的）的一个或多个事件上。
+
+jq的事件绑定方式
+	bind(undind) on(off) delegate(undelegate) live(die)

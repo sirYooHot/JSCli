@@ -18,6 +18,13 @@
 		<div id="box02">喝醉的旺财</div>
 		<script type="text/javascript">
 			onload = function(){
+				/*
+				在JavaScript中，this通常指向的是我们正在执行的函数本身，或者是，指向该函数所属的对象。
+				全局的this → 指向的是Window
+				对象中的this → 指向其本身
+				事件中this → 指向事件对象
+				*/
+				
 				var oBox = document.getElementById("box");
 				var oBox02 = document.getElementById("box02");
 				
@@ -49,7 +56,6 @@
 					},5000);
 				}
 			}
-			
 		</script>
 	</body>
 </html>
