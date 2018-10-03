@@ -1,0 +1,82 @@
+{
+	display: -webkit-box;
+	-webkit-box-pack:  start;    /*水平居中 */
+	-webkit-box-align:  start;   /*垂直居中 */
+	-webkit-box-orient: vertical;    /*如果设置成了vertical,那么水平变成垂直，垂直变水平 */
+}
+
+
+{
+	display: flex;
+    /*水平居中*/
+    justify-content: center;
+    /*水平居左*/
+    justify-content: flex-start;
+    /*水平居右*/
+    justify-content: flex-end;
+    /*两端对齐*/
+    justify-content: space-between;
+    /*元素的间距相等,两端各占一般的间距值*/
+    justify-content: space-around;  
+}
+
+
+-------------------------------------------------------------
+	01. ___polyfill___: 专门用来表示兼容的文件名字；
+	
+	02. 如何解决新增标签的兼容问题：
+		01: 引入一个html5shiv.min.js<bootcdn引入 shiv文件>
+	  	<!--[if lt IE 9]>：    当浏览器在小于IE9版本时，执行一下代码<！[endif]-->
+		02: 需要使用js以及css
+		 	使用js: createElement 创建一个元素
+	
+	03. http://caniuse.com/: 专门用来查询版本兼容性
+	
+	04. 图标库：    http://www.iconfont.cn/plus
+	
+	05. 插件版本：http://www.bootcdn.cn/
+	
+	06. 接口大全网站：	http:www.showapi.com/
+	
+	07. animate.css
+		github地址: https://github.com/daneden/animate.css
+	
+	
+
+---------------------------------------------------------------
+	01. 需求: 设置main的整体尺寸;
+		div {
+			width: 100%;
+			position: absolute;
+			top: ;
+			left: ;
+			right: ;
+			bottom: ;
+		}
+		fixed：不建议在移动端使用；
+		使用时: 先设置relative: fixed;// 易与弹起键盘发生冲突;
+	
+
+	02. 需求: 让div无固定宽高, 垂直、水平居中;
+		01. css方法:
+			<style type="text/css">
+				boxWrap {
+					display：table
+				}
+				box {
+					vertival-align: middle;// 垂直方向居中
+					display：table-cell;
+				} 
+			</style>
+		
+		02. css3方法:
+			transform；
+		
+		03. js方法: 
+			01. 动态获取宽高;
+			02. div {
+				position: absolute;
+				left: 50%-(div一半的宽); 
+				top:50%-(div一半的高);
+			}
+		

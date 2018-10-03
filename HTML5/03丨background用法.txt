@@ -1,0 +1,70 @@
+{
+	background: ;
+	background-color: ;
+	background-image: ;
+	background-repeat: ;
+	background-position: ;
+	
+	background-size: ;
+	background-clip: ;
+	background-origin: ;
+}
+
+HTML5里面新增：
+01. background-size: 设置背景图的展示方式。 
+	1>x y；百分比；
+	2>contain：等比例缩小；
+	3>cover：等比例方法；
+	
+	background: url( ) no-repeat center/cover orange<颜色>；
+	备注：cover必须写在background-position后面
+
+
+02. 规定背景(颜色)的绘制区域：
+background-clip: 
+从内容的边缘开始渲染；
+	渲染方式：（从哪里开始渲染）
+	1>content-box: 背景被裁剪到内容框
+	2>border-box: 背景被裁剪到边框盒
+	3>padding-box: 背景被裁剪到内边距框（默认）
+
+
+03. 设置背景图片的渲染区域：
+background-origin: 规定background-position属性相对于什么位置来定位；
+	渲染方式：（从哪里开始渲染）
+	1>padding-box: 背景图片相对于内边距框来定位（默认）
+	2>border-box: 背景图片相对于边框盒来定位
+	3>content-box: 背景图片相对于内容框来定位
+	
+
+04. 设置背景颜色透明度: 
+	01. rgba(r, g, b, alhpa<透明度>);// 不兼容IE9以下;
+	02. fliter(alpha = 30);// 兼容性;
+
+05. border-radius：   
+	用来设置圆角；
+	值：    百分比    /    px；
+	border-radius：    50%；
+	兼容性问题:
+		01. 图片, 外面套一个div;
+		02. 给div与图片同时设置border-radius: 50%;
+
+
+0.6 background:  
+	0.1 linear-gradient: (direction, 颜色<%百分比>);// 线性渐变
+			direction：    to right/left/top/bottom;
+    		(30deg);// 度数;（0<正负值方向相反>）deg为从下往上渐变
+			颜色：
+			1>英文名；/ 2>十六进制；/ 3>rgb、rgba；
+	
+	02. repeating-linear-gradient: (direction，颜色<%百分比>);// 重复性线性渐变; 复制铺满尺寸
+	
+	03. radial-gradient: (direction，颜色<%百分比>);// 径向渐变;
+		-webkit-repeat-radial-gradient: ;// 重复性径向渐变
+		具有兼容性问题: 使用时加上浏览器前缀;// -webkit-，-moz-，-o-，-ms-
+		里面可以加上 circle圆 / ellipse椭圆;
+	
+07. 倒影:
+	-webkit-box-reflect: 方位  距离
+		方位： above / below/ left /right  
+		距离：20px/30px

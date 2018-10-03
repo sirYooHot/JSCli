@@ -1,0 +1,64 @@
+01. cookie: 最多能存储4k;
+	localStorage/sessionStorage: 只能存储字符串;// IE9+
+	setItem: 存储值;
+		1>localStorage.key = value;
+		2>localStorage.setItem(key, value);
+	getItem: 获取值;
+		1>localStorage.key = value;
+		2>localStorage.getItem(key,value);
+	removeItem: 移除;
+		localStorage.removeItem('key');
+	clear：   清除所有的数据；
+	可以把localStorage当成一个空对象；
+	
+	01. JSON对象里面的2个方法：
+		JSON.stringify(): 对象序列化;
+		JSON.parse(): 对象字符串解析;
+		原因: localStorage.arr/object = [无法直接存储一个数组到arr/object属性中 <自动转化成字符串>]
+			localStorage.arr = JSON.stringify(arr);
+			localStorage.obj = JSON.stringify(obj);
+	
+	02. 如何去实现一个深拷贝？
+		js-对象、数组: 存储在内存里，向外抛出一个地址；
+		01. 对象赋值: 地址引用（浅拷贝），修改属性都是修改对象的属性；
+		02. 深拷贝: JSON.parse(JSON.stringify(源对象));
+			方法2：   for---in---来实现深拷贝
+	
+	03. 预解析（变量提升）：    
+		01. 申明语句var function: 都会预先解析（无论写在前面还是后面），
+		02. 然后在执行其他语句；
+		在for、if语句中var的值是全局变量；
+		function函数中则是局部变量；
+	
+	04. Object.prototype.toStrings.call(object): 调用对象原型上toStrings()的方法到call(当前对象); // [object Object]
+		01. 专门用来判断某个数据是什么类型的；
+		02. typeof (判断数据类型): 它的值都是字符串
+				"string" / "number" / "undefined" / "object" / "function" / "boolean"
+	
+	面试题: console.log( ({}+{}).length )// 30
+
+优雅降级--->向下兼容（只要不影响界面正常显示及操作，用户的体验感可以下降一定层度）
+渐进增强--->向上完美（如果用户使用高版本的浏览器，用户可以获得最好的体验感）
+
+
+02. input新增的type类型 / input新增属性:
+	01. input新增的type类型: date / month / time / tel（pc端无效） / number（一般不用） / url / search / email
+		01. date: 日期 ;// 用处不大 日期控件：    自己封装或者第三方插件；
+			PC：    my97datepicker（网站）；
+			mobile：   mobiscroll   日期空间（免费）；
+	
+	02. input新增属性：
+		placeholder：    默认提示
+		autofocus：    自动获取焦点；
+		autocomplete：    自动完成（出现提示 ）；<on（打开<默认值>）    /    off(关闭)>；
+		pattern：         ------>正则；
+		ios专属：   
+		autocapitalize：   关闭首字母大写（on   /   off）；
+		autocorrect：   自动纠错（on   /   off）；
+	
+	03. 表单中的伪类：    
+		:enabled;// 可用的;
+		:disabled;// 禁止的;
+		:checked;// 匹配单选和复选框已选中的;
+		submit;// 提交;
+		name;// 参数名（传参使用）;

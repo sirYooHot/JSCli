@@ -1,0 +1,47 @@
+01. 手动触屏：	
+	除了突变的属性(display:none/block)
+	{
+		transition:	需要过渡的属性(width/height/all) 动效的时间 延迟的时间 动效的类型	steps(把动效分成几步完成);
+			动效的类型: ease/ease-in/ease-in-out/ease-out;
+			opacity 属于过渡属性;
+	}
+	
+02. 自动触发：
+	{
+		animation: 动效属性|动效的时间|延迟的时间|动效的类型|循环的次数(数字/infinite)|是否反向(alternate)|结束动画时的状态|设置动画的状态;
+			循环的次数: infinite<无限循环>
+			是否反向: 动效怎么进行，怎么返回<会算一次>
+			结束动画时的状态:	none/backwards/beforewards/both;
+				backwards:	保持开始的状态<默认行为>;
+				forwards:	保持结束时的状态;
+				both:		保持开始或者结束时的状态<最终效果都是保持结束的状态>;
+			动画的状态:	running/pasued;// 开始运行 / 暂停
+	}
+	
+定义animation的动效：	
+	@keyframes	动效的名字 {
+		动效起始：
+		from {
+			动效的属性:	属性值；
+			width:	100px;
+		}
+		动效结束：
+		to {
+			width:	200px;
+		}
+	}
+	@keyframes  动效的名字  {
+		起点：0%      终点：100%
+		0% {
+			width:	0px;
+		}
+		20% {
+			width: 100px;
+		}
+		50% {
+			width: 200px;
+		}
+		100% {
+			width: 10px;
+		}
+	}

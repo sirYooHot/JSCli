@@ -1,0 +1,51 @@
+01. -webkit-user-select:
+	none;
+	text;// 只能选择文字
+
+02. IE9以下不支持
+	01. nth-child(n): 匹配第几个元素（n从1开始）;
+		even==n;// 匹配所有索引；
+		odd==2n;// 索引为偶数；
+		2n-1;// 索引为奇数；
+		3n;// 索引为被3整除的值；
+		nth-child(1);// == first-child
+	
+	02. nth-of-type(n): 匹配同类型第几个元素（n从1开始）;
+		first-child
+		last-child
+		first-of-type
+		last-of-type
+		nth-last-child(n)：    匹配倒数第n个;
+		nth-last-of-type：    匹配倒数第1个个;
+		:empty;// 用来匹配内容为空的元素;
+		:only-child;// 用来匹配有且仅有该元素;
+		:not(元素名字);// 除了当前元素;
+
+	03. calc: ();// 计算100%加减px值;
+
+
+-------------------------------------------------------------
+03. box-sizing：    盒子属性（尺寸）;
+		border-box;// 属性（宽高）应用到边框盒子；
+		content-box（默认值）;// 属性（宽高）应用到内容盒子（标准盒模型）;
+	text-overflow：    常用设置单行;
+		用来设置多行文本超出，需要显示省略号;// 前端可以动态计算里面的内容长度就在他的后面添加省略号
+		属性值: ellipsis;
+		配合其他属性使用;
+	p {// 必需的属性;
+		width
+	   	white-space：    nowrap；设置强制不换行；
+	   	overflow：    hidden；
+	    text-overflow：    ellipsis；
+	}
+04. text-shadow: x y size color;// （文字阴影没有内阴影）;（性能不好）
+		x(水平位置); y(垂直位置); x,y可以设置正负值;
+		size(模糊距离px);
+		color: 阴影颜色    #fff / rgb /rgba();
+
+05. box-shadow: x y size <增强参数(px值)> color;// （盒子阴影）设置外阴影（常用）
+		增强参数：    （px<内阴影常用效果>）；
+	box-shadow: inset(内阴影) x y size <增强参数(px值)> color；
+
+
+
