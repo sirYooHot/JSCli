@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 *基本类型：undefined, boolean, number, string;
+			 *引用类型：对象，Array, Date, String, Object, Function 
+			 */
+			
+			/**
+			 * 字符串
+			 * String,sting
+			 * 单引号，双引号创建的就是字符串
+			 */
+			// 字符串的创建方法
+			// 利用new 关键字来创建字符串
+			var str = "天涯地久有穷时，只是相思无尽处";// 字符串的创建方法
+			console.log(str);
+			console.log(typeof str);// string
+			var str = new String("满纸尽是荒唐言");// 利用new 关键字来创建字符串
+			console.log(str);
+			console.log(typeof str);// object
+			
+			
+			
+			// length: 计算字符串有多长
+			var str = "书山有路斜为径，学海无涯苦作舟。";
+			console.log(str.length);// length: 计算字符串有多长
+			console.log(str[0]);// 根据下标获取字符串
+			str[0] = "a";// str[0]只读，不可修改
+			console.log("str[0]: " + str[0]);
+			
+			
+			// 字符串的方法
+			var str="字符串内容";
+			document.write("str.fontsize()：" + str.fontsize(6) +'<br />');// 改变字体的大小
+			document.write("str.big()：" + str.big() +'<br />');// 字体变大
+			document.write("str.bold()：" + str.bold() +'<br />');// 使用粗体显示
+			document.write("str.fixed()：" + str.fixed() +'<br />');// 以打印机文本显示
+			document.write("str.strike()：" + str.strike() +'<br />');// 使用删除线显示
+			document.write("str.fontcolor()：" + str.fontcolor("orange") +'<br />');// 改变字体的颜色
+			document.write("str.link(): " + str.link() +'<br />');// 显示链接
+			document.write("注释 上标："+ str.sup() +'<br />');// 上标
+			document.write("注释 下标："+ str.sub());// 下标
+			
+			
+			// 根据下标获取字符串
+			var str = "What interests me is living and dying for what one loves";
+			// charCodeAt(下标): 取出的字符的ASCII码
+			var strAsc = str.charCodeAt(1);
+			console.log("charCodeAt(1)："+ strAsc);
+			
+			
+			
+			/**
+			 * 类，对象
+			 * 类方法，静态方法：	类，方法()
+			 * 对象方法，普通方法：	对象，方法()
+			 */
+			// ASCII码转化字符
+			var str = String.fromCharCode(65);
+			console.log("fromCharCode(65)："+  str);
+			
+			
+			// 传多个参数，会根据每个ascii参数生成对应的字符，并且拼接在一起
+			var str = String.fromCharCode(57, 58, 59, 60);
+			console.log("fromCharCode()  "+ str);
+			// concat(): 拼接字符串
+			var str1 = "大江东去";
+			var str2 = "，浪淘尽，千古风流人物";
+			var strConcat = str1.concat(str2);
+			console.log(strConcat);
+			
+			
+			// indexof: 子字符串在父字符串第一次出现的位置；如果没有就返回-1
+			// lastIndexof: 子字符串在父字符串最后一次出现的位置；如果没有就返回-1
+			var strI = "人间如梦，一尊还酹江月。";
+			var str01 = "酹";
+			var str02 = "梦";
+			var strIndex = strI.indexOf(str01);
+			var strLastIndex = strI.lastIndexOf(str02);
+			console.log(strIndex);
+			console.log(strLastIndex);
+			
+			
+			var str = "会挽雕弓如满月，西北望，射天狼。";
+			var Index = str.search(/西北望/gi);// search(): 正则查找，g: 全局匹配， i: 忽略大小写
+			var newStr = str.replace(/雕弓/gi,"**");// repalce: 字符串替换
+			console.log("search()："+ Index);
+			console.log("replace()："+ newStr);
+			var strx = newStr.replace(/\*/gi,"");
+			console.log("(/\*/gi,''): " + strx);
+			
+			/**
+			 * 1. 生成一个四位数字的验证码
+			 */
+			function luckCode() {
+				var str = "";
+				for(var i=0;i<4;i++){
+					var numx = parseInt(Math.random()*10);
+					str = str.concat(numx);
+				}
+				return str;
+			}
+			var selStr = luckCode()
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
