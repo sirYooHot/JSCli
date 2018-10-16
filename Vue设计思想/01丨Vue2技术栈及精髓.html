@@ -1,0 +1,61 @@
+<script type="text/javascript">
+	window.onload = function() {
+		Vue2技术栈与精髓
+		
+		01. Vue是什么: 轻量级的技术栈：
+			侧重点：
+				01. 处理HTML模板组件化
+				02. 事件和数据的作用域分离
+				03. 多层级组件通信
+		
+		
+		02. 组件化
+			01. 将页面抽象成若干个独立的组件；
+			02. 每个组件只提供props作为单一接口，
+			03. 使用vuex进行state store管理，便捷的实现组件间的状态通信与同步；
+	
+		
+		03. 双向绑定
+			01. 双向绑定:
+				01. Vue 遍历data对象上的所有属性;
+				02. 通过原生object.defineProperty()方法, 将这些属性转换成getter / setter;
+				03. Vue 内部通过setter / getter追踪依赖, 在属性被修改时触发相应变化，从而实现模型到视图的双向绑定;
+			
+			02. 数据变化:
+				01. Vue组件实例化时, 自动调用$watch()遍历自身的data对象，并将其记录为依赖项;
+				02. 当依赖项的setter被触发时, 会通知 watcher重新计算新值，然后触发Vue组件的 render()函数重新渲染组件;
+				
+			03. 响应式绑定的生命周期：
+				01. Vue 组件不能监测到实例化后data属性的添加、删除；
+					01. 原因: Vue 组件在实例化时才会对setter / getter处理，
+						data对象上的属性必须在实例化之前存在，Vue才能够正确转换；
+					02. 结论: Vue 并非真正意义上的双向绑定，应描述是单向绑定，响应式更新;
+				
+				02. Vue 不允许在已经实例化的组件上, 添加新的动态根级响应属性（直接挂载到data下的属性）;
+					可以使用Vue.set(object, key, value)方法添加响应式属性;
+			
+			04. 注意:
+				01. Vue对DOM的更新是异步的，观察到数据变化后Vue将开启一个队列，
+					缓冲在同一事件循环中发生的所有数据变化;
+				
+				02. Vue内部会通过: 
+					原生JS的promise.then、MutationObserver、setTimeout(fn, 0)
+					来执行异步队列当中的watcher
+		
+		
+		04. 虚拟DOM
+			01. Vritual DOM 是一种DOM对象差异化比较方案:
+				01. 将 DOM对象抽象成Vritual DOM对象(render()函数渲染的结果),
+				02. 通过diff算法对Vritual DOM进行对比并返回差异,
+				03. 通过一个补丁算法将返回的差异对象应用在真实DOM节点;
+			
+			02. VNode:
+				01. template中的内容编译成render()函数，
+				02. render()函数接受一个createElement()函数，并最终返回一个VNode对象
+			
+			03. 补丁算法：
+				01. 来自开源项目snabbdom，将真实DOM映射成对虚拟DOM的操作，
+				02. 通过对真实DOM操作的减少来提升性能;
+		
+	}
+</script>

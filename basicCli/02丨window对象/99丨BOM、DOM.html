@@ -56,10 +56,20 @@
 						createTextNode() // 创建一个文本节点
 					
 					2. 添加、移除、替换、插入：
-						appendChild()
-						removeChild()
-						replaceChild()
 						insertBefore() // 在已有的子节点前插入一个新的子节点
+						// 在子节点之后插入一个新的子节点
+						function insertAfter(eNew, eTarget){
+							var eParent = eTarget.parentNode;// 获取父节点
+							if(eParent.lastChild == eTarget){// target是否为父节点中last-child
+								eParent.appendChild(eNew);						
+							}else{
+								eParent.insertBefore(eNew,eTarget.nextSibling);
+							}
+						}
+						
+						appendChild()
+						replaceChild()
+						removeChild()
 					
 					3. 查找：
 						getElementById() // 通过元素Id，唯一性

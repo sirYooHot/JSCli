@@ -1,0 +1,101 @@
+<script type="text/javascript">
+	window.onload = function() {
+		vue-router
+		
+		01. 安装
+			npm install vue-router
+		02. 引入
+			01. main.js
+				import router from './router'
+				router: router
+					new Vue({
+					  el: '#app',
+					  router,
+					  template: '<App/>',
+					  components: { App }
+					})
+			02. /router/index.js
+				import Router from 'vue-router'
+				Vue.use(Router)
+		
+		
+		03. router.js的配置
+			01. mode
+				hash
+				history
+			02. base
+				_dirname
+			03. routes
+				path
+				name
+				component
+				加载: component: resolve => require(['./page/linkParamsQuestion.vue'], resolve)
+			
+			
+		04. router传参数
+			01. 路由匹配参数(router.js)
+				示例:
+					path: '/linkParams/:name'
+					let name = this.$router.params.name;
+			02. get请求参数
+				this.$route.query: ?后面参数会被封装进this.$route.query;
+				示例:
+					http://localhost:8080/linkParamsQuestion?age=18
+					let age = this.$route.query.age;// 18
+		
+		
+		05. 声明式导航
+			示例: 
+				<router-link to="/linkParams/xuxiao">
+					跳转标题
+				</router-link>
+				
+		
+		06. 编程式导航
+			01. this.$router.push
+				01. 字符串;// 字符串,这里的字符串是路径path匹配，不是router配置里的name
+					示例:
+						this.$router.push('home')
+				02. 对象;// 对象
+					示例:
+						this.$router.push({ path: 'home' })
+				03. 命名的路由;// 命名的路由 
+					示例:
+						这里会变成 /user/123
+						this.$router.push({ name: 'user', params: { userId: 123 }})
+				04. 带查询参数;// 带查询参数，
+					示例:
+						变成 /register?plan=private;
+						this.$router.push({ path: 'register', query: { plan: 'private' }})
+			02. 导航钩子
+				01. 全局钩子函数
+					router.beforeEach(
+						(to, from, next)=>{
+						  //do something
+						  next();
+						}
+					);
+					router.afterEach(
+						(to, from, next) => {
+						    console.log(to.path);
+						}
+					);
+					
+				02. 每个钩子方法接收三个参数：
+					01. to: Route: 即将要进入的目标 路由对象
+					
+					02. from: Route: 当前导航正要离开的路由
+					
+					03. next: 
+							Function: 一定要调用该方法来 resolve 这个钩子。
+							执行效果依赖 next 方法的调用参数。
+								确保要调用 next 方法，否则钩子就不会被 resolved。
+					04. next(): 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 confirmed（确认的）。
+							next(false): 中断当前的导航。
+								如果浏览器的 URL 改变了（可能是用户手动或者浏览器后退按钮），
+								那么 URL 地址会重置到 from 路由对应的地址。
+							next('/') 或者 next({ path: '/' }): 跳转到一个不同的地址。
+								当前的导航被中断，然后进行一个新的导航。
+			
+	}
+</script>

@@ -53,13 +53,13 @@
 				
 				
 				// 封装一个 创建节点 的函数
-				function createObj(ele_name,txt){
-					var ele  = document.createElement(ele_name);// 创建元素节点
+				function createELe(eleName, txt){
+					var ele  = document.createElement(eleName);// 创建元素节点
 					var Txt = document.createTextNode(txt);// 创建文本节点
 					ele.appendChild(Txt);
 					return ele;
-				}				
-				var newEle_p = createObj("p","newEle_p_inner");
+				}			
+				var newEle_p = createELe("p","newEle_p_inner");
 				Body.appendChild(newEle_p); 
 				
 				
@@ -67,31 +67,29 @@
 				 * 1. insertBefore(新节点, 节点插入的位置);
 				 * 2. parentNode: 父节点
 				 */
-				var newEle_div = createObj('div',"节点之前(目标节点: Box节点)");// 创建一个新的节点
+				var newEle_div = createELe('div',"节点之前(目标节点: Box节点)");// 创建一个新的节点
 				var Box = document.getElementById("box");// 创建目标节点
 				Box.innerHTML = 'Box节点的内容'
 				Body.insertBefore(newEle_div,Box);// 新节点（newEle）, 节点插入的位置（Box）
 				
 				
 				// 原生DOM操作没有直接插入节点之后：封装一个 插入目标节点之后 的函数
-				function insertAfter(ele_new,ele_target){
-					//---获取父节点---
-					var ele_parent = ele_target.parentNode;
-					//---target是否为父节点中last-child---
-					if(ele_parent.lastChild == ele_target){
-						ele_parent.appendChild(ele_new);						
+				function insertAfter(eNew, eTarget){
+					var eParent = eTarget.parentNode;// 获取父节点
+					if(eParent.lastChild == eTarget){// target是否为父节点中last-child
+						eParent.appendChild(eNew);						
 					}else{
-						ele_parent.insertBefore(ele_new,ele_target.nextSibling);
+						eParent.insertBefore(eNew, eTarget.nextSibling);
 					}
 				}
-				var nextNewEle = createObj("p","节点之后(目标节点: Box节点)");// 创建一个新的节点
+				var nextNewEle = createELe("p","节点之后(目标节点: Box节点)");// 创建一个新的节点
 				insertAfter(nextNewEle,Box);
 				
 				
-				var replaceDiv = createObj("div","被替换div");
+				var replaceDiv = createELe("div","被替换div");
 				Body.appendChild(replaceDiv);
 				// repalceChild(A,B): A替换B节点
-				var Node = createObj("a","我替换了p节点");
+				var Node = createELe("a","我替换了p节点");
 				Body.replaceChild(Node,replaceDiv);
 				
 				
