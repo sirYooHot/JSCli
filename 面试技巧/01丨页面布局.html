@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html * {
+				padding: 0;
+				margin: 0;
+			}
+			.layout {
+				margin: 20px 0 0 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!--absolute-->
+		<section class="layout absolute">
+			<style type="text/css">
+				.layout.absolute {
+					position: relative;
+					
+					padding:  0 0 100px;
+				}
+				.layout.absolute .left-center-right {
+				}
+				.layout.absolute .left-center-right > div {
+					position: absolute;
+					
+					min-height: 100px;
+				}
+				.layout.absolute .left {
+					left: 0;
+					
+					width: 300px;
+					background: red;
+				}
+				.layout.absolute .center {
+					left: 300px;
+					right: 300px;
+					
+					background: deepskyblue;
+				}
+				.layout.absolute .right {
+					right: 0;
+					
+					width: 300px;
+					background: orange;
+				}
+			</style>
+			<article class="left-center-right">
+				<div class="left"></div>
+				<div class="center">
+					<h1>02丨绝对定位解决方案</h1>
+					<p>
+						1. 这是三栏布局的内容
+						2. 这是三栏布局的内容
+						3. 这是三栏布局的内容
+						4. 这是三栏布局的内容
+						5. 这是三栏布局的内容
+						6. 这是三栏布局的内容
+					</p>
+				</div>
+				<div class="right"></div>
+			</article>
+		</section>
+		
+		
+		<!--float-->
+		<section class="layout float">
+			<style type="text/css">
+				.layout.float {}
+				.layout.float .left-right-center > div {
+					min-height: 100px;
+				}
+				.layout.float .left {
+					float: left;
+					
+					width: 300px;
+					background: red;
+				}
+				.layout.float .right {
+					float: right;
+					
+					width: 300px;
+					background: orange;
+				}
+				.layout.float .center {
+					background: deepskyblue;
+				}
+			</style>
+			<article class="left-right-center">
+				<div class="left"></div>
+				<div class="right"></div>
+				<div class="center">
+					<h1>01丨浮动解决方案</h1>
+					<p>
+						1. 这是三栏布局的内容
+						2. 这是三栏布局的内容
+						3. 这是三栏布局的内容
+						4. 这是三栏布局的内容
+						5. 这是三栏布局的内容
+						6. 这是三栏布局的内容
+					</p>
+				</div>
+			</article>
+		</section>
+		
+		
+		<!--flexbox-->
+		<section class="layout flexbox">
+			<style type="text/css">
+				.layout.flexbox {}
+				.layout.flexbox .left-center-right {
+					display: flex;
+				}
+				.layout.flexbox .left-center-right > div {
+					min-height: 100px;
+				}
+				.layout.flexbox .left {
+					width: 300px;
+					background: red;
+				}
+				.layout.flexbox .center {
+					flex: 1;
+					
+					background: deepskyblue;
+				}
+				.layout.flexbox .right {
+					width: 300px;
+					background: orange;
+				}
+			</style>
+			<article class="left-center-right">
+				<div class="left"></div>
+				<div class="center">
+					<h1>03丨flexbox解决方案</h1>
+					<p>
+						1. 这是三栏布局的内容
+						2. 这是三栏布局的内容
+						3. 这是三栏布局的内容
+						4. 这是三栏布局的内容
+						5. 这是三栏布局的内容
+						6. 这是三栏布局的内容
+					</p>
+				</div>
+				<div class="right"></div>
+			</article>
+		</section>
+		
+		
+		<!--table-->
+		<section class="layout table">
+			<style type="text/css">
+				.layout.table {}
+				.layout.table .left-center-right {
+					display: table;
+					
+					width: 100%;
+					min-height: 100px;
+				}
+				.layout.table .left-center-right > div {
+					display: table-cell;
+				}
+				.layout.table .left {
+					width: 300px;
+					background: red;
+				}
+				.layout.table .center {
+					background: deepskyblue;
+				}
+				.layout.table .right {
+					width: 300px;
+					background: orange;
+				}
+			</style>
+			<article class="left-center-right">
+				<div class="left"></div>
+				<div class="center">
+					<h1>04丨table解决方案</h1>
+					<p>
+						1. 这是三栏布局的内容
+						2. 这是三栏布局的内容
+						3. 这是三栏布局的内容
+						4. 这是三栏布局的内容
+						5. 这是三栏布局的内容
+						6. 这是三栏布局的内容
+					</p>
+				</div>
+				<div class="right"></div>
+			</article>
+		</section>
+		
+		
+		<!--grid-->
+		<section class="layout grid">
+			<style type="text/css">
+				.layout.grid {}
+				.layout.grid .left-center-right {
+					display: grid;
+					
+					width: 100%;
+					grid-template-rows: 100px;/*高度*/
+					grid-template-columns: 300px auto 300px;
+				}
+				.layout.grid .left-center-right > div {
+					
+				}
+				.layout.grid .left {
+					background: red;
+				}
+				.layout.grid .center {
+					background: deepskyblue;
+				}
+				.layout.grid .right {
+					background: orange;
+				}
+			</style>
+			<article class="left-center-right">
+				<div class="left"></div>
+				<div class="center">
+					<h1>05丨grid解决方案</h1>
+					<p>
+						1. 这是三栏布局的内容
+						2. 这是三栏布局的内容
+						3. 这是三栏布局的内容
+						4. 这是三栏布局的内容
+						5. 这是三栏布局的内容
+						6. 这是三栏布局的内容
+					</p>
+				</div>
+				<div class="right"></div>
+			</article>
+		</section>
+		<script type="text/javascript">
+			/*延伸问题:
+			01. 各个方案的优缺点
+				01. float:
+					优点：兼容性好
+					缺点：脱离文档流：需要处理浮动问题
+				
+				02. 绝对定位：
+					优点：快速
+					缺点：可使用性差，自身及子元素都脱离了文档流
+				
+				03. flexbox：
+					优点：CSS3种为解决float与absolute布局的不足而创建的布局方式；
+					缺点：兼容性，不兼容IE8以下
+				
+				04. table
+					优点：兼容性好，
+					缺点：三栏的高度会保持一致；
+				
+				05. grid
+					优点：代码简化很多，新技术
+					缺点：
+				
+			02. 高度不设限
+				01. flexbox || table可以使用
+				
+			03.	兼容性问题*/
+			
+			/*页面布局的变通:
+				01. 三栏布局
+					01. 左右宽度固定, 中间自适应
+					02. 上下高度固定, 中间自适应
+				02. 两栏布局
+					01. 左宽度固定, 右自适应
+					01. 右宽度固定, 左自适应
+					02. 上高度固定, 下自适应
+					02. 下高度固定, 上自适应*/
+		</script>
+	</body>
+</html>

@@ -53,20 +53,25 @@
 		
 		06. 编程式导航
 			01. this.$router.push
-				01. 字符串;// 字符串,这里的字符串是路径path匹配，不是router配置里的name
-					示例:
-						this.$router.push('home')
+				01. 字符串;// 字符串, 这里的字符串是路径path匹配，不是router配置里的name
+					示例: this.$router.push('home')
+				
 				02. 对象;// 对象
-					示例:
-						this.$router.push({ path: 'home' })
-				03. 命名的路由;// 命名的路由 
+					示例: this.$router.push({ path: 'home' })
+				
+				03. 命名的路由;// 命名的路由
 					示例:
 						这里会变成 /user/123
 						this.$router.push({ name: 'user', params: { userId: 123 }})
+				
 				04. 带查询参数;// 带查询参数，
-					示例:
-						变成 /register?plan=private;
-						this.$router.push({ path: 'register', query: { plan: 'private' }})
+					示例: 变成 /register?plan=private;
+						this.$router.push({ 
+							path: 'register', 
+							query: { plan: 'private' }
+						})
+			
+			
 			02. 导航钩子
 				01. 全局钩子函数
 					router.beforeEach(

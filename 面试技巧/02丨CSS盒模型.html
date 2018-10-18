@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html * {
+				padding: 0;
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<section id="sec01">
+			<!--根据盒模型解释边距重叠-->
+			<style type="text/css" media="screen">
+				#sec01 {
+					background: deepskyblue;
+					overflow: hidden;/*创建一个BFC*/
+				}
+				.child {
+					height: 100px;
+					margin: 10px auto 0;
+					background: royalblue;
+				}
+			</style>
+			<article class="child"></article>
+		</section>
+		
+		
+		<section id="sec02">
+			<style type="text/css">
+				#sec02 {
+					margin: 20px auto 0;
+					background: orange;
+					overflow: hidden;
+				}
+				#sec02 .articleP {
+					margin: 5px auto 20px;
+					background: red;
+				}
+			</style>
+			<article>
+				<p class="articleP">1</p>
+				<!--创建BFC：使垂直方向上边距不重叠-->
+				<div style="overflow: hidden;">
+					<p class="articleP">2</p>
+				</div>
+				<p class="articleP">3</p>
+			</article>
+		</section>
+		
+		
+		<section id="sec03">
+			<!--创建BFC不与float重叠-->
+			<style type="text/css">
+				#sec03 {
+					margin: 20px auto 0;
+					background: red;
+				}
+				#sec03 .left {
+					float: left;
+					width: 100px;
+					height: 100px;
+					background: paleturquoise;
+				}
+				#sec03 .right {
+					height: 110px;
+					background: palegreen;
+					overflow: auto;/*创建BFC使块级元素不与float元素重叠*/
+				}
+			</style>
+			<div class="left">我是浮动元素</div>
+			<div class="right"></div>
+		</section>
+		
+		
+		<!--BFC子元素即使是float也会参与高度计算-->
+		<section id="sec04">
+			<style type="text/css">
+				#sec04 {
+					margin: 20px auto 0;
+					background: red;
+					
+					/*创建BFC*/
+					/*overflow: auto;*/
+					float: left;
+				}
+				#sec04 .box {
+					float: left;
+					size: 16px;
+				}
+			</style>
+			<div class="box">我是浮动元素</div>
+		</section>
+		
+		
+		
+		<script type="text/javascript">
+			/*CSS盒模型:
+				01. 基本概念: 标准模型 + IE模型
+				
+				02. 标准模型与IE模型 区别
+					标准模型： 宽度/高度 = content
+					IE模型：   宽度/高度 = content + padding + border
+				
+				03. CSS 如何设置这两种模型
+					
+					box-sizing: content-box;
+					box-sizing: border-box;
+				
+				04. JS 如何设置获取盒模型对应的宽/高
+					
+					01. dom.style.width/height: css内联样式的宽高
+					02. dom.currentStyle.width/height: 浏览器渲染后的宽高（只有IE支持）
+					03. window.getComputedStyle(dom).width/height: 兼容性更好
+					04. dom.getBoundingClientRect().width/height: 计算元素的绝对位置
+					
+					
+				05. 实例题:
+					根据盒模型解释边距重叠
+				
+				06. BFC 边距重叠解释方案
+					01. BFC的基本概念： 块级格式化上下文
+					02. BFC的原理： BFC的渲染规则
+						01. BFC的垂直方向的边距会发生重叠
+						02. BFC的区域不会与float元素的box重叠
+						03. BFC在页面上是一个独立的容器, 内外的元素互不影响
+						04. 计算BFC的高度的时候浮动元素的高度也会参与计算
+					03. 如何创建BFC
+						01. float的值 != none;
+						02. position != static/relative;
+						03. display != inline-block/table-cell;
+						04. overflow: hidden/auto;
+					
+					04. BFC的使用场景:
+						
+					
+				拓展: IFC
+			*/
+		</script>
+		<script type="text/javascript">
+			window.onload = function() {}
+		</script>
+	</body>
+</html>
