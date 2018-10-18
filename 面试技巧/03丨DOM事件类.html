@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#ev {
+				width: 300px;
+				height: 100px;
+				background: red;
+				color: #fff;
+				text-align: center;
+				line-height: 100px;
+			}
+		</style>
+		<script type="text/javascript">
+			/*DOM 事件类
+			01. 基本概念: DOM事件的级别
+				DOM0: element.onclick = function(){}
+				DOM1: DOM1中没有涉及DOM事件相关的内容
+				DOM2: element.addEventListener('click', function(){}, false)
+				DOM3: element.addEventListener('keyup', function(){}, false)
+			
+			
+			02. DOM事件模型; 03. DOM事件流
+				事件模型: 冒泡和捕获
+				事件流: 捕获 --> 目标阶段 --> 冒泡
+
+			
+			04. 描述DOM事件捕获的具体流程
+				window --> document --> html --> body --> ... --> 目标元素
+			
+			05. event 对象的常见应用
+				
+				01. event.preventDefault(): 阻止默认事件
+				02. event.stopPropagation: 阻止冒泡行为
+				
+				03. event.stopImmediatePropagation:
+					场景: 一个元素绑定两个点击事件
+					功能: 在一个事件执行中阻止另一个事件
+					
+				04. event.currentTarget: 当前所绑定的事件
+					事件代理 / 事件委托
+				
+				05. event.target: 当前被点击的元素
+				
+				
+				
+			06. 自定义事件
+				var eve = new Event('custome');
+				// ev: DOM节点
+				ev.addEventListener(
+					'custome', 
+					function(){
+						console.log('custome')
+					}
+				);
+				ev.dispatchEvent(eve)
+			*/
+			
+		</script>
+	</head>
+	<body>
+		<div id="ev">目标元素</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				var ev = document.getElementById('ev');
+				
+				// DOM捕获流程
+				ev.addEventListener(
+					'click', 
+					function(){
+						console.log('ev captrue')
+					}, 
+					true
+				);
+				
+				window.addEventListener(
+					'click', 
+					function(){
+						console.log('window captrue')
+					}, 
+					true
+				);
+				
+				document.addEventListener(
+					'click', 
+					function(){
+						console.log('document captrue')
+					}, 
+					true
+				);
+				
+				document.documentElement.addEventListener(
+					'click', 
+					function(){
+						console.log('docEle captrue')
+					}, 
+					true
+				);
+				
+				document.body.addEventListener(
+					'click', 
+					function(){
+						console.log('body captrue')
+					}, 
+					true
+				);
+				
+				
+				// 自定义事件
+				var eve = new Event('newEv');
+				ev.addEventListener(
+					'newEv', 
+					function(){
+						console.log('newEv')
+					}
+				)
+				setTimeout(
+					function(){
+						ev.dispatchEvent(eve)// 放在延时器中使用
+					},
+				1000)
+			}
+		</script>
+	</body>
+</html>
