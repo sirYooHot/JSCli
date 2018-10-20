@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>面向对象</title>
+		<style type="text/css"></style>
+		<!--<script type="text/javascript">
+			01. 类与实例
+				01. 类的声明
+				02. 生成实例: new 构造函数
+			
+			02. 类与继承
+				02. 如何实现继承
+				03. 继承的几种方式
+					01. 借助构造函数实现继承
+					02. 借助原型链实现继承: 原型的方法为公有的
+					03. 组合方式: 原型的方法为私有的
+					04. 组合继承的优化方式01:  new 父类构造函数一次
+					05. 组合继承的优化方式02: 实例的构造函数指向本身;
+			
+		</script>-->
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 类的声明
+			function Animal01(name) {
+				this.name = name
+			}
+			// ES6的class声明
+			class Animal02 {
+				constructor(name){
+					this.name = name
+				}
+			}
+			
+			// 实例化
+			var animal01 = new Animal01('01');
+			var animal02 = new Animal02('02');
+			
+			
+			// 01. 借助构造函数实现继承
+			function Parent01() {
+				this.name = 'parent01';
+			}
+			Parent01.prototype.say = function(){
+				console.log('say hello');
+			}
+			function Child01() {
+				Parent01.call(this);// apply
+				this.type = 'child01';
+			}
+			var child011 = new Child01();
+			console.log(child011)
+			
+			
+			// 02. 借助原型链实现继承
+			function Parent02() {
+				this.name = 'parent02';
+				this.play = [1, 2, 3]
+			}
+			function Child02() {
+				this.type = 'child02';
+			}
+			Child02.prototype = new Parent02()
+			var child021 = new Child02();
+			var child022 = new Child02();
+			child021.play.push(4)
+			console.log(child021.play, child022.play)
+			
+			
+			// 03. 组合方式: 原型上的方法为私有的; 缺点： new 父类构造函数两次
+			function Parent03() {
+				this.name = 'parent03';
+				this.play = [1, 2, 3];
+			}
+			Parent03.prototype.say = function(){
+				console.log('say hello');
+			}
+			function Child03() {
+				Parent03.call(this);
+				this.type = 'child03';
+			}
+			Child03.prototype = new Parent03()
+			var child031 = new Child03();
+			var child032 = new Child03();
+			child031.play.push(4)
+			console.log(child031.play, child032.play)
+			console.log(child031.constructor)
+			
+			
+			// 04. 组合继承的优化方式01: 原型上的方法为私有的;
+			function Parent04() {
+				this.name = 'parent04';
+				this.play = [1, 2, 3];
+			}
+			Parent03.prototype.say = function(){
+				console.log('say hello');
+			}
+			function Child04() {
+				Parent03.call(this);
+				this.type = 'child04';
+			}
+			Child04.prototype = Parent04.prototype;
+			
+			/*var child041 = new Child04();
+			console.log(child041 instanceof Child04, child041 instanceof Parent04)
+			console.log(child041.constructor)// Parent04*/
+			
+			Child04.prototype.constructor = Child04;// 原型继承原型的方法时, 强制指向构造函数，还是同一指针
+			var child041 = new Child04();
+			var Parent041 = new Parent04();
+			console.log(child041 instanceof Child04, child041 instanceof Parent04)// true, true
+			console.log(Parent041 instanceof Child04, Parent041 instanceof Parent04)// true, true
+			console.log(child041.constructor)// Child04
+			console.log(Parent041.constructor)// Child04
+			
+			
+			
+			// 05. 组合继承的优化方式02: 实例的构造函数指向本身;
+			function Parent05() {
+				this.name = 'parent05';
+				this.play = [1, 2, 3];
+			}
+			Parent03.prototype.say = function(){
+				console.log('say hello');
+			}
+			function Child05() {
+				Parent03.call(this);
+				this.type = 'child05';
+			}
+			
+			Child05.prototype = Object.create(Parent05.prototype);
+			Child05.prototype.constructor = Child05;
+			
+			var child051 = new Child05();
+			var parent051 = new Parent05();
+			console.log(child051 instanceof Child05, child051 instanceof Parent05)
+			console.log(parent051 instanceof Child05, parent051 instanceof Parent05)
+			console.log(child051.constructor)// Child05
+			console.log(parent051.constructor)// Parent05
+			
+			
+			
+		</script>
+		<script type="text/javascript">
+			window.onload = function() {}
+		</script>
+	</body>
+</html>

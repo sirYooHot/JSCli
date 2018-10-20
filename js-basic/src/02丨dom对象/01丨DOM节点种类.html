@@ -35,10 +35,26 @@
 				text-align: center;
 			}
 		</style>
+		<script type="text/javascript">
+			/*
+			DOM 文档对象模型, 树形结构
+			01. DOM节点种类
+				1.元素节点 : div,ul
+				2.属性节点： id,style,class
+				3.文本节点： <div>文本<div/>
+			
+			02. dom的属性节点
+				01. .getElementById：通过ID获取元素节点对象,如果ID不存在,则返回null
+				02. .tagName：标签名称
+				03. .id：获取元素节点的id，唯一的标识符（可读，可写）
+				04. .innerHTML：元素节点的内容
+				05. .title：（可读，可写）
+				06. .zidingyi：自定义的属性节点不能够通过语法来调用
+			*/
+		</script>
 	</head>
 	<body>
 		<div id="box"></div>
-
 		<ul id="list">
 			<li>zone</li>
 			<li>one</li>
@@ -49,25 +65,7 @@
 		</ul>
 	</body>
 	<script type="text/javascript">
-		/**
-		 * DOM 文档对象模型
-		 * DOM 是树形结构！
-		 * 
-		 * DOM节点种类
-		 * 1.元素节点 : div,ul
-		 * 2.属性节点： id,style,class
-		 * 3.文本节点： <div>文本<div/>
-		 */
-		
-		// .getElementById：通过ID获取元素节点对象,如果ID不存在,则返回null
-		// .tagName：标签名称
-		// .id：获取元素节点的id，唯一的标识符（可读，可写）
-		// .innerHTML：元素节点的内容
-		// .title：（可读，可写）
-		// .zidingyi：自定义的属性节点不能够通过语法来调用
-		
 		window.onload = function(){
-			
 			// 通过ID获取元素节点对象,如果ID不存在,则返回null
 			var Box = document.getElementById("box");
 			console.log("Box: " + Box);
@@ -103,15 +101,15 @@
 			
 			
 			// 自定义的属性节点不能够通过语法来调用
-			console.log(Box.asdf);//undefined
+			console.log(Box.asdf);// undefined
 			console.log(Box.getAttribute("asdf"));
 			var person = {
 				name:"jack",
 				age:16,
 				id:001
 			}
-			console.log(person.name);//jack
-			Box.test = "IT是引领时代潮流的领航者！";//添加自定义属性
+			console.log(person.name);// jack
+			Box.test = "IT是引领时代潮流的领航者！";// 添加自定义属性
 			console.log(Box.test);
 		}
 	</script>

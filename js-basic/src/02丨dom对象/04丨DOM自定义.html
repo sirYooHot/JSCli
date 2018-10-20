@@ -5,18 +5,27 @@
 		<title></title>
 		<script type="text/javascript">
 			
-			/**
-			 * ---------setAttribute---------
-			 * 设置自定义的属性
-			 * 参数1.属性节点的名字
-			 * 参数2.属性节点的值
-			 */
-			// getAttribute()：获取属性、自定义属性的值；
-			// removeAttribute() 删除属性节点；
+			01. setAttribute: 自定义属性
+				设置自定义的属性
+				01. 参数1.属性节点的名字
+				02. 参数2.属性节点的值
 			
+			02. getAttribute()：获取属性、自定义属性的值；
+			03. removeAttribute() 删除属性节点；
 			
+			.attr == getAttribute(attr)// 获取属性名称
+			
+		</script>
+	</head>
+	<body>
+		<div 
+			id="box" style="background: red;" 
+			class="box_class" build="自定义属性内容">
+			以往
+		</div>
+		
+		<script type="text/javascript">
 			onload = function(){
-				
 				var Box = document.getElementById("box");
 				
 				// .attr == getAttribute(attr)// 获取属性名称
@@ -39,12 +48,5 @@
 				Box.removeAttribute("style");
 			}
 		</script>
-	</head>
-	<body>
-		<div 
-			id="box" style="background: red;" 
-			class="box_class" build="自定义属性内容">
-			以往
-		</div>
 	</body>
 </html>

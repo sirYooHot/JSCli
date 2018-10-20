@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			
+			01. 关系运算符
+				==,===,<,>,<=,>=,!=,!==,
+				===: 恒等于(变量的值相等，变量类型相等)
+				!==: 不恒等于(变量的值不相等 或者 变量的类型不相等)
+			
+				var b = c++;// 先把值赋给b，然后再自加1
+				var b = ++c;// 先自加1，再赋值给b
+			
+			
+			 
+			02. 字符串与数字的比较:
+				01. 先把字符串强制转化成数字，然后进行比较
+					console.log("34">33);// true
+					console.log('5'+'3'); //53 string
+					
+				02. 如果非字符类型的字符串:
+				再强制转化为数字之后会得到NaN，如果存在NaN，则返回false
+					console.log("hello">10);// false
+			
+			
+			
+			03. 字母类型的字符串比较
+				字母类型: 先转换成ASCII码,然后再进行比较
+			
+			
+			
+			04. Boolean
+				01. true、false
+					console.log(true>false);//true
+					console.log(false == 0);//true
+				02. NaN 
+					NaN和任何数比较都是false: 自己都不等于自己
+					console.log(NaN==NaN);//false
+				
+				
+			
+			05. 特殊值: null、undefined、string、number
+				01. console.log(null == undefined);//true
+				   console.log(null === undefined);//false
+				02. null的类型是Object
+				   undefined的类型是Undefined
+				03. string：非空字符串为true，空字符串为false
+				   number: 0 或者 NaN为false
+			
+			
+			
+			06. 精度问题: 
+				JS 精度不能精确到 0.1，同时存在于值和差值中
+				var n = 0.3,m = 0.2, i = 0.2, j = 0.1;
+				console.log((i-j) == 0.1); //true
+				console.log((n-m) == 0.1); //false
+				console.log((n-m) == (i-j)); //false
+			
+		</script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function() {
+				
+				console.log("34">33);// true
+				console.log('5'+'3'); //53 string
+				console.log("hello">10);// false
+				
+				console.log(true>false);//true
+				console.log(false == 0);//true
+				console.log(NaN==NaN);//false
+				
+				console.log(null == undefined);//true
+				console.log(null === undefined);//false
+				
+				
+				// JS 精度不能精确到 0.1，同时存在于值和差值中
+				var n = 0.3,m = 0.2, i = 0.2, j = 0.1;
+				console.log((i-j) == 0.1); //true
+				console.log((n-m) == 0.1); //false
+				console.log((n-m) == (i-j)); //false
+				
+			}
+		</script>
+	</body>
+</html>

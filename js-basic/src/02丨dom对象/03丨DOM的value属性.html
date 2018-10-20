@@ -3,11 +3,18 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+	</head>
+	<body>
+		<input id="name" type="text" name="No.1" placeholder="姓名" />
+		<input id="age" type="text" name="No.2" placeholder="年龄" />
+		<input id="edu" type="text" name="No.3" placeholder="学历" />
+		<input id="major" type="text" name="No.4" placeholder="专业" />
+		<input id="save" type="button" name="No.5" value="保存"/>
+		<div id="box">innerHTML: </div>
+		
+		
 		<script type="text/javascript">
-			
-			// .value: 获取value的值
 			onload=function(){
-				
 				var Name    = document.getElementById("name");
 				var Age     = document.getElementById("age");
 				var Edu     = document.getElementById("edu");
@@ -15,6 +22,7 @@
 				var saveBtn = document.getElementById("save");
 				var Box     = document.getElementById("box");
 				
+				// .value: 获取value的值
 				saveBtn.onclick = function(){
 					var oName  = Name.value;
 					var oAge   = Age.value;
@@ -27,13 +35,5 @@
 				}
 			}
 		</script>
-	</head>
-	<body>
-		<input id="name" type="text" name="No.1" placeholder="姓名" />
-		<input id="age" type="text" name="No.2" placeholder="年龄" />
-		<input id="edu" type="text" name="No.3" placeholder="学历" />
-		<input id="major" type="text" name="No.4" placeholder="专业" />
-		<input id="save" type="button" name="No.5" value="保存"/>
-		<div id="box">innerHTML: </div>
 	</body>
 </html>

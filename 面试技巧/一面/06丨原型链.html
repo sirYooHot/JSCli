@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.prototype {
+				display: block;
+				
+				width: 100%;
+				max-width: 680px;
+				margin: 50px auto 0;
+			}
+		</style>
+		<script type="text/javascript">
+			/*
+			HTTP协议类 / 原型链类
+				01. 创建对象有几种方法: 字面量、显示构造函数、Object.create
+				
+				
+				02. 原型、构造函数、实例、原型链
+					01. 构造函数.prototype.constructor === 构造函数
+					02. 构造函数.prototype === 实例化对象.__proto__
+					
+					03. Function.prototype === M.__proto__ === obj03.__proto__.constructor.__proto__
+				
+				
+				03. instanceof 的原理
+				console.log(实例化对象 instanceof 构造函数);
+				console.log(实例化对象 instanceof Object);
+				
+				
+				04. new 运算符
+					var new02 = function(func){
+						var obj = Object.create(func.prototype);
+						var k = func.call(obj)
+						if(typeof k === 'object'){
+							return k;
+						}else{
+							return obj
+						}
+					}
+			*/
+		</script>
+	</head>
+	<body>
+		<img
+			class="prototype"
+			src="../img/03丨原型、构造函数、实例、原型链.png"/>
+		<script type="text/javascript">
+			
+			// 01. 创建对象有几种方法
+				// 01. 第一种方式: 字面量
+					var obj01 = {
+						name: '011'
+					};
+					var obj02 = new Object({
+						name: '012'
+					})
+					console.log(obj01)
+					console.log(obj02)
+				// 02. 第二种方式: 显示构造函数
+					var M = function(name){
+						this.name = name
+					}
+					var obj03 = new M('021')
+					console.log(obj03)
+				// 03. 第三种方式: Object.create
+					var p = {
+						name: '030'
+					}
+					var obj04 = Object.create(p)
+					console.log(obj04)
+			
+			
+			
+			// 02. 原型、构造函数、实例、原型链
+				console.log(M.prototype.constructor)// 指向构造函数
+				console.log(M === M.prototype.constructor)
+				
+				
+				console.log(M.prototype)// 指向构造函数的原型对象
+				console.log(obj03.__proto__)// 指向构造函数的原型对象
+				
+				console.log(obj03.__proto__ === M.prototype)
+				console.log(obj03.__proto__.constructor === M.prototype.constructor)
+				console.log(M.__proto__ === Function.prototype)
+				//console.log(Function.prototype === obj03.__proto__.constructor.__proto__)
+				
+			
+			// 03. instanceof 的原理
+				console.log(obj03 instanceof M);
+				console.log(obj03 instanceof Object);
+				
+				console.log(M.prototype.__proto__ === Object.prototype) 
+				console.log(obj03.__proto__.constructor === M)
+				console.log(obj03.__proto__.constructor === Object) 
+				
+			
+			// 04. new 运算符
+				M.prototype.say = function(){
+					console.log('say hi')
+				}
+				var obj05 = new M('05')
+				console.log(obj05)
+				
+				// 运算符工作原理
+				var new02 = function(func){
+					var obj = Object.create(func.prototype);
+					var k = func.call(obj)
+					if(typeof k === 'object'){
+						return k;
+					}else{
+						return obj
+					}
+				}
+				var obj06 = new02(M)
+				console.log(obj06)
+				console.log(obj06.__proto__.constructor === M)
+				
+		</script>
+		<script type="text/javascript">
+			window.onload = function() {}
+		</script>
+	</body>
+</html>

@@ -3,6 +3,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<script type="text/javascript">
+			
+			01. firstChild: 获取第一个子节点
+			02. lastchild: 获取最后一个子节点
+			03. parentNode: 获取父节点
+			
+			04. previousSilbing: 同级上一个节点
+			05. nextSibling: 同级下一个节点
+			
+		</script>
 	</head>
 	<body>
 		<div id="box">childNodes1
@@ -13,14 +23,7 @@
 		结束5</div>
 		
 		<script type="text/javascript">
-			// firstChild: 获取第一个子节点
-			// lastchild: 获取最后一个子节点
-			// parentNode: 获取父节点
-			
-			// previousSilbing: 同级上一个节点
-			// nextSibling: 同级下一个节点
 			onload=function(){
-
 				var box = document.getElementById("box");
 				// childNodes
 				console.log(box.childNodes.length);
@@ -38,15 +41,16 @@
 				console.log(box1.parentNode);//box
 				console.log(box2.parentNode);//box
 				console.log(box3.parentNode);//box
-				console.log(box4.parentNode == box);//true:
+				console.log(box4.parentNode == box);// true:
 				
 				
 				// previousSilbing.nodeValue: 同级上一个节点
 				console.log(box1.previousSibling.nodeValue);
 				// nextSibling: 同级下一个节点
-				console.log(box4.nextSibling.nodeValue);//结束5
+				console.log(box4.nextSibling.nodeValue);// 结束5
 				
-				console.log(box.ownerDocument == document);//ture
+				console.log(box.ownerDocument == document);// ture
+				
 				
 				
 				// 忽略空白文本节点
@@ -60,7 +64,6 @@
 					}
 					return nodes;
 				}
-				
 				console.log("childNodes: " + box.childNodes.length);
 				var newNodes = fillterWhitSpace(box.childNodes);
 				console.log("newNode: " + newNodes.length);

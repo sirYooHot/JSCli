@@ -3,6 +3,27 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<script type="text/javascript">
+			
+			write(): 				会覆盖文档界面的显示内容，html内容
+			getElementsByTagName: 	标签获取
+			createElement(): 		创建元素节点
+			appendChild(): 			元素节点末尾追加一个子节点
+			
+			节点之前插入一个节点: 
+				1. insertBefore(新节点, 节点插入的位置);
+				2. parentNode: 父节点
+			插入节点之后:
+				1. 原生DOM操作没有直接插入节点之后;
+				2. 封装一个 插入目标节点之后 的函数
+			
+			repalceChild(A,B): A替换B节点
+			
+			clone(): 复制
+				1.true:		则复制标签和内容
+				2.false:		只复制标签 
+			
+		</script>
 	</head>
 	<body>
 		<div id="box">body里面的div</div>
@@ -11,28 +32,6 @@
 		<script type="text/javascript">
 			// DOM的节点操作
 			onload = function(){
-				
-				/*
-				write(): 				会覆盖文档界面的显示内容，html内容
-				getElementsByTagName: 	标签获取
-				createElement(): 		创建元素节点
-				appendChild(): 			元素节点末尾追加一个子节点
-				
-				节点之前插入一个节点: 
-					1. insertBefore(新节点, 节点插入的位置);
-					2. parentNode: 父节点
-				插入节点之后:
-					1. 原生DOM操作没有直接插入节点之后;
-					2. 封装一个 插入目标节点之后 的函数
-				
-				repalceChild(A,B): A替换B节点
-				
-				clone(): 复制
-					1.true:		则复制标签和内容
-					2.false:		只复制标签 
-				*/
-				
-				
 				//document.write("红米小火炉");// 覆盖文档界面的显示内容
 				
 				var Body = document.getElementsByTagName("body")[0];// 标签获取
