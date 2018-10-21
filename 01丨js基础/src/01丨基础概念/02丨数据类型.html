@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			01. 数据类型
+				布尔类型:Boolean;// true,false
+				数字类型: Number;// 非0即为true，0和NaN，为false
+				字符串: String;// 非空字符串为true，空字符串为false
+				数组: Array;
+				对象: Object;// 非null为true，null为false
+				特殊的类型: Null, Undefined
+					   1. undefined:undefined为 false
+				
+				1. 基本数据类型：String, Boolean, number, undefined, object, null
+				2. 引用数据类型：
+					Object(Array, Date, RegExp, Function)
+					Object, Array
+				特殊数据类型是：Null, Undefined
+				
+				
+				null和undefined的区别：
+					01. null是一个表示”无”的对象，转为数值时为0；
+						undefined是一个表示”无”的原始值，转为数值时为NaN。
+						
+					02. 当声明的变量还未被初始化时，变量的默认值为undefined。
+						null用来表示尚未存在的对象，常用来表示函数企图返回一个不存在的对象。
+				
+				undefined表示”缺少值”，就是此处应该有一个值，但是还没有定义。典型用法是：
+					（1）变量被声明了，但没有赋值时。< 一个变量定义了却没有被赋值>
+					（2 ) 调用函数时，应该提供的参数没有提供，该参数等于undefined。
+					（3）对象没有赋值的属性，该属性的值为undefined。
+					（4）函数没有返回值时，默认返回undefined。
+				null表示”没有对象”，即该处不应该有值。典型用法是：
+					（1） 作为函数的参数，表示该函数的参数不是对象。
+					（2） 作为对象原型链的终点。
+				
+				undefined会在以下三种情况下产生：
+					1、 一个变量定义了却没有被赋值；
+					2、 想要获取一个对象上不存在的属性或者方法；
+					3、 一个数组中没有被赋值的元素；
+				
+				
+			04. typeof 操作符,检测值,或者变量的数据类型
+				1. console.log(undefined == null);// true
+				2. 科学计数法：e5代表10的5次方
+				3. Infiniy,无穷大
+				4. NaN(Not a Number),不是一个数字
+			 
+			
+			
+			5. isNaN()：判断是不是合法数值
+				1. console.log(isNaN(NaN));// true
+				2. console.log(isNaN(11));// false
+				3. console.log(isNaN("11"));// false
+				4. console.log(isNaN(true));// false
+				5. console.log(isNaN(false));// false
+			
+			
+			00. NaN和isNaN
+				isNaN(number),如果number不是数字，则为true；
+				Number(number),在转换为数字类型时，若number不是数字，则返回NaN；
+		</script>
+	</body>
+</html>

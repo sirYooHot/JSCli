@@ -1,0 +1,103 @@
+<script type="text/javascript">
+	-----------------------DOM操作——怎样添加、移除、移动、复制、创建和查找节点。-----------------------
+	01. 创建新节点：
+		createDocumentFragment() // 创建一个DOM片段
+		createElement() // 创建一个具体的元素
+		createTextNode() // 创建一个文本节点
+	
+	
+	02. 添加
+		01. 子节点之前插入一个节点: insertBefore(新节点, 节点插入的位置)
+		02. 子节点之后插入一个节点: insertAfter()// 封装一个 函数: 原生DOM操作没有直接插入节点之后;  
+			function insertAfter(eNew, eTarget){
+				var eParent = eTarget.parentNode;// 获取父节点
+				if(eParent.lastChild == eTarget){// target是否为父节点中last-child
+					eParent.appendChild(eNew);						
+				}else{
+					eParent.insertBefore(eNew,eTarget.nextSibling);
+				}
+			}
+	03. 移除、替换、插入：appendChild() 丨 replaceChild() 丨 removeChild()
+			
+	
+	
+	04. 查找：DOM元素节点
+		document.getElementById();// 通过元素Id，唯一性
+		document.getElementsByTagName();// 通过标签名称
+		document.getElementsByName();//  通过元素的Name属性的值(IE容错能力较强，会得到一个数组，其中包括id等于name值的)
+	
+	
+	
+	-----------------------属性/节点_start-----------------------
+	02. DOM属性节点：
+		00. .id：获取元素节点的id，唯一的标识符（可读，可写）
+		00. .tagName：标签名称
+		00. .title：（可读，可写）
+		00. .value: 获取value的值
+		00. .innerHTML：元素节点的内容
+		00. .zidingyi：自定义的属性节点不能够通过语法来调用
+		
+			00. 文本节点：
+				01. nodeName 丨  02. nodeType 丨  03. nodeValue
+				04. childNodes: 获取所有子节点
+			
+			
+			00. innerHTML和nodeValue的区别
+				01. 取值：
+					innerHTML：取元素节点的值（.innerHTML）
+					nodeValue：取文本，属性节点的值（.childNodes[0].nodeValue）
+				02. 赋值：
+					innerHTML可以解析html标签
+					nodeValue不可以解析html,它会原样输出
+			
+			 
+			00. innerHTML, outHTML, innerText的区别
+				01. innerHTML:元素节点包含的所有内容
+				02. innerText:元素节点包含的所有文本
+				03. outHTML:包含元素本身，以及该元素节点包含的所有内容
+		
+	
+		00. DOM自定义属性:
+			setAttribute(参数1属性节点的名字, 参数2属性节点的值): 设置自定义的属性
+			getAttribute()：获取属性、自定义属性的值；
+			removeAttribute() 删除属性节点；
+			.attr == getAttribute(attr)// 获取属性名称
+	
+	
+	
+	04. 节点操作
+		01. firstChild: 获取第一个子节点
+		02. lastchild: 获取最后一个子节点
+		03. parentNode: 获取父节点
+		
+		04. previousSilbing: 同级上一个节点
+		05. nextSibling: 同级下一个节点
+	-----------------------属性/节点_end-----------------------
+	
+	
+	document.write()方法可以用在两个方面：
+		01、页面载入过程中用实时脚本创建页面内容，
+		02、用延时脚本创建本窗口或新窗口的内容。
+	
+	documen.write和 innerHTML 的区别:
+		document.write 只能重绘整个页面
+			document.write是重写整个document, 写入内容是字符串的html
+		innerHTML 可以重绘页面的一部分
+			innerHTML是HTMLElement的属性，是一个元素的内部html内容
+	
+	
+	----------------------- BOM 与 DOM 的关系与区别-----------------------
+	03. 关于BOM与DOM的关系与区别：
+		01. DOM 是 W3C 的标准； [所有浏览器公共遵守的标准]
+		02. BOM 是 各个浏览器厂商根据 DOM 在各自浏览器上的实现;// [表现为不同浏览器定义有差别,实现方式不同]
+		03. window 是  BOM 对象，而非js对象；
+		
+		从window.document已然可以看出: 
+			DOM的最根本的对象是BOM的window对象的子对象。
+		区别：
+			DOM描述了处理网页内容的方法和接口，
+			BOM描述了与浏览器进行交互的方法和接口。
+			
+	
+
+</script>

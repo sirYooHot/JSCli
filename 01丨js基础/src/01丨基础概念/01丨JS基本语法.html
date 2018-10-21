@@ -1,0 +1,88 @@
+<script type="text/javascript">
+	00. ECMAScript  js基本语法与标准
+		01.DOM: Document Object Model文档对象模型
+		02.BOM: Browser Object Model浏览器对象模型
+		tips：DOM和BOM都是一套API（Application programing interface）
+    
+    
+    00. 简单指令
+		alert("");          提示框；
+		confirm("");        确认框，点击后会响应返回true或false；             
+		prompt();           弹出一个输入框；
+		document.write("");
+		console.log("");    在控制台打印相应的信息；
+		console.dir("");    在控制台打印出该对象的所有信息；
+	
+	
+	00. 注释方式
+		style   /*  */
+		body    <!-- --!>
+		script  //
+		        /* */
+		        /**
+		        *   js说明文档注释
+		        */
+	
+	
+	00. 变量命名
+		数字（0-9）、字母（a-z，A-Z）、下划线（_）；
+	    tips:应避免保留字和关键字；
+	
+	
+	00. 转义字符
+		\       
+		\r  回车
+		\n  空格
+		\t  缩进
+		\\  反斜杠
+	
+	
+	00. 逻辑短路、逻辑中断
+		true || 6;      逻辑或短路，左边为ture返回右值；
+		6 && true;   逻辑与短路，左边false返回右值；
+	
+	
+	00. 优先级: 自上而下优先级越来越高
+	    * / %
+	    +   -
+	    &&
+	    ||
+	    ?
+	
+	
+	00. 类型转换（type）
+		parseInt("12a3");   转为数字，尝试强转；
+		parseFloat("123.123");
+		
+		data.toString();
+		String(data);
+		变量声明未赋值，其值为undefined；对象为空，其值为null；
+	
+	
+	00. 三元表达式: a > b ? a=1 : a=2;
+		判断条件？true的时候执行的操作：false的时候执行的操作;
+
+
+	00. 自定义对象
+		对象：无序属性的集合；
+			特征：属性（key）；
+		    行为：方法（value）；
+		
+		访问对象属性：
+		    obj[key];
+		    obj.key;
+		
+		遍历对象：
+		    for(key in obj){
+		        key         为属性名；
+		        obj[key]    为属性值（value）；
+		    }
+
+	
+	00. JS中的三中绑定方式:
+		01. 在DOM元素中直接绑定；
+		02. 在JavaScript代码中绑定；
+		03. 绑定事件监听函数。
+	
+	
+</script>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			// 1. 创建对象
+			var person01  = new Object();
+			person01.name = "张三";
+			person01.age  = 20;
+			person01.show = function(){
+				console.log("名字："+ this.name +"，年龄："+ this.age);
+			};
+			person01.show()
+			
+			
+			// 2. 字面量方法创建对象
+			var person02 = {
+				name: "李四",
+				age: 20,
+				show: function(){
+					console.log("名字："+ this.name +"，年龄："+ this.age);
+				}
+			}
+			person02.show()
+			person02.gender = "man";
+			person02.fight  = function(){
+				console.log("倭寇");
+			}
+			person02.fight();
+			person02.show();
+			
+
+			// 3. 设计模式：工厂模式
+			function createPerson(name,age){
+				var obj  = new Object();
+				obj.name = name;
+				obj.age  = age;
+				obj.show = function(){
+					console.log("name:"+obj.name+","+"age:"+obj.age);
+				}
+				return obj;
+			}
+			
+			createPerson('林黛玉',17).show();// 输入参数，调用show()函数显示
+			var obj01 = createPerson('林黛玉',18);
+			var obj02 = createPerson('颜如玉',19);
+			console.log(obj01.name);
+			console.log(obj02.name);
+			console.log(typeof obj01);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

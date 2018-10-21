@@ -1,0 +1,45 @@
+<script type="text/javascript">
+	01. 中检测对象的方法 ：
+		01. typeof操作符 
+			console.log(typeof []); // "object" 
+		
+		02. instance of操作符: // <在某些IE版本中不正确>
+			console.log(arr instanceof Array); // true 
+		
+		03. 对象的constructor属性
+			console.log(arr.constructor === Array); // true 
+	
+	
+	02. 检测数组类型方法
+		01. Object.prototype.toString 
+			Object.prototype.toString.call([]);// === '[object Array]'
+		
+		02. Array.isArray()		<保证其兼容性>
+			Array.isArray(arr)
+			
+		03. instance of操作符: // <在某些IE版本中不正确>
+			console.log(arr instanceof Array); // true 
+			
+			
+	03. 方法一:
+			判断其是否具有“数组性质”，如slice()方法。可自己给该变量定义slice方法，故有时会失效
+		
+		方法二:
+			obj instanceof Array 在某些IE版本中不正确
+		方法三:
+			方法一二皆有漏洞，在ECMA Script5中定义了新方法Array.isArray(), 保证其兼容性，
+			最好的方法如下：
+		
+			toString.call(18);//”[object Number]”
+			toString.call('');//”[object String]”
+		
+		解析这种简单的数据类型直接通过typeof就可以直接判断
+			toString.call: 常用于判断数组、正则这些复杂类型
+			toString.call(/[0-9]{10}/) // '[object RegExp]'
+		
+		if( typeof Array.isArray === "undefined"){
+			Array.isArray = function(arg){
+				return Object.prototype.toString.call(arg)==="[object Array]"
+			};
+		}
+s</script>

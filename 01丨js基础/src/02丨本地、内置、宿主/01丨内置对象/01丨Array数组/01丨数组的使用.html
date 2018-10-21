@@ -1,0 +1,52 @@
+<script type="text/javascript">
+
+	数组的创建
+		01. 定义法
+			构造函数： var arr = new Array("123","abc","xxx");
+			字面量： var arr = ["123","646","abc"]; 
+			数组长度： var arr = new Array(6);(数组长度为6)；
+		02. 赋值
+		    arr[0]=1;
+	
+	
+	01. 数组元素添加、删除、排序等方法：
+		Array.length 数组的大小
+	
+		Array.push()尾部添加
+		Array.pop()尾部删除
+		Array.unshift()头部添加
+		Array.shift()头部删除
+	
+		Array.concat() 拼接数组;// 追加数据,不改变原数组
+		Array.join() 将数组元素连接转为字符串
+	
+		Array.toString() 将数组转换成字符串
+		Array.toLocaleString() 把数组转换成局部字符串
+	
+		Array.sort() 对数组元素进行排序;// 升序排序，会改变原数组的顺序
+			/*function sortNumber(a,b){
+                return a-b;
+            }
+            arr.sort(sortNumber);(从小到大排序)*/
+		Array.reverse() 颠倒数组中元素的顺序;// 逆向排序，会修改原数组的顺序
+	
+		Array.slice() 返回数组的一部分;// 取出数组中制定区域的数据,不会改变原数组
+		Array.splice(参数1,参数2,参数3) 插入、删除或替换数组的元素, 会改变原数组
+			参数1: 选取元素的索引; 参数2: 截取元素的长度;  参数3: 添加数据的内容
+		
+		Array.indexOf(ele) 查找ele，返回值为索引，如果没有该元素返回-1；
+		
+		
+	
+	02. 伪数组（类数组）：
+		无法直接调用数组方法或期望length属性有什么特殊的行为，但仍可以对真正数组遍历方法来遍历它们。
+	典型类型：
+		1、调用函数的argument参数，
+		2、调用getElementsByTagName,
+		3、调用document.childNodes,
+		它们都返回NodeList对象都属于伪数组。
+	
+	伪数组转化为标准数组：
+		使用Array.prototype.slice.call(fakeArray)将数组转化为Array对象。
+
+</script>

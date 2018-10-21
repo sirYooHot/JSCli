@@ -19,7 +19,7 @@
 				// oBox.style oBox的style属性
 				/**
 				 * 内联样式: 是可以获取样式的值-oBox.style 
-				 * 内部样式(style标签中): 就必须使用一下方式
+				 * 内部样式(style标签中): 就必须使用以下方式
 				 * 
 				 * window.getComputedStyle： 判断是否为IE9+,谷歌，获取
 				 * 
@@ -36,10 +36,6 @@
 				// 利用三目运算来获取
 				var Style = window.getComputedStyle ? window.getComputedStyle(Box,null) : box.currentStyle;
 				console.log(Style.width, Style.height);
-				
-				function getStyleAttr(obj, attr){
-					return window.getComputedStyle) ? getComputedStyle(obj, null)[attr] : obj.currentStyle[attr];
-				}
 				
 			}
 		</script>

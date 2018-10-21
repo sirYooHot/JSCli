@@ -1,124 +1,49 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-		<script type="text/javascript">
-			
-			01. 数据类型
-				布尔类型:Boolean;// true,false
-				数字类型: Number;// 非0即为true，0和NaN，为false
-				字符串: String;// 非空字符串为true，空字符串为false
-				数组: Array;
-				对象: Object;// 非null为true，null为false
-				特殊的类型: Null, Undefined
-					   1. undefined:undefined为 false
+<script type="text/javascript">
 				
-				1. 基本数据类型：String, Boolean, number, undefined, object, null
-				2. 引用数据类型：
-					Object(Array, Date, RegExp, Function)
-					Object, Array
-				特殊数据类型是：Null, Undefined
-				
-				
-				null和undefined的区别：
-					01. null是一个表示”无”的对象，转为数值时为0；
-						undefined是一个表示”无”的原始值，转为数值时为NaN。
-						
-					02. 当声明的变量还未被初始化时，变量的默认值为undefined。
-						null用来表示尚未存在的对象，常用来表示函数企图返回一个不存在的对象。
-				
-				undefined表示”缺少值”，就是此处应该有一个值，但是还没有定义。典型用法是：
-					（1）变量被声明了，但没有赋值时。< 一个变量定义了却没有被赋值>
-					（2 ) 调用函数时，应该提供的参数没有提供，该参数等于undefined。
-					（3）对象没有赋值的属性，该属性的值为undefined。
-					（4）函数没有返回值时，默认返回undefined。
-				null表示”没有对象”，即该处不应该有值。典型用法是：
-					（1） 作为函数的参数，表示该函数的参数不是对象。
-					（2） 作为对象原型链的终点。
-				
-				undefined会在以下三种情况下产生：
-					1、 一个变量定义了却没有被赋值；
-					2、 想要获取一个对象上不存在的属性或者方法；
-					3、 一个数组中没有被赋值的元素；
-				
-				
-				
-			02. script标签
-				1. 理论上script 可以出现在任何位置(通常来说放在header里)
-				2. 可以有多个script标签
-				3. 如果使用的是外部引入，标签里的js代码就不会执行
-				4. 不能使用单标签
+	00. script标签
+		1. 理论上script 可以出现在任何位置(通常来说放在header里)
+		2. 可以有多个script标签
+		3. 如果使用的是外部引入，标签里的js代码就不会执行
+		4. 不能使用单标签
+	
+	
+	
+	00. 标识符的命名规范：变量名，函数名
+		1. 必须是字母数字下划线或者是美元符号$
+		2. 首字母不能是数字
+		3. 不能使用系统的关键字，或者保留字
+		4. 尽量使用驼峰命名规则 getStudentMoney
+	
+	
+	
+	00. 函数：把特定的功能代码抽出来
+	    1. 内置函数：(官方的函数，系统自带的函数)，
+	    	alert(),document.write(),console.log();
+	    2. 自定义函数：(开发者自己封装的函数)
+	    3. 函数声明完后，需要调用才能执行
+		4. 标准函数：
+			1. function 函数名(参数不限){
+			    return 返回值可写，可不写；
+			}
+			2. 实参超过形参: 多余的实参无效，但也在数组之中
+	
+	
+	
+	00. JS解析
+		01. 作用域
+			全局作用域：
+				整个代码所有地方都可以调用；
+			局部作用域：
+				在函数内部声明的变量，只可以在函数内部使用；
+			1. 局部变量：
+				1. 函数内部的变量
+				2. 作用域: 只能在有限的作用域生效
 			
+			3. 定义变量：var在语法上是可以省略的，但是回默认为全局变量
+		
+		02. 变量提升和函数提升
+			01. 预解析：在解析的时候，var和function都会被提升到代码的最顶端;
 			
-			
-			03. 标识符的命名规范：变量名，函数名
-				1. 必须是字母数字下划线或者是美元符号$
-				2. 首字母不能是数字
-				3. 不能使用系统的关键字，或者保留字
-				4. 尽量使用驼峰命名规则 getStudentMoney
-			
-			
-			
-			04. typeof 操作符,检测值,或者变量的数据类型
-				1. console.log(undefined == null);// true
-				2. 科学计数法：e5代表10的5次方
-				3. Infiniy,无穷大
-				4. NaN(Not a Number),不是一个数字
-			 
-			
-			
-			5. isNaN()：判断是不是合法数值
-				1. console.log(isNaN(NaN));// true
-				2. console.log(isNaN(11));// false
-				3. console.log(isNaN("11"));// false
-				4. console.log(isNaN(true));// false
-				5. console.log(isNaN(false));// false
-			
-			
-			
-			6. 函数：把特定的功能代码抽出来
-			    1. 内置函数：(官方的函数，系统自带的函数)，
-			    	alert(),document.write(),console.log();
-			    2. 自定义函数：(开发者自己封装的函数)
-			    3. 函数声明完后，需要调用才能执行
-				4. 标准函数：
-					1. function 函数名(参数不限){
-					    return 返回值可写，可不写；
-					}
-					2. 实参超过形参: 多余的实参无效，但也在数组之中
-			
-			
-			
-			
-			7. 变量、作用域
-				1. 局部变量：
-					1. 函数内部的变量
-					2. 作用域: 只能在有限的作用域生效
-				2. 全局变量：
-					1. 定义在函数外部的变量
-					2. 作用域: 能够生效的作用域是整个文件
-				3. 定义变量：var在语法上是可以省略的，但是回默认为全局变量
-			
-
-			
-			8. 函数嵌套：
-				1. 函数内部可以包含其他函数
-				2. 函数之间允许相互调用
-				3. 不可以调用同级别的函数的嵌套函数
-			
-			
-			
-			9. 递归: 递归自己调用自己；
-				function fny(y){
-					if(y==1){
-						return 1;
-					}
-					return y+fny(y-1);
-				}
-			
-		</script>
-	</body>
-</html>
+			02. 定义和函数才会被提升, 赋值操作不会被提升;
+	
+</script>
