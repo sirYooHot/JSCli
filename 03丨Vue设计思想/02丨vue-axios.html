@@ -1,58 +1,56 @@
 <script type="text/javascript">
-	window.onload = function() {
-		ajax请求
-		01. axios
-			01. axios: 基于 Promise 的 HTTP 请求客户端，可同时在浏览器和 Node.js 中使用。
+ajax请求
+	01. axios
+		01. axios: 基于 Promise 的 HTTP 请求客户端，可同时在浏览器和 Node.js 中使用。
+		
+		02. 功能特性
+			01. 在浏览器中发送 XMLHttpRequests 请求
+			02. 在 node.js 中发送 http请求 
+			03. 支持 Promise API 
+			04. 拦截请求和响应 
+			05. 转换请求和响应数据 
+			06. 取消请求 
+			07. 自动转换 JSON 数据 
+			08. 客户端支持保护安全免受 CSRF/XSRF 攻击 
+	
+	
+	02. vue-resource
+		01. 安装: npm install vue-resource --save
+		02. 注入: 在main.js文件中: 
+			引入并注册 vue-resource
+			import VueResource from 'vue-resource'
+			Vue.use(VueResource)
+	
+		03. vue-resource特点
+			01. 体积小
+			02. 支持主流的浏览器
+			03. 支持Promise API和URI Templates
+			04. 支持拦截器
+		
+		04. vue-resource使用
+			01. 基于全局Vue对象使用http
+				01. Vue.http.get('/someUrl', [options])
+					.then(resCallback, errCallback);
+				02. Vue.http.post('/someUrl', [body], [options])
+					.then(resCallback, errCallback);
+			02. 在一个Vue实例内使用$http
+				01. this.$http.get('/someUrl', [options])
+					.then(resCallback, errCallback);
+				02. this.$http.post('/someUrl', [body], [options])
+					.then(resCallback, errCallback);
 			
-			02. 功能特性
-				01. 在浏览器中发送 XMLHttpRequests 请求
-				02. 在 node.js 中发送 http请求 
-				03. 支持 Promise API 
-				04. 拦截请求和响应 
-				05. 转换请求和响应数据 
-				06. 取消请求 
-				07. 自动转换 JSON 数据 
-				08. 客户端支持保护安全免受 CSRF/XSRF 攻击 
-		
-		
-		02. vue-resource
-			01. 安装: npm install vue-resource --save
-			02. 注入: 在main.js文件中: 
-				引入并注册 vue-resource
-				import VueResource from 'vue-resource'
-				Vue.use(VueResource)
-		
-			03. vue-resource特点
-				01. 体积小
-				02. 支持主流的浏览器
-				03. 支持Promise API和URI Templates
-				04. 支持拦截器
-			
-			04. vue-resource使用
-				01. 基于全局Vue对象使用http
-					01. Vue.http.get('/someUrl', [options])
-						.then(resCallback, errCallback);
-					02. Vue.http.post('/someUrl', [body], [options])
-						.then(resCallback, errCallback);
-				02. 在一个Vue实例内使用$http
-					01. this.$http.get('/someUrl', [options])
-						.then(resCallback, errCallback);
-					02. this.$http.post('/someUrl', [body], [options])
-						.then(resCallback, errCallback);
-				
-				03. 传统写法
-					this.$http.get('/someUrl', [options])
-					.then(function(response){
-					    // 响应成功回调
-					}, function(response){    
-					    // 响应错误回调
-					});
-				04. Lambda写法
-					this.$http.get('/someUrl', [options])
-					.then((response) => {
-					    // 响应成功回调
-					}, (response) => {    
-					    // 响应错误回调
-					});
-	}
+			03. 传统写法
+				this.$http.get('/someUrl', [options])
+				.then(function(response){
+				    // 响应成功回调
+				}, function(response){    
+				    // 响应错误回调
+				});
+			04. Lambda写法
+				this.$http.get('/someUrl', [options])
+				.then((response) => {
+				    // 响应成功回调
+				}, (response) => {    
+				    // 响应错误回调
+				});
 </script>

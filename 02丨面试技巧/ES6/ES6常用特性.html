@@ -1,0 +1,53 @@
+<script type="text/javascript">
+	00. let和const
+		01. 使用let 取代 var
+			var命令存在变量提升效用，let命令没有这个问题。
+		
+		02. const { left, right } = processInput(input);
+	
+	
+	00. 字符串模板: ``, ${}
+		var str01 = 'hello world'
+		
+		var str = `say: ${str01}`
+	
+	
+	00. ...
+		01. 使用扩展运算符（...）拷贝数组。
+		
+		02. 不要在函数体内使用arguments变量，使用rest运算符（...）代替
+			// bad
+			function concatenateAll() {
+			  const args = Array.prototype.slice.call(arguments);
+			  return args.join('');
+			}
+			// good
+			function concatenateAll(...args) {
+			  return args.join('');
+
+
+
+	00. 数组遍历
+		01. forEach遍历
+			let arr=['jspang','技术胖','cc'];    
+			arr.forEach(
+				(val,index) => console.log(index, val)
+			);
+		02. .filter遍历
+			arr.filter(
+				x => console.log(x)
+			);
+		03. .some遍历
+			arr.some(
+				x => console.log(x)
+			);
+		04. .map遍历
+			arr.map(
+				x => console.log(x)
+			);
+			<!-- 数组遍历替换 -->
+			console.log(arr.map(x=>'web'));
+	
+	
+	
+</script>

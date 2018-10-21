@@ -1,0 +1,32 @@
+<script type="text/javascript">
+	01. 箭头函数写法 function(){} 变为 ()=>{}
+	window.onload = () => {
+	        var oBox = document.getElementById("box");
+	        oBox.onclick = () => {
+	        oBox.style.backgroundColor = '#ff0000';
+	    };
+	};
+	
+	02. 注意this指向会有问题
+		var json = {
+		    a: 1,
+		    b: 2,
+		    showName: () => {
+		        return this.a;
+		    }
+		};
+		console.log(json.showName());
+		01. 因为使用了箭头函数this指向了object window 所以result：undefined
+			箭头函数取代Function.prototype.bind，不再用self/_this/that绑定 this。
+		
+		
+		02. 如果使用了箭头函数的写法，那么注意arguments将不能继续使用了
+			var show = () => {
+			    console.log(arguments);// Uncaught ReferenceError: arguments is not defined
+			};
+			show(1,2,3);
+		
+		
+		03. 立即执行函数可以写成箭头函数的形式。
+			箭头函数中不可加new，也就是说箭头函数不能当构造函数进行使用。 
+</script>

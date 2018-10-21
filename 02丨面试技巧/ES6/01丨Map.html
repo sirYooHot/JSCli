@@ -1,0 +1,48 @@
+<script type="text/javascript">
+	var map = new Map();// 因为Map有内建的遍历机制
+	
+	// 设置
+	// map.set(name,value);
+	map.set('a','apple');
+	map.set('b','banana');
+	
+	// 获取
+	// map.get(name);
+	console.log(map.get('a') + ' ' + map.get('b'));
+	
+	// 删除之前map对象
+	console.log(map);
+	
+	// 删除
+	// map.delete(name);
+	map.delete('a');
+	
+	// 删除之后map对象
+	console.log(map);
+	
+	// 注意for..in是不能循环map对象的，不报错也无任何反应，稍微注意下
+	for(var name in map){
+	    console.log(name);
+	}
+	
+	// 实体  map=map.entries()
+	for(var name of map){
+	//循环出来的结果就是:a,apple b,banana 循环key,value
+	console.log(name);
+	}
+	
+	//循环出来的结果就是: a,apple b,banana 循环key,value
+	for(var [key,value] of map.entries()){
+	    console.log(key,value);
+	}
+	
+	//只循环key
+	for(var key of map.keys()){
+	    console.log(key);
+	}
+	
+	//只循环value
+	for(var val of map.values()){
+	    console.log(val);
+	}
+</script>

@@ -1,0 +1,28 @@
+<script type="text/javascript">
+模块化-export,import
+	01. 使用import取代require
+		// bad
+		const moduleA = require('moduleA');
+		const func1 = moduleA.func1;
+		const func2 = moduleA.func2;
+		// good
+		import { func1, func2 } from 'moduleA';
+		
+	02. 使用export取代module.exports
+		// commonJS的写法
+		var React = require('react');
+		var Breadcrumbs = React.createClass({
+		  render() {
+		    return <nav />;
+		  }
+		});
+		module.exports = Breadcrumbs;
+		// ES6的写法
+		import React from 'react';
+		class Breadcrumbs extends Component {
+		  render() {
+		    return <nav />;
+		  }
+		}  //这里不要加逗号
+		export default Breadcrumbs
+</script>
