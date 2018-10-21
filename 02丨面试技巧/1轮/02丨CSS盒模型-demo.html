@@ -9,47 +9,6 @@
 				margin: 0;
 			}
 		</style>
-		<script type="text/javascript">
-			/*
-			01. 基本概念: 标准模型 + IE模型
-			
-			02. 标准模型与IE模型 区别
-				标准模型： width(宽度)/height(高度) = content
-				IE模型：   width(宽度)/height(高度) = content + padding + border
-			
-			03. CSS 如何设置这两种模型
-				box-sizing: content-box;
-				box-sizing: border-box;
-			
-			04. JS 如何设置获取盒模型对应的宽/高
-				01. dom.style.width/height: css内联样式的宽高
-				02. dom.currentStyle.width/height: 浏览器渲染后的宽高（只有IE支持）
-				03. window.getComputedStyle(dom).width/height: 兼容性更好
-				04. dom.getBoundingClientRect().width/height: 计算元素的绝对位置
-				
-				
-			05. 实例题:
-				根据盒模型解释边距重叠
-			
-			06. BFC 边距重叠解释方案
-				01. BFC的基本概念： 块级格式化上下文
-				02. BFC的原理： BFC的渲染规则
-					01. BFC的垂直方向的边距会发生重叠
-					02. BFC的区域不会与float元素的box重叠
-					03. BFC在页面上是一个独立的容器, 内外的元素互不影响
-					04. 计算BFC的高度的时候浮动元素的高度也会参与计算
-				03. 如何创建BFC
-					01. float的值 != none;
-					02. position != static/relative;
-					03. display != inline-block/table-cell;
-					04. overflow: hidden/auto;
-				
-				04. BFC的使用场景:
-					
-				
-			拓展: IFC
-			*/
-		</script>
 	</head>
 	<body>
 		<section id="sec01">

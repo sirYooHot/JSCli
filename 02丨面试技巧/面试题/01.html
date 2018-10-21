@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			["1","2", "3"].map(parseInt)
+				[0]=parseInt(“1”,0);//1*100=1*1=1
+				
+				[1]=parseInt(“2”,1);//radix不在2~36的返回NaN
+				
+				[2]=parseInt(“3”,2);//二进制数没有3，只有0 1 ，所以NaN 
+				
+				所以最终的结果是 [1,NaN,NaN]
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

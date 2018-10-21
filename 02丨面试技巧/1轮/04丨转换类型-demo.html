@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>转换类型</title>
+		<style type="text/css"></style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 对象类型的转换
+			var obj = {
+				a: 1, 
+				/*
+				toString: function(){
+					return {
+						a: 1
+					}
+				}, 
+				valueOf: function(){
+					return 'a'
+				}
+				*/
+			};
+			
+			// "[object Object]" --> Number("[object Object]")
+			console.log(Number(obj));// NaN
+			console.log(String(obj));// [object Object]
+			
+			
+			console.log([] + [])// ""
+			console.log([] + {})// [object Object]
+			console.log({} + [])// 0;// {}: 被当作代码块-->不执行
+			console.log({} + {});// [object Object][object Object]
+			console.log(true + true)// 2
+			console.log(1 + { a:1 })// 1[object Object]
+		</script>
+	</body>
+</html>

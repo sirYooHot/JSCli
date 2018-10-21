@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 1. Math.random(): 创建一个随机数
+			// 2. Math.round(参数): 参数四舍五入
+			// 3. Math.abs(参数): 取参数的绝对值
+			console.log("Math.random():" + Math.random());
+			console.log("Math.round(3.6):" + Math.round(3.6));
+			console.log("Math.abs(-3.6):" + Math.abs(-3.6));
+			
+			// Math.max(参数,参数,参数,...): 取参数的最大值
+			// Math.min(参数,参数,参数,...): 取参数的最小值
+			console.log("Math.max():"+ Math.max(1,2,3,4,5));
+			console.log("Math.min():"+ Math.min(1,2,3,4,5));
+			
+			// Math.ceil(): 向上取整
+			// Math.floor(): 向下取整
+			console.log("Math.ceil(4.9):"+ Math.ceil(4.9));
+			console.log("Math.floor(4.9):"+ Math.floor(4.9));
+			
+			// Math.pow(): 计算一个数的几次幂
+			// Math.sqrt(): 计算一个数的开方
+			console.log("Math.pow(2,3):"+ Math.pow(2,3));
+			console.log("Math.sqrt(9):"+ Math.sqrt(9));
+		
+			// 创建一个随机的字母
+			function randomCode() {
+				let numX =  parseInt(Math.random()*26 + 65);
+				return String.fromCharCode(numX);
+			}
+			var num = randomCode();
+			console.log(num);
+
+
+			// 分类字符串
+			function sortArr(str) {
+				const obj = { arrA: [], arrB: [], arrC: [] }
+				for(var i=0;i<str.length;i++){
+					if( (str[i]>="a" && str[i]<="z") || (str[i]>="A" && str[i]<="Z") ){
+						obj.arrA.push(str[i])
+					}else if(str[i]>="0" && str[i]<="9"){
+						obj.arrB.push(str[i])
+					}else {
+						obj.arrC.push(str[i])
+					}
+				}
+				return obj
+			}
+			var str = "12Cd5F789jk哈哈";
+			var obj = sortArr(str);
+			console.log(obj)
+			
+		</script>
+	</body>
+</html>

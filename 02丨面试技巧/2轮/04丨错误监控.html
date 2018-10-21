@@ -1,0 +1,30 @@
+<script type="text/javascript">
+	04. 错误监控
+		01. 前端错误的分类
+			01. 即时运行错误: 代码错误
+			02. 资源加载错误: js、css加载失败
+			
+			
+		02. 错误的捕获方式
+			即时运行错误
+				01. try...catch
+				02. window.onerror// 只能捕获即时运行加载错误
+				
+			资源加载错误
+				01. object.onerror// 资源加载错误不会冒泡, 所以window.onerror不能捕获到资源加载错误
+				02. performance.getEntries()// 通过监测成功加载的资源，结合要加载的资源，来判断加载失败的资源
+				03. Error事件捕获
+				
+			跨域的js运行错误, 
+				可以捕获吗? 错误提示什么?
+					01. Script error, 可以捕获到错误,但不能拿到相应的错误信息
+				如何处理?
+					02. 客户端: 在script标签增加 crossorigin属性
+					03. 服务端: 响应HTTP请求资源时, js资源响应头上, Access-Control-Allow-Origin:*
+			
+		
+		03. 上报错误的基本原理
+			01. 采用Ajax通信的上报方式
+			02. 利用Image对象上报 ( new Image()).src = '错误路径';
+		
+</script>

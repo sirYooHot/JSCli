@@ -1,0 +1,66 @@
+<script type="text/javascript">
+	01. 渲染机制类
+		01. 什么是DOCTYPE及作用
+			01. DTD, document Type difinition, 文档类型定义
+				用来定义: XML / (X)HTML 的文件类型;
+				浏览器会根据它来判断文档类型, 决定使用哪种协议来解析, 切换浏览模式;
+				
+			02. DOCTYPE, 声明文档类型和DTD规范
+				文件的合法性验证, 文件代码非法,浏览器会解析错误;
+				//!: 注意
+				//doctype: document type(文档类型)
+				//lang="en"  cn/ch: 申明文档的语言
+				//charset="UTF-8": 申明文档的编码格式
+				
+			
+			03. 常见的doctype类型
+				01. HTML5
+					<!DOCTYPE html>
+					
+				02. HTML 4.01 Transitional // 严格模式
+					<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+					"http://www.w3.org/TR/html4/loose.dtd">
+					
+					HTML 4.01 Strict // 传统模式
+					<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+					"http://www.w3.org/TR/html4/strict.dtd">
+					区别:
+						01. DTD所有的HTML 元素和属性: 都包含
+						02. 展示性的和弃用的元素(font): 
+							Strict模式: 不包括; Transitional模式: 包括
+				
+				03. XHTML 1.0
+					<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+					"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+		
+		02. 浏览器的渲染过程
+			
+			
+		03. 重排Reflow
+			01. 定义
+				DOM结构中的各个元素都有自己的盒模型, 浏览器根据各种样式来计算, 并根据结果将元素放到它该有的位置
+			
+			02. 触发Reflow
+				01. 当增加、删除、修改DOM节点时, 会导致Reflow 或 Repaint
+				02. 当移动DOM的位置 或 进行动画时;
+				03. 当修改CSS样式时;
+				04. 当Resize窗口的时候(移动端没有这个问题), 或滚动时;(有可能)
+				05. 当修改页面的默认字体时;(不建议)
+			
+			03. 如何避免Reflow
+			
+		04. 重绘Repaint
+			01. 定义
+				当各种盒子的位置、大小、其他属性(颜色、字体大小等)都确定后, 
+				浏览器把这些元素按照各自的特性绘制一边, 于是页面的内容就出现了, 这个过程就叫Repaint
+			
+			02. 触发Repaint
+				DOM修改
+				CSS改动
+			
+			03. 如何减少最小Repaint
+			
+			
+		05. 布局Layout
+</script>

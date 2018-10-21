@@ -1,0 +1,36 @@
+<script type="text/javascript">
+	01. CSRF
+		01. 基本概念和缩写
+			CSRF, 跨站请求伪造, Cross-site request forgery
+		
+		02. 攻击原理
+			01. 网站某个接口存在漏洞
+			02. 用户在某个网站登陆过
+			03. 点击引诱连接
+			
+		03. 防御措施
+			01. token验证
+				01. 访问时,在本地 自动存储一个token;
+				02. 引诱链接自动携带cookie但不能携带token;
+				
+			02. Referer验证
+				01. 页面来源: 判断页面来源是否时自身网站的页面;
+			
+			03. 隐藏令牌
+				01. 隐藏令牌跟token类似;
+				02. 隐藏位置: HTTP头中 / 
+			
+			
+	02. XSS: //http://www.imooc.com/learn/812/
+		01. 基本概念和缩写
+			01. XSS, 跨域脚本攻击, cross-site scripting
+		
+		02. 攻击原理
+			01. 不需要做任何的登陆和认证
+			02. 核心原理: 向页面注入脚本(JS自运行)
+			03. 宗旨: 让你的插入的JSX不可执行
+			
+		03. 防御措施
+			01. 
+				
+</script>

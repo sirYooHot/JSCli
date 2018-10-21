@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css"></style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// error事件捕获错误
+			window.addEventListener('error', function(e){
+					console.log(e)
+			}, true)
+		</script>
+		<script src="www.baidu.com/test.js" charset="UTF-8"></script><!--该加载资源不存在-->
+		<script type="text/javascript">
+			(new Image()).src = 'http://www.baidu.com/testjk?r=test';
+		</script>
+	</body>
+</html>
