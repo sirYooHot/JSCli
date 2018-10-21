@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			
+			03. 页面性能
+				01. 提升页面性能的方法有哪些?
+					01. 资源压缩合并, 减少HTTP请求;
+					
+					
+					02. 非核心代码异步加载
+						01. 异步加载的方式
+							01. 动态脚本加载 丨 02. defer 丨 03. async
+							
+						02. 异步加载的区别
+							01. defer是在HTML解析完后执行,多个则按顺序执行;
+							02. async是在加载完成之后立即执行, 多个,执行顺序与加载顺序无关;
+					
+					
+					03. 利用浏览器缓存
+						01. 缓存的分类
+							01. 强缓存
+								01. Expires: Thu, 21 Jan 2017 23:59:01 GMT, (绝对时间),
+									有缺点: 客户端下发时间和服务器时间可能不一致
+								02. Cache-Control Cache-Control:max-age=3600, 秒,  (相对时间)
+								03.注意：两者都设置，以后者为准
+							
+							02. 协商缓存: 当强缓存时间失效时,
+								01. Last-Modified(下发时间) if-Modified(请求时间)   
+									请求时间,携带下发时间做比较 (判断时间)
+								Etag(下发时的hash) if-None-Match
+									服务器下发时，hash值的对比 (判断内容是否改变)
+							
+						02. 缓存的原理
+					
+					04. 使用CDN
+						
+					
+					05. 预解析DNS
+						<meta http-equiv="x-dns-prefetch-control" content="on" />
+						<link rel="dns-prefetch" href="http://bdimg.share.baidu.com" />
+					
+		</script>
+		
+		<!--defer: 多个则按顺序执行;-->
+		<script src="js/defer01.js" charset="utf-8" defer></script>
+		<script src="js/defer02.js" charset="utf-8" defer></script>
+		
+		<!--async: 执行顺序与加载顺序无关;-->
+		<script src="js/async01.js" charset="utf-8" async></script>
+		<script src="js/async02.js" charset="utf-8" async></script>
+	</head>
+	<body>
+		<div class="box">
+			test
+		</div>
+		<script type="text/javascript">
+			console.log('write')
+			document.write('<span>write</span>')
+		</script>
+		<script type="text/javascript">
+			for(var i=0;i<2000;i++){
+				if(i%200 === 0){
+					console.log(i)
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			window.onload = function() {}
+		</script>
+	</body>
+</html>

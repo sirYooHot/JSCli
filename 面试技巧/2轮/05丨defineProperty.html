@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Object.defineProperty</title>
+		<script type="text/javascript">
+			/*
+			01. Object.defineProperty的用法要熟记;
+			02. Object.defineProperty与reflect.defineProperty的区别
+			03. Object.defineProperty要会手写
+			*/
+		</script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var obj01 = {};
+			var descriptor = Object.create(null);// 没有继承属性
+			// 默认没有 enumerable, 没有cofigurable, 没有writable
+			descriptor.value = 'static';
+			Object.defineProperty(obj01, 'key', descriptor);
+			console.log(obj01);
+			
+			// enumerable： 默认不能遍历
+			for(let i in obj01){
+				console.log(i)
+			}
+		</script>
+		<script type="text/javascript">
+			// 显示用法
+			var obj02 = {};
+			Object.defineProperty(obj02, 'key', {
+				enumerable: true,
+				cofigurable: false, 
+				writable: false,
+				value: 'static'
+			})
+			console.log(obj02)
+			
+			// enumerable: true
+			for(let i in obj02){
+				console.log(i)
+			}
+		</script>
+	</body>
+</html>

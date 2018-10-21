@@ -25,8 +25,7 @@ function ajax(obj){
 	
 	
 	// 2. http请求配置
-	// 参数预处理
-	obj.dataStr = params(obj.data);
+	obj.dataStr = params(obj.data);// 参数预处理
 	if(/get/i.test(obj.method)){// 是否为GET请求;
 		obj.url += obj.dataStr.length>0 ? ("?"+ obj.dataStr) : "";// 参数拼接到url后面			
 	}
@@ -55,7 +54,7 @@ function ajax(obj){
 	}
 	// 5. 结果处理
 	function callBack(){
-		if(xhr.status == 200){
+		if(xhr.status == 200 || xhr.status == 304){
 			// success函数
 			var res = xhr.responseText
 			obj.success(res);

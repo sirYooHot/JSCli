@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			01. 什么是同源策略及限制
+				01. 同源策略: 协议、域名、端口
+				02. 同源策略限制
+						从一个源加载的文档或者脚本 与 另一个源加载的资源 如何进行通信
+						这是一个用于隔离潜在恶意文件的关键的安全机制
+				
+				01. Cookie、LocalStorage、IndexDB 无法读取
+				02. DOM 无法获取
+				03. ajax请求不能发送
+				
+			
+			02. 前后端如何通信
+				01. Ajax
+				02. WebSocket
+				03. CORS
+			
+			
+			03. 如何创建Ajax
+				01. XMLHttpRequest对象的工作流程
+				02. 兼容性的处理
+				03. 事件的触发条件
+				04. 事件的触发顺序
+			
+			
+			04. 跨域通信的几种方式
+				01. JSONP
+					01. 在出现postMessage、CORS之前常用的跨域工具
+					02. JSONP的原理: script标签的异步加载来实现 
+						01. 所有的网站的地址和域名基本都是不一致的;
+						02. 运用script标签发送请求: // <script src="http://www.abc.com/?data=name&callbackName=jsonp" charset="UTF-8">
+							给客户端一个回调名: callbackName=jsonp
+						03. 服务器下发一个script内容
+							本地必须有响应的回调函数：jsonp({})
+					
+				02. Hash
+					01. #后面的值就是hash
+					02. hash的变动, 页面不会刷新
+				
+				03. postMessage
+					01. html5中新出的跨域通信
+				
+				04. WebSocket
+				
+				05. CORS
+					01. 支持跨域通信的Ajax
+				
+				
+		</script>
+	</head>
+	<body>
+		<script type="text/javascript"></script>
+		<script type="text/javascript">
+			window.onload = function() {}
+		</script>
+		
+	</body>
+</html>
