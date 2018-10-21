@@ -102,17 +102,17 @@
 			}
 			Child04.prototype = Parent04.prototype;
 			
-			/*var child041 = new Child04();
+			var child041 = new Child04();
 			console.log(child041 instanceof Child04, child041 instanceof Parent04)
-			console.log(child041.constructor)// Parent04*/
+			console.log(child041.constructor)// Parent04
 			
-			Child04.prototype.constructor = Child04;// 原型继承原型的方法时, 强制指向构造函数，还是同一指针
+			/*Child04.prototype.constructor = Child04;// 原型继承原型的方法时, 强制指向构造函数，还是同一指针
 			var child041 = new Child04();
 			var Parent041 = new Parent04();
 			console.log(child041 instanceof Child04, child041 instanceof Parent04)// true, true
 			console.log(Parent041 instanceof Child04, Parent041 instanceof Parent04)// true, true
 			console.log(child041.constructor)// Child04
-			console.log(Parent041.constructor)// Child04
+			console.log(Parent041.constructor)// Child04*/
 			
 			
 			
@@ -139,11 +139,6 @@
 			console.log(child051.constructor)// Child05
 			console.log(parent051.constructor)// Parent05
 			
-			
-			
-		</script>
-		<script type="text/javascript">
-			window.onload = function() {}
 		</script>
 	</body>
 </html>

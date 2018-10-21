@@ -1,0 +1,20 @@
+<script type="text/javascript">
+	
+	1. javascript的本地对象，内置对象和宿主对象：
+		
+		1. 本地对象: 
+			为独立于宿主环境的ECMAScript提供的对象,
+			包括 Array Object RegExp等可以new实例化的对象
+		
+		2.内置对象
+			为Global（全局对象），Math 等不可以实例化的,
+			(他们也是本地对象，内置对象是本地对象的一个子集)
+		
+		3. 宿主对象
+			为所有的非本地对象,
+			所有的BOM和DOM对象都是宿主对象，如浏览器自带的document,window 等对象
+	
+	2. 扩展javascript内置对象不是好的做法：
+		扩展内置对象会影响该内置对象的原型属性
+	
+</script>

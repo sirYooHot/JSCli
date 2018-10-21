@@ -2,66 +2,60 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>转换类型</title>
 		<style type="text/css"></style>
+		<script type="text/javascript">
+		/*01. 数据类型
+			02. 原始类型:
+				boolean null undefined number string symbol
+			02. 对象: Object
+		
+		
+		02. 类型转换
+			01. 显示类型转换: Number / String / Boolean
+				01. Number()
+					01. 原始类型转换
+						number: 转换后还是原来的值;
+						string: 
+							如果可以被解析为数值, 则转换为相应的数值, 否则为NaN;
+							空字符串转为0;
+						boolean: true 转为1, false 转为0;
+						undefined: 转成NaN;
+						null: 转成0;
+					
+					02. 对象类型的转换
+						01. 先调用valueOf()方法, 返回:
+							01. 原始类型的值, 使用Number方法;
+							
+							02. 复合类型的值, 再调用toString方法, 返回: 
+								01. 原始类型的值, 使用Number方法;
+								02. 复合类型的值, 则报错;
+				
+				02. String()
+					01. 原始类型转换
+						number: 转换为相应的字符串; 
+						string: 值不变; 
+						boolean: true 转为'ture', false 转为'false'; 
+						undefined: 'undefined'; 
+						null: 转成'null'; 
+					
+					02. 对象类型的转换
+						01. 先调用toString()方法, 返回:
+							01. 原始类型的值, 使用string方法;
+							
+							02. 复合类型的值, 再调用valueOf()方法, 返回: 
+								01. 原始类型的值, 使用string方法;
+								02. 复合类型的值, 则报错;
+				
+				03. Boolean()
+					01. 原始类型转换
+						undefined / null / -0 / +0 / NaN / '' --> false
+				
+			02. 隐式类型转换
+				01. 四则运算 丨 02. 判断语句 丨 03. Native调用*/
+		</script>
 	</head>
 	<body>
-		<script type="text/javascript">
-			/*
-			01. 数据类型
-				02. 原始类型:
-					boolean null undefined number string symbol
-				02. 对象: Object
-			
-			
-			02. 类型转换
-				01. 显示类型转换: Number / String / Boolean
-					01. Number()
-						01. 原始类型转换
-							number: 转换后还是原来的值;
-							string: 
-								如果可以被解析为数值, 则转换为相应的数值, 否则为NaN;
-								空字符串转为0;
-							boolean: true 转为1, false 转为0;
-							undefined: 转成NaN;
-							null: 转成0;
-						
-						02. 对象类型的转换
-							01. 先调用valueOf()方法, 返回:
-								01. 原始类型的值, 使用Number方法;
-								
-								02. 复合类型的值, 再调用toString方法, 返回: 
-									01. 原始类型的值, 使用Number方法;
-									02. 复合类型的值, 则报错;
-					
-					02. String()
-						01. 原始类型转换
-							number: 转换为相应的字符串; 
-							string: 值不变; 
-							boolean: true 转为'ture', false 转为'false'; 
-							undefined: 'undefined'; 
-							null: 转成'null'; 
-						
-						02. 对象类型的转换
-							01. 先调用toString()方法, 返回:
-								01. 原始类型的值, 使用string方法;
-								
-								02. 复合类型的值, 再调用valueOf()方法, 返回: 
-									01. 原始类型的值, 使用string方法;
-									02. 复合类型的值, 则报错;
-					
-					03. Boolean()
-						01. 原始类型转换
-							undefined / null / -0 / +0 / NaN / '' --> false
-					
-					
-					
-				02. 隐式类型转换
-					01. 四则运算
-					02. 判断语句
-					03. Native调用
-			*/
-		</script>
 		<script type="text/javascript">
 			// 对象类型的转换
 			var obj = {
@@ -89,9 +83,6 @@
 			console.log({} + {});// [object Object][object Object]
 			console.log(true + true)// 2
 			console.log(1 + { a:1 })// 1[object Object]
-			
-			
-			window.onload = function() {}
 		</script>
 	</body>
 </html>
