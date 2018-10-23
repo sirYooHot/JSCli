@@ -1,0 +1,42 @@
+<script type="text/javascript">
+	01. webpack中利用require.ensure()实现按需加载;
+		require.ensure(
+			dependencies: String[], 
+			callback: function(require), 
+			chunkName: String
+		)
+		01. 依赖 dependencies: 字符串数组
+			在所有的回调函数的代码被执行前，将所有需要用到的模块进行声明
+		
+		02. 回调 callback
+			当所有的依赖都加载完成后，webpack会执行这个回调函数。
+				require 对象的一个实现会作为一个参数传递给这个回调函数。
+				require() 依赖和其它模块提供下一步的执行。
+		
+		03. chunk名称 chunkName
+			chunkName 是提供给这个特定的 require.ensure() 的 chunk 的名称。
+				通过提供 require.ensure() 不同执行点相同的名称
+				保证 所有的依赖都会一起放进相同的文件束(bundle)
+
+
+	02. require.ensure() 的坑点
+		01. 空数组作为参数
+			require.ensure([], function(require){
+			    require('./a.js');
+			});
+			以上代码保证了拆分点被创建，且 a.js 被 webpack 分开打包。
+		
+		02. 依赖作为参数
+			require.ensure(['./a.js'], function(require) {
+			    require('./b.js');
+			});
+			
+		03. 单独打包成自己写的名字配置
+  			需要配置chunkFilename和publicPath。
+			publicPath是按需加载单独打包出来的chunk是以publicPath会基准来存放的，
+			chunkFilename: [name].js这样才会最终生成正确的路径和名字
+			
+		04. router/index.js 修改为懒加载组件
+			const Province = r => require.ensure([], () => r(require('@/components/Province.vue')), 'chunkname1')
+		
+</script>

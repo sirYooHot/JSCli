@@ -1,0 +1,36 @@
+<script type="text/javascript">
+	00. Vue.extend
+		Vue.extend只是创建一个构造器,它是为了创建可复用的组件。
+		其主要用来服务于Vue.component，用来生成组件
+</script>
+
+
+<!--Vue.extend-->
+<div id="itany">
+<hello></hello>
+    <my-world></my-world>
+</div>
+<script>
+    /**
+     * 方式1：先创建组件构造器，然后由组件构造器创建组件
+     */
+    //1.使用Vue.extend()创建一个组件构造器
+    var MyComponent = Vue.extend({
+        template: '<h3>Hello World</h3>'
+    });
+    //2.使用Vue.component(标签名,组件构造器)，根据组件构造器来创建组件
+    Vue.component('hello', MyComponent);
+    
+    
+    /**
+     * 方式2：直接创建组件(推荐)
+     */
+    // Vue.component('world',{
+    Vue.component('my-world', {
+        template: '<h1>你好，世界</h1>'
+    });
+    var vm = new Vue({ //这里的vm也是一个组件，称为根组件Root
+        el: '#itany',
+        data: {}
+    }); 
+</script>

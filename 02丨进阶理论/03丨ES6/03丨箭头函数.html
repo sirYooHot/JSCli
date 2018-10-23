@@ -7,17 +7,17 @@
 	    };
 	};
 	
-	02. 注意this指向会有问题
-		var json = {
-		    a: 1,
-		    b: 2,
-		    showName: () => {
-		        return this.a;
-		    }
-		};
-		console.log(json.showName());
+	02. 特征
 		01. 因为使用了箭头函数this指向了object window 所以result：undefined
 			箭头函数取代Function.prototype.bind，不再用self/_this/that绑定 this。
+			var json = {
+			    a: 1,
+			    b: 2,
+			    showName: () => {
+			        return this.a;
+			    }
+			};
+			console.log(json.showName());
 		
 		
 		02. 如果使用了箭头函数的写法，那么注意arguments将不能继续使用了
