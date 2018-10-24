@@ -1,0 +1,142 @@
+<script type="text/javascript">
+01. ES6标准发布后，
+	01. module成为标准，标准使用是以export指令导出接口，以import引入模块，
+	02. node模块中，仍采用CommonJS规范，使用require引入模块，使用module.exports导出接口。			
+
+
+02. export导出模块
+	
+	01. export语法声明用于导出函数、对象、指定文件（或模块）的原始值。// 注意：在node中使用的是exports,不要混淆了
+		export有两种模块导出方式
+			01. 命名式导出（名称导出）: 命名式导出每个模块可以多个
+			02. 定义式导出（默认导出）: 默认导出每个模块仅一个。
+		
+		export { name1, name2, …, nameN };
+		export { variable1 as name1, variable2 as name2, …, nameN };
+		export let name1, name2, …, nameN; // also var
+		export let name1 = …, name2 = …, …, nameN; // also var, const
+			name1… nameN－导出的“标识符”。导出后，可以通过这个“标识符”在另一个模块中使用import引用
+		
+		export default expression;
+		export default function (…) { … } // also class, function*
+		export default function name01(…) { … } // also class, function*
+		export { name1 as default, … };
+			default －设置模块的默认导出。设置后import不通过“标识符”而直接引用默认导入
+					－继承模块并导出继承模块所有的方法和属性
+		
+		export * from …;
+		export { name1, name2, …, nameN } from …;
+		export { import1 as name1, import2 as name2, …, nameN } from …;
+			as－重命名导出“标识符”
+			from－从已经存在的模块、脚本文件…导出
+
+	02. 命名式导出
+		01. 模块可以通过 export 前缀关键词声明导出对象，
+			导出对象用名称进行区分, 导出对象可以是多个
+		export { myFunction }; // 导出一个已定义的函数
+		export const foo = Math.sqrt(2); // 导出一个常量
+		
+		02. 使用 * 和 from 关键字来实现的模块的继承：
+		export * from 'article';
+	
+		03. 模块导出时，可以指定模块的导出成员。
+			导出成员可以认为是类中的公有对象，而非导出成员可以认为是类中的私有对象：
+			var name = 'IT笔录';
+			var domain = 'http://itbilu.com';
+			export {name, domain}; // 相当于导出 {name: name, domain: domain}
+		
+		04. 使用 as 关键字对导出成员进行重命名：
+			var name = 'IT笔录';
+			var domain = 'http://itbilu.com';
+			export {name as siteName, domain};
+		
+		05. 即使a被赋值为一个function，也是不允许的。必须写成export { a }的形式
+			模块中最好在末尾用一个export导出所有的接口，例如：export {fun as default,a,b,c};
+			
+		
+	03. 定义式导出: 
+		01. 只有一个值 / 每个导出输出可以是个函数、类或其它类型的值;
+			export default function() {}; // 可以导出一个函数
+			export default class(){}; // 也可以出一个类
+		
+		02. 使用了 default 名称的命名导出
+			const D = 123;
+				01. export default D;
+				02. export { D as default };
+		
+		03. 使用名称导出模块时：
+			01. 导出 "my-module.js" 模块
+				export function cube(x) {
+					return x * x * x;
+				}
+				const foo = Math.PI + Math.SQRT2;
+				export { foo };
+			02. 导入:
+				import { cube, foo } from 'my-module';
+				console.log(cube(3)); // 27
+				console.log(foo); // 4.555806215962888
+		
+		04. 使用默认导出一个模块时
+			01. 导出 "my-module.js"模块
+				export default function (x) {
+					return x * x * x;
+				}
+			02. 导入
+				// 引用 "my-module.js"模块
+				import cube from 'my-module';
+				console.log(cube(3)); // 27
+
+
+03. import引入模块
+	01. 从已导出的模块、脚本中, 导入函数、对象、指定文件（或模块）的原始值。
+		01. 模块导入方式：
+			命名式导入、定义式导入
+			import必须放在文件的最开始，且前面不允许有其他逻辑代码
+		
+		import defaultMember from "module-name";
+		import * as name from "module-name";
+			name－从将要导入模块中收到的导出值的名称
+		
+		import { member } from "module-name";
+		import { member1 , member2 } from "module-name";
+			member, memberN－从导出模块，导入指定名称的多个成员
+			
+		import { member as alias } from "module-name";
+			alias, aliasN－别名，对指定导入成员进行的重命名
+		
+		import { member1 , member2 as alias2 , [...] } from "module-name";
+		import defaultMember, { member [ , [...] ] } from "module-name";
+		import defaultMember, * as name from "module-name";
+		import "module-name";
+			defaultMember－从导出模块，导入默认导出成员
+			module-name－要导入的模块。是一个文件名
+			as－重命名导入成员名称（“标识符”）from－从已经存在的模块、脚本文件等导入
+	
+	02. 命名式导入
+		01. 我们可以通过指定名称，就是将这些成员插入到当作用域中。
+			导出时，可以导入单个成员或多个成员：
+		
+		02. import中的变量 与 export里面的变量对应
+			import {myMember} from "my-module";
+			import {foo, bar} from "my-module";
+		
+		03. 通过 * 符号，我们可以导入模块中的全部属性和方法。
+			import * as myModule from "my-module";
+		
+		04. 使用as对导入成员重命名
+			import {reallyReallyLongModuleMemberName as shortName} from "my-module";
+
+		05. 导入多个成员时，同样可以使用别名：
+			import { 
+				reallyReallyLongModuleMemberName as shortName, 
+				anotherLongModuleName as short } from "my-module";
+		
+		06. 导入一个模块，但不进行任何绑定：
+			import "my-module";
+	
+	03. 默认导入
+		01. 直接导入默认值：
+			import myDefault from "my-module";
+
+
+</script>
