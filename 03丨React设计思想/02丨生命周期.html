@@ -1,0 +1,86 @@
+<script type="text/javascript">
+React的生命周期函数
+01. 生命周期函数指在某一时刻组件会自动调用执行的函数
+	子组件的render会跟随父组件的render执行
+
+
+02. Initialization：初始化数据
+	setup props and state
+
+
+03. Mounting：挂载, 组件被插入到DOM中。
+
+	getInitialState(): object在组件被挂载之前调用。
+		状态化的组件应该实现这个方法，返回初始的state数据。
+
+	componentWillMount：被挂载之前
+	
+	componentDidMount：被挂载之后
+		需要DOM节点的初始化操作应该放在这里。
+
+
+04. Unpdation：更新// 页面有数据更新
+
+	props：参数
+	componentWillReceiveProps：
+		当一个挂载的组件接收到新的props的时候被调用。
+		该方法应该用于比较this.props和nextProps，
+		然后使用this.setState()来改变state。
+	
+	01. 当一个组件要从父组件接受参数
+	02. 如果父组件的render函数被重新执行了，子组件的这个生命周期就会被执行
+	03. 如果子组件是已经存在于父组件中，就会被执行，否则不执行
+	
+	备注：子组件已存在, 且父组件render被执行, 才回触发
+
+
+05. props and state：
+	
+	01. shouldComponentUpdate：判断组件是否被更新
+		实现该函数，优化this.props和nextProps，以及this.state和nextState的比较，
+		如果不需要React更新DOM，则返回false。
+	
+	02. componentWillUpdate：组件被更新之前
+		你可以在这里调用this.setState()。
+	
+	03. componentDidUpdate：组件被更新完成之后
+
+
+06. Unmounting：卸载, 组件从DOM中移除。
+	
+	01. componentWillUnmount：卸载组件之前
+	在组件移除和销毁之前被调用。清理工作应该放在这里。
+	
+	02. ReactDOM.unmountComponentAtNode(
+	    document.getElementById('example')
+	) : 移除组件
+</script>
+<script type="text/javascript">
+01. shouldComponentUpdate
+	shouldComponentUpdate(nextProps, nextState) {
+	    if(nextProps.content !== this.props.content){
+	        return true;
+	    }else {
+	        return false;
+	    }
+	}
+	作用：避免子组件的render随父组件的render执行
+	功能：提高性能
+
+
+02. componentDidMount：最佳ajax请求获取
+	原因：避免一些高端技术的冲突，更加稳定
+	          类似React nacive的应用场景
+	
+	componentDidMount() {
+		let result = {}
+		axios.get('/app/ajax')
+		.then(() => { alert("succ") })
+		.catch(() => { alert("error") })
+	}
+	
+	备注：以下函数都可以放ajax请求
+		constructor：构造函数
+		componentWillMount：被挂载之前
+		componentDidMount：被挂载之后
+</script>

@@ -1,0 +1,212 @@
+<script type="text/javascript">
+01. 创建一个组件
+	
+	import React, { Component } from 'react';
+	class TodoList extends Component { 
+		render () {
+			return (
+				<div></div>
+			)
+		}
+	}
+	export default TodoList;
+	
+	构造函数
+	constructor(props) {			
+	    super(props);
+	
+	    // 组件的状态
+	    this.state = {
+	      inputValue: '',
+	      list: []
+	    }
+	}
+	
+	JSX的语法
+	render的最外层：只能有一个元素
+		Fragment占位符
+</script>
+<script type="text/javascript">
+01. onChange绑定改变事件
+	onChange={this.func【方法名称】.bind(this)}
+	onChange={ this.handleInputChange.bind(this) }
+	
+02. setState：改变数据
+	e.target：input框对应的dom节点		
+	handleInputChange (e) {
+	    this.setState({
+	      inputValue: e.target.value
+	    })
+	}
+	
+03. 渲染列表数据
+	{
+		this.state.list.map((item, index) => {
+			return (  )
+		})
+	}
+</script>
+<script type="text/javascript">
+01. onClick：绑定点击事件
+
+	onClick={ this.handleBtnClick.bind(this) }
+	handleBtnClick() {
+	    this.setState({
+	      list: [
+	        ...this.state.list,// 保存原有数据
+	        this.state.inputValue// 添加新增数据
+	      ],
+	      inputValue: ''
+	
+	    })
+	}
+	
+	
+02. 删除方法【避免操作原数据】
+	immutable state不允许我们做任何的改变
+	后面的性能优化会有问题
+
+	const list = [...this.state.list];// 拷贝一份数据
+	    list.splice(index, 1);// 删除点击数据
+	
+	    this.setState({
+	      list: list// 重新赋值数据列表
+	})
+
+
+</script>
+<script type="text/javascript">
+JSX语法细节补充
+01. JSX里些注释：普通注释外必须包裹{ }
+	{
+	    这里是JSX里面的注释
+	}
+	
+	
+02. 元素上的类名使用：
+	使用 className定义 代替 class定义
+
+
+03. 内容被标签包裹：不想被转义
+	dangerouslySetInnerHTML = {
+	    {__html【属性】:  item【渲染值】 }
+	}
+		
+
+04. label的作用：扩大点击区域; 点击标签文本：光标自动聚焦到输入标签上
+	// 用  htmlFor属性  代替  for属性; for属性：会与for循环语句产生歧义
+	<label htmlFor="insertArea">标签文本</label>
+    <input id='insertArea' />
+
+</script>
+<script type="text/javascript">
+01. 拆分组件：创建组件
+
+	在父组件中引入子组件
+	import TodoItem from './TodoItem';
+	
+	<TodoItem content={item} index={index} deleteItem={this.handleItemDelete}/>
+	
+	
+02. 父子传值
+	父组件传值给子组件：通过属性的形式
+	子组件接受父组件传值：this.props.属性
+	
+03. 子组件改变父组件的数据：
+	不允许子组件直接修改父组件的值
+	子组件调用父组件的方法去改变父组件的数据
+	
+04. 子组件调用父组件方法：
+	在子组件上用属性将父组件的方法传给子组件
+	备注：父组件的方法应强制性绑定在父组件
+</script>
+<script type="text/javascript">
+01. 声明式开发：React//面向数据编程
+	把数据构建好后，React会自动进行DOM操作
+	
+	命令式开发：jQuery
+	主要是进行DOM操作
+	
+	可以同时使用其他框架
+	在React挂在节点同级挂载其他框架内容
+
+02. 组件化
+	整体的页面拆分成一个个组件
+	组件：首字母大写的元素
+
+
+03. 单向数据流
+	子组件不能直接修改父组件的数据：
+	子组件接受的父组件数据是只读的属性
+	
+	避免多个子页面同时操作父组件的数据产生的BUG
+
+
+04. 视图层框架
+	组件之间的传值比较麻烦
+	定位：负责数据和页面上的渲染
+	配合：需要其他数据层框架
+		flex redux
+
+
+05. 函数式编程: React的代码都是一个个函数
+	优势：
+		维护起来比较容易
+		面向测试的开发流程
+		前端自动化测试
+</script>
+
+<script type="text/javascript">
+01. this指向的优化
+	constructor (props) {
+	    super(props);
+	    //节约性能
+	    this.handleClick = this.handleClick.bind(this)
+	}
+
+
+02. 循环代码片段
+	
+	getTodoItem() {
+	    return this.state.list.map((item, index) => {
+	    	return (<div>
+	          <TodoItem content={item} index={index} deleteItem={this.handleItemDelete}/>
+	        </div>)
+	    })
+	}
+	<ul>{ this.getTodoItem() }</ul>
+	
+
+03. setState 改变数据
+	新版的setState的语法：接受的是：函数不是对象
+
+
+	handleInputChange(e) {
+	    异步方法：在外部保存数据再使用方法
+	    const value = e.target.value
+	    this.setState(() => ({
+	        inputValue: value
+	    }))
+	}
+	
+	旧的setSate方法
+	this.setState({
+	    inputValue: e.target.value
+	})
+	
+	setState可以接受prevState: 修改之前的值
+	prevState == this.state
+	
+	setState返回函数体写法：
+	handleItemDelete(index) {
+	    // 返回一个函数体
+	    this.setState((prevState) => {
+	      // 在函数体里面拷贝list
+	      const list = [...prevState.list];
+	      list.splice(index, 1);
+	      return {
+	        list: list
+	      }
+	    })
+	}
+</script>

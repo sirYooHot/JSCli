@@ -1,0 +1,72 @@
+<script type="text/javascript">
+combineReducers: 
+	完成对数据的拆分管理, store状态拆分到组件中管理
+
+01. 子组件/store/index.js:
+	import reducer from './reducer';
+	export { reducer }
+	
+02. src目录下的store/reducer.js：
+	import { combineReducers } from 'redux';
+	import {reducer as headerReducer} from '../common/header/store';
+	
+	const reducer = combineReducers({
+	    header: headerReducer
+	})
+	export default reducer;
+</script>
+<script type="text/javascript">
+01. actionCreators与constants的拆分
+	import * as actionCreators from './store/actionCreators';
+	const mapDispatch = (dispatch) => {
+	    return {
+	        handleInputFocus() {
+	            dispatch(actionCreators.searchFocus());
+	        },
+	        handleIputBlur(){
+	            dispatch(actionCreators.searchBlur());
+	        }
+	    }
+	}
+	
+02. 子组件里的  store/index.js  负责所有文件
+	01. store/index.js:
+		import reducer from './reducer';
+		import * as actionCreators from './actionCreators';
+		import * as actionTypes from './actionTypes';
+	
+		export { reducer, actionCreators, actionTypes };
+	
+	02. index.js:
+		import { actionCreators } from './store/index.js';
+	
+</script>
+<script type="text/javascript">
+01. 使用immutable.js来管理store中的数据
+	01. state变成immutable对象
+		npm install immutable --save-dev// immutable安装
+		
+		import { fromJS } from 'immutable';
+		
+		
+		const defaultState = fromJS({// 初始化
+		    focused: false
+		});
+		
+		const mapStateToProps = (state) => ({
+			focused: state.header.get('focused')// 获取值
+		})
+		
+		return state.set('focused', true);// 改变值
+	
+	
+	02. iummtable对象的set方法，
+		会结合之前按immutab对象的值和设置的值，返回一个全新的对象
+
+
+使用Readux统一数据格式
+	npm install redux-immutable --save-dev // redux-immutable安装
+	import { combineReducers } from 'redux-immutable';// 父组件下的reducer.js
+	
+	focused: state.get('header').get('focused')// 子组件下的应用
+</script>

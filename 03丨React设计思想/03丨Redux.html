@@ -1,0 +1,160 @@
+<script type="text/javascript">
+Redux: npm install redux --save// 安装Redux
+01. Redux： 把数据放到Store公共存储空间进行管理
+	传值模式：到store里面改变，然后store的值重新分发给对应的组件
+	01. store是唯一的：store/index.js
+	02. 只有store才能改变自己的内容
+	03. Reducer必须是纯函数
+
+
+05. Redux核心的API
+	01. createStore：创建store
+	02. store.dispatch：派发action
+	03. store.getState：获取store所有的数据内容
+		//组件中：订阅store
+		this.state = store.getState();
+	
+	04. store.subscribe：检测store的改变
+
+
+02. 工作流程：
+	01. React Component：需要获取 / 修改 state 
+	02. Action Creators： dispatch(action) 
+	03. Store(previousState, action)
+	04. Reducers(newState)
+	05. Store(State)传值给React Component
+
+
+
+</script>
+<script type="text/javascript">
+02. store/index.js
+	// 引入redux
+	import { createStore } from 'redux';
+	// 引入reducer
+	import reducer from './reducer';
+	
+	// 创建store
+	const store = createStore(
+	    reducer,
+	    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	);
+	备注：
+		Redux DevTools -> Basic store
+		
+		配置代码：window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+		如果window浏览器上安装了redux-devtools, 那么就在页面上使用这个工具
+	
+	export default store;
+
+
+
+03. store/reducer.js：创建reducer
+	// 创建空的数据库
+	const defaultState = {
+	    inputValue: ' ',
+	    list: [ ]
+	}
+	
+	export default (state = defaultState, action) => {
+	    return state;
+	}
+</script>
+<script type="text/javascript">
+Action / Reducer
+01. action的增删改：
+	handleInputChange(e) {
+	  const action = getInputChangeAction(e.target.value)
+	  store.dispatch(action);
+	}
+	handBtnClick() {
+	  const action = getInputAddAction()
+	  store.dispatch(action);
+	}
+	handleItemDelete(index) {
+	  const action = getInputDeleteAction(index)
+	  store.dispatch(action);
+	}
+	备注：store.dispatch(action); -> 发送到reducer
+
+
+
+02. reducer：
+	进行增删改 -> 发到store
+	const defaultState = {
+	    inputValue: '',
+	    list: []
+	}
+	
+	备注：可以接收state,但是不可以修改state
+	export default (state = defaultState, action) => {
+	
+	    if(action.type === CHANG_INPUT_VALUE){
+	        const newState = JSON.parse(JSON.stringify(state));
+	        newState.inputValue = action.value;
+	        return newState;
+	    }
+	    if(action.type === ADD_TODO_ITEM){
+	        const newState = JSON.parse(JSON.stringify(state));
+	        newState.list.push(newState.inputValue)
+	        newState.inputValue = ''
+	        return newState;
+	    }
+	    if(action.type === DELETE_TIDO_ITEM){
+	        const newState = JSON.parse(JSON.stringify(state));
+	        newState.list.splice(action.index, 1)
+	        return newState;
+	    }
+	    
+	    return state;
+	}
+	纯函数：给固定的输入，就一定有固定的输出，而却不会有副作用
+
+
+
+03. 重新分发数据：
+	store.subscribe(this.handleStoreChange);
+	
+	state重新获取数据
+	handleStoreChange() {
+	    this.setState(store.getState())
+	}
+</script>
+<script type="text/javascript">
+ActionTypes / actionCreators
+01. store/actionTypes：统一管理type
+
+	export const CHANG_INPUT_VALUE = 'change_input_value';
+	export const ADD_TODO_ITEM = 'add_todo_item';
+	export const DELETE_TIDO_ITEM = 'delete_todo_item';
+	备注：常量或者变量如果写错了，
+	就会直接报错，有助于我们定位错误的位置
+
+	
+02. store/actionCreators：统一管理action
+
+	export const getInputChangeAction = (value) => ({
+	    type: CHANG_INPUT_VALUE,
+	    value: value
+	})
+	export const getInputAddAction = () => ({
+	    type: ADD_TODO_ITEM
+	})
+	export const getInputDeleteAction = (index) => ({
+	    type: DELETE_TIDO_ITEM,
+	    index: index
+	})
+
+	引入actionCreators
+	import { getInputChangeAction, getInputAddAction, 
+		getInputDeleteAction } from './store/actionCreators';
+	
+	以方法的形式使用：
+	handleInputChange(e) {
+	  const action = getInputChangeAction(e.target.value)
+	  store.dispatch(action);
+	}
+
+
+
+</script>

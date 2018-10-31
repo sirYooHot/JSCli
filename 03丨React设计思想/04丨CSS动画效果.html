@@ -1,0 +1,59 @@
+<script type="text/javascript">
+01. animation:  过渡动画属性
+	.show {
+	    opacity: 1;
+	    animation: show-item 1s ease-in forwards;
+	}
+	.hide {
+	    animation: hide-item 1s ease-out forwards;
+	}
+	@keyframes show-item：动画过渡效果
+	备注：forwards运动结束动画保留
+	
+	@keyframes show-item {
+	    0% {
+	        opacity: 0;
+	        color: blue;
+	    }
+	    50% {
+	        opacity: 0.5;
+	        color: green;
+	    }
+	    100% {
+	        opacity: 1;
+	        color: red;
+	    }
+	}
+
+
+02. import { CSSTransition } from 'react-transition-group';
+
+	<CSSTransition
+	    in={this.state.show} timeout={1000} classNames="fade" unmountOnExit
+	    onEntered={(el) => {el.style.color='blue'}} appear={true}>
+	    
+	    <div>hello</div>
+	</CSSTransition>
+	
+	.fade-enter, .fade-appear {
+	    opacity: 0;
+	}
+	.fade-enter-active, .fade-appear-active {
+	    opacity: 1;
+	    transition: opacity 1s ease-in;
+	}
+	.fade-enter-done {
+	    opacity: 1;
+	}
+	
+	.fade-exit {
+	    opacity: 1;
+	}
+	.fade-exit-active {
+	    opacity: 0;
+	    transition: opacity 1s ease-out;
+	} 
+	.fade-exit-done {
+	    opacity: 0;
+	}
+</script>

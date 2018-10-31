@@ -1,0 +1,17 @@
+<script type="text/javascript">
+01. 所有嵌套在组件中的 JSX 结构都可以在组件内部通过 props.children 获取到
+	class Card extends Component {
+	  render () {
+	    return (
+	      <div className='card'>
+	        <div className='card-content'>
+	          {this.props.children}
+	        </div>
+	      </div>
+	    )
+	  }
+	}
+	
+
+
+</script>

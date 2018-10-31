@@ -1,0 +1,97 @@
+<script type="text/javascript">
+01. react来历
+	facebook推出 丨 2013年开源 丨 函数式编程
+	React Fiber 16之后的版本
+	内容
+		01. 在js继承中加入了优先级的概念
+		02. 利用事件循环的一些碎片时间执行一些高优先级的用户交互
+		03. 提高React.js使用过程中的用户体验
+
+
+02. react开发环境的搭建
+	引入.js文件来使用react
+	脚手架工具来编程 grunt 丨 gulp 丨 webpack
+		
+
+03. React重点内容
+	create-react-app
+	组件化思维
+	JSX
+	开发调试工具
+	虚拟DOM
+	生命周期
+	
+	
+04. 重要插件
+	React-transition-group
+	redux-saga
+	styled-components
+	Immutable.js
+	redux-immutable
+	axios
+</script>
+<script type="text/javascript">
+01. npm install -g create-react-app
+
+02. yarn.lock: 项目依赖的安装包的版本号
+
+03. node_modules
+	第三方的模块
+	包文件
+
+04. public favicon.ico左上角的标题图标
+	index.html 
+		noscript增强容错性
+		禁用noscript时的提示
+	
+05. manifest.json
+		PWA
+		icons
+			定义图标
+06. src
+		app.js 负责显示页面内容
+		index.js 整个项目的入口文件
+
+整个程序运行的入口文件
+		内容
+			引入react
+			引入react-dom
+			引入index.css
+				通过模块的形式
+将CSS文件嵌入到JS文件里面
+			引入app
+				app.js
+					引入logo.svg
+					引入App.css
+				将app渲染到页面上
+		
+	app.test.js 自动化测试文件
+</script>
+<script type="text/javascript">
+React中的组件
+01. react的设计思想： 
+	不需要操作dom，操作数据（通过监听数据的变化）
+	响应式的框架: 不要操作dom, 操作数据, 监听数据自动操作dom
+	
+	
+02. 结构赋值:
+	{ Cpmponent } 
+	{ Cpmponent } == 等价于
+	// import React from 'react';
+	// const Component = React.Compponent 
+	
+	// Component = React.Component
+	
+
+03. ReactDOM
+	ReactDOM.render
+	// ReactDOM.render(组件, 挂载节点);
+	// 不引入react 不能编译 jsx
+	render里面的标签：JSX的语法
+	
+
+04. 创建组件
+	React中的基础JSX语法
+	组件必须以大写字母开头
+	App.js: 自定义组件
+</script>

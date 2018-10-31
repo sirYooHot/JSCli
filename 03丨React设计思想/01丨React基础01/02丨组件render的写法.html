@@ -1,0 +1,34 @@
+<script type="text/javascript">
+01.  React.js 写的其实就是 React.js 组件。
+	01. 一般都需要继承 React.js 的 Component（还有别的编写组件的方式）。
+	02. 一个组件类必须要实现一个 render 方法，这个 render 方法必须要返回一个 JSX 元素。
+	
+	03. 必须用一个外层元素把内容进行包裹
+	
+	
+02. 表达式插入: 表达式用 {} 包裹
+	01. 在 JSX 当中你可以插入 JavaScript 的表达式;
+	02. {} 内可以放任何 JavaScript 的代码，包括变量、表达式计算、函数执行等等
+	
+	03. js中关键字的处理:
+		01. class => className
+		02. for => htmlFor
+		
+	04. 条件返回: 三元表达式
+	
+	05. JSX 元素变量
+		render () {
+		  const isGoodWord = true
+		  const goodWord = <strong> is good</strong>
+		  const badWord = <span> is not good</span>
+		  return (
+		    <div>
+		      <h1>
+		        React 小书
+		        {isGoodWord ? goodWord : badWord}
+		      </h1>
+		    </div>
+		  )
+		}
+	
+</script>

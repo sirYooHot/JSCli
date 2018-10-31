@@ -1,0 +1,117 @@
+<script type="text/javascript">
+React中的虚拟DOM
+01. 第一版
+	1.  state  数据
+	2.  JSX  模板
+	3.  数据 + 模板，生成真实的DOM，来显示
+	4.  state发生改变
+	5.  数据 + 模板，生成真实的DOM，
+	     替换原有DOM，更新显示
+	缺陷：
+	1.  第一次生成一个完整的DOM片段
+	2.  第二次生成一个完整的DOM片段替换原有DOM，
+	     非常消耗性能
+	
+02. 第二版
+	1.  state  数据
+	2.  JSX  模板
+	3.  数据 + 模板，生成真实的DOM，来显示
+	4.  state发生改变
+	5.  数据 + 模板，生成真实的DOM，
+	     并不替换原有DOM，
+	6.  将新的DOM与旧的DOM做比对，找差异
+	7.  找到产生数据模块变化的位置
+	8.  只用新的DOM变化模块，替换旧的DOM对应模块
+	缺陷：
+	1.  避免了完全的替换带来的DOM操作性能损耗，
+	     但又带来了比对的性能损耗，性能的提升不明显
+	
+	
+03. 优秀的渲染方式：
+	1.  state  数据
+	2.  JSX  模板
+	3.  数据 + 模板，生成真实的DOM，来显示
+	<div id='abc'><span>hello world</span></div>
+	
+	4.  生成虚拟DOM（JS创建一个js对象，性能消耗极小）
+	     (虚拟DOM就是一个JS对象，用来它描述真实DOM)
+	['div', {id: 'abc'}, ['span', {}, 'hello world']]
+	
+	5.  state发生改变
+	6.  数据 + 模板，生成新的虚拟DOM，
+	     (虚拟DOM代替真实DOM)
+	['div', {id: 'abc'}, ['span', {}, 'bye bye']]
+	
+	7.  将新的虚拟DOM与旧的虚拟DOM做比对，找差异
+	8.  找到产生数据模块变化的位置
+	8.  直接操作DOM变化的模块，进行改变
+	优势：
+	1.  用生成新的虚拟DOM，代替了生成新的DOM
+	2.  用虚拟DOM进行比对，减少对DOM的操作
+	
+
+04. 真正的渲染顺序：
+	1.  state  数据
+	2.  JSX  模板
+	
+	3.  生成虚拟DOM（JS创建一个js对象，性能消耗极小）
+	     (虚拟DOM就是一个JS对象，用来它描述真实DOM)
+	['div', {id: 'abc'}, ['span', {}, 'hello world']]
+	
+	4.  数据 + 模板，生成真实的DOM，来显示
+	<div id='abc'><span>hello world</span></div>
+	
+	5.  state发生改变
+	6.  数据 + 模板，生成新的虚拟DOM，
+	     (虚拟DOM代替真实DOM)
+	['div', {id: 'abc'}, ['span', {}, 'bye bye']]
+	
+	7.  将新的虚拟DOM与旧的虚拟DOM做比对，找差异
+	8.  找到产生数据模块变化的位置
+	8.  直接操作DOM变化的模块，进行改变
+	优势：
+	1.  用生成新的虚拟DOM，代替了生成新的DOM
+	2.  用虚拟DOM进行比对，减少对DOM的操作
+	3.  它使得跨端应用得以实现。
+	     虚拟DOM（JS对象）在浏览器及原生应用都能被识别。
+	     虚拟DOM在原生应用中转化成原生的组件
+
+
+</script>
+<script type="text/javascript">
+虚拟DOM中的Diff算法
+	setState为异步函数：
+
+	在短时间内多次调用setState方法时，
+	通过一次比对完成。减少数据比对的次数
+	
+	同层比对：
+		优势：
+			算法比较简单，比对速度快， 
+			虽然有一些DOM节点渲染的浪费
+	
+	key值的重要性：
+		提高虚拟DOM的比对性能
+		key设置为内容，确保key值得稳定
+		index作为key值不稳定，能不用就不同
+
+
+React中ref的使用
+	ref：获取dom的节点（与e.target类似）
+	ref={(input) => {this.input = input}}
+	
+	const value = this.input.value
+	const value = e.target.value
+	
+	不建议使用ref操作DOM
+	
+	由于setState是异步函数：应该在回调函数里对ref进行操作
+	this.setState((prevState) => ({
+	      list: [
+	        ...prevState.list,
+	        prevState.inputValue
+	      ],
+	      inputValue: ''
+	    }),() => { setState的回调函数中操作ref });
+
+</script>

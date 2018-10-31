@@ -1,0 +1,34 @@
+<script type="text/javascript">
+Redux-sagas: 中间件
+01. Redux-saga：异步代码拆分				
+	npm install --save redux-saga// 安装Redux-saga
+	使用saga中间件后：
+		dispatch派发action后：
+		actionCreators.js与sagas.js同时都能接受到
+
+
+
+01. /store/sagas.js：
+	// 引入文件
+	import { takeEvery, put } from 'redux-saga/effects';
+	import { initListAction } from './actionCreators';
+	import { GET_INIT_LIST } from './actionTypes';
+	import axios from 'axios';
+	
+	function* getInitList() {
+	    try {
+	        const res = yield axios.get('/api/todolist');
+	        const action = initListAction(res.data)
+	        yield put(action);
+	    }
+	    catch(e) {
+	        console.log(e);
+	    }
+	}
+	// takeEvery(监测类型, 执行函数);
+	function* mySaga() {
+	    yield takeEvery(GET_INIT_LIST, getInitList);
+	}
+	
+	export default mySaga;
+</script>

@@ -1,0 +1,67 @@
+<script type="text/javascript">
+01. dangerouslySetHTML
+	React.js 提供了一个属性 dangerouslySetInnerHTML，可以让我们设置动态设置元素的 innerHTML
+	class Editor extends Component {
+	  constructor() {
+	    super()
+	    this.state = {
+	      content: '<h1>React.js 小书</h1>'
+	    }
+	  }
+	
+	  render () {
+	    return (
+	      <div
+	        className='editor-wrapper'
+	        dangerouslySetInnerHTML={{__html: this.state.content}} />
+	    )
+	  }
+	}
+	
+	
+02. style
+	01. 原来 CSS 属性中带 - 换成驼峰命名，fontSize, textAlign。
+	
+	02. 用对象作为 style 方便我们动态设置元素的样式, setState({color: 'blue'}) 就可以修改元素的颜色成蓝色。
+	<h1 style={{fontSize: '12px', color: this.state.color}}>React.js 小书</h1>
+
+</script>
+<script type="text/javascript">
+PropTypes 和组件参数验证
+01. 给组件的配置参数加上类型验证
+	npm install --save prop-types
+	
+	import React, { Component } from 'react'
+	import PropTypes from 'prop-types'
+	
+	class Comment extends Component {
+	  static propTypes = {
+	    comment: PropTypes.object
+	  }
+	
+	  render () {
+	    const { comment } = this.props
+	    return (
+	      <div className='comment'>
+	        <div className='comment-user'>
+	          <span>{comment.username} </span>：
+	        </div>
+	        <p>{comment.content}</p>
+	      </div>
+	    )
+	  }
+	}
+	
+	PropTypes.array
+	PropTypes.bool
+	PropTypes.func
+	PropTypes.number
+	PropTypes.object
+	PropTypes.string
+	PropTypes.node
+	PropTypes.element
+	
+	通过 isRequired 关键字来强制组件某个参数必须传入
+	
+
+</script>

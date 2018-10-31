@@ -1,0 +1,18 @@
+<script type="text/javascript">
+01. 在 React.js 不需要手动调用浏览器原生的 addEventListener 进行事件监听。
+	React.js 帮我们封装好了一系列的 on* 的属性;
+
+02. React.js 会给每个事件监听传入一个 event 对象，
+	这个对象提供的功能和浏览器提供的功能一致，而且它是兼容所有浏览器的。
+
+03. React.js 的事件监听方法需要手动 bind 到当前实例，
+	这种模式在 React.js 中非常常用。
+	
+	handleClickOnTitle (e) {
+	    console.log(this) // => null or undefined
+	  }
+	React.js 调用你所传给它的方法的时候，
+		不是通过对象方法的方式调用（this.handleClickOnTitle），
+		而是直接通过函数调用 （handleClickOnTitle），
+	所以事件监听函数内并不能通过 this 获取到实例
+</script>

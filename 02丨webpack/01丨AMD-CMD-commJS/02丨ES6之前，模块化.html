@@ -80,18 +80,21 @@
 				clock.start();
 			});
 		
-		03. define(id, dependencies, factory)
-			id: 字符串，模块名称(可选)
-			dependencies: 要载入的依赖模块(可选), 使用相对路径,注意是数组格式
-			factory: 工厂方法，返回一个模块函数
-		04. define('hello', ['jquery'], function(require, exports, module) {
+	02. define(id, dependencies, factory)
+		id: 字符串，模块名称(可选)
+		dependencies: 要载入的依赖模块(可选), 使用相对路径,注意是数组格式
+		factory: 工厂方法，返回一个模块函数
+	03. define('hello', ['jquery'], function(require, exports, module) {
+		// 模块代码
+		});
+	04. 一个模块不依赖其他模块，直接定义在define()函数之中
+		define(function(require, exports, module) {
 			// 模块代码
-			});
-		05. 一个模块不依赖其他模块，直接定义在define()函数之中
-			define(function(require, exports, module) {
-				// 模块代码
-			});
-			注意: 带 id 和 dependencies 参数的 define 用法不属于 CMD 规范，而属于 Modules/Transport 规范。
+		});
+		
+	注意: 	带 id 和 dependencies 参数的 define 用法不属于 CMD 规范
+			而属于 Modules/Transport 规范。
+
 
 06. CMD与AMD区别
 	01. AMD和CMD最大的区别

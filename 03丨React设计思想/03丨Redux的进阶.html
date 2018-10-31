@@ -1,0 +1,141 @@
+<script type="text/javascript">
+关于组件
+01. UI组件和容器组件
+	TodoList.js：容器组件
+	主要负责JS逻辑的处理
+	
+	TodoListUI：UI组件
+	主要负责页面的渲染
+
+	
+02. 无状态组件：就是一个函数（性能比较高）
+	使用场景：UI组件，只负责页面的渲染
+	
+	普通的组件：一个JS的类，
+	生成的对象里面还有生命周期函数还有render，
+	远比无状态组件的多
+
+	const TodoListUI = (props) => {
+	    return ()
+	}
+		
+03. 异步请求获取数据：
+	componentDidMount() {
+		axios.get('/api/todolist')
+		.then( (res) => {
+	    	const data = res.data;
+	    	const action = initListAction(data)
+	    	store.dispatch(action);
+	    } )
+	  .catch( () => {} )
+	}
+	
+04. redux的中间件
+	原理：对dispatch方法的封装（升级）
+	
+	action传递给dispatch的值：
+	既可是对象，又可是函数方法
+
+</script>
+<script type="text/javascript">
+Redux异步请求
+01. 使用Redux-thunk中间件: 异步请求统一管理
+	
+	安装redux-thunk中间件: npm install --save redux-thunk
+	
+	引入thunk：action中 即可是对象，也可以是一个函数
+	目的：发起异步的请求
+
+
+
+	
+01. /store/index.js：
+	import thunk from 'redux-thunk';
+	
+	const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;// redux-devtolls配置
+	const enhancer = composeEnhancers(
+	    applyMiddleware(thunk)// 配置thunk中间件
+	);
+
+	const store = createStore(reducer, enhancer);// 创建store
+
+
+
+02. /store/actionCreaters：
+	actionCreaters：创建的仅是个对象，还可以是函数
+	export const getTodoList = () => {
+	    return (dispatch) => {
+	        axios.get('/api/todolist')
+	        .then((res) => {
+	            const data = res.data;
+	            const action = initListAction(data);
+	            // 此时派发的是一个对象
+	            dispatch(action);
+	        }).catch( () => {} )
+	    }
+	}
+	export const initListAction = (data) => ({
+	    type: INIT_LIST_ACTION,
+	    data: data
+	})
+
+</script>
+<script type="text/javascript">
+如何使用React-redux
+01. index.js
+	核心API：Provider
+	import { Provider } from 'react-redux';
+	import store from './store/index';
+	
+	const APP = (
+		<Provider store={store}>
+			<TodoList />
+		</Provider>
+	)
+	ReactDOM.render(
+		APP, 
+		document.getElementById('root')
+	);
+
+	
+02. TodoList：组件引入react-redux
+	import { connect } from 'react-redux';// 引入connect：核心API
+	
+	// 获取渲染值：
+	const mapSate = (state) => {
+	    return {
+	        inputValue: state.inputValue,
+	        list: state.list
+	    }
+	}
+	// store.dispatch,props：数据交互
+	const mapDispatch = (dispatch) => {
+	    return {
+	        changeInputValue(e) {
+	           const action = {
+	               type: 'change_input_value',
+	               value: e.target.value
+	           }
+	           dispatch(action);
+	        }
+	    }
+	}
+	
+	export default connect(mapSate, mapDispatch)(TodoList);
+</script>
+<script type="text/javascript">
+01. React-Redux管理应用数据
+	01. npm install  redux --save -dev
+	02. npm install react-redux --save-dev
+	
+01. redux核心API：
+	createStore;
+	compose;
+	combineReducers;
+	
+02. react-redux核心API：
+	Provider
+	connect
+	
+03. 无状态组件
+</script>

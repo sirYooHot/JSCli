@@ -1,0 +1,39 @@
+<script type="text/javascript">
+01. 组件内部是通过 this.props 的方式获取到组件的参数的，如果 this.props 里面有需要的属性我们就采用相应的属性，没有的话就用默认的属性。
+
+
+02. 默认配置 defaultProps
+	static defaultProps = {
+	    likedText: '取消',
+	    unlikedText: '点赞'
+	}
+
+
+
+03. props 不可变: props 一旦传入进来就不能改变。
+
+
+
+04. 通过重新渲染的方式把新的 props 传入组件当中，这样这个组件中由 props 决定的显示形态也会得到相应的改变。
+	constructor () {
+	    super()
+	    this.state = {
+	      likedText: '已赞',
+	      unlikedText: '赞'
+	    }
+	}
+	handleClickOnChange () {
+	    this.setState({
+	      likedText: '取消',
+	      unlikedText: '点赞'
+	    })
+	}
+
+
+
+0.5 
+	01. 为了使得组件的可定制性更强，在使用组件的时候，可以在标签上加属性来传入配置参数。
+	02. 组件可以在内部通过 this.props 获取到配置参数，组件可以根据 props 的不同来确定自己的显示形态，达到可配置的效果。
+	03. 可以通过给组件添加类属性 defaultProps 来配置默认参数。
+	04. props 一旦传入，你就不可以在组件内部对它进行修改。但是你可以通过父组件主动重新渲染的方式来传入新的 props，从而达到更新的效果。
+</script>

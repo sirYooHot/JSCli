@@ -1,0 +1,15 @@
+<script type="text/javascript">
+什么是路由
+	npm install react-router-dom --save-dev// 安装路由插件
+
+	import { BrowserRouter, Route } from 'react-router-dom';// 引入路由使用
+
+
+案例:
+	<BrowserRouter>
+	  <div>
+	    <Route path='/' exact render={() => <div>home</div> } ></Route>
+	    <Route path='/detail' exact render={() => <div>detail</div>}></Route>
+	  </div>
+	</BrowserRouter>
+</script>

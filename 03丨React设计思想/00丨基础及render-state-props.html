@@ -1,0 +1,60 @@
+<script type="text/javascript">
+01. chrome扩展应用：
+	Reactdevelopertools
+
+02. 正常显示图标：安装成果
+	图标亮起：是React项目的页面
+
+03. React菜单：
+	现实React项目组件结构查询
+	State状态追踪
+</script>
+<script type="text/javascript">
+PropTypes与DefaultProps的应用
+
+01. PropTypes：数据类型的强校验;
+	import PropTypes from 'prop-types';
+	//  限制传值类型
+	TodoItem.propTypes = {
+	    content: PropTypes.string,
+	    deleteItem: PropTypes.func,
+	    index: PropTypes.number
+	}
+	// 其他拓展校验：
+		isRequired
+		arrayOf([ ])
+		oneOfType([ ])
+
+
+02. DefaultProps
+	// 默认属性值
+	TodoItem.defaultProps = {	
+	    test: 'hello world'
+	}
+</script>
+<script type="text/javascript">
+props、state与render函数的关系
+01. render
+	数据改变时，render函数会被执行一次
+	
+	
+02. 当组件的state发生改变的时候，
+	render函数就会重新执行
+	
+	
+03. state的属性值发生改变时，
+	props的值就会跟着改变
+
+
+04. //当父组件的render函数被运行时，
+	子组件的render函数都将被运行一次
+
+
+05. setState 改变数据
+	新版的setState的语法：接受的是：函数不是对象
+	异步方法：在外部保存数据再使用方法
+	
+
+06. setState可以接受prevState: 修改之前的值
+	prevState == this.state
+</script>

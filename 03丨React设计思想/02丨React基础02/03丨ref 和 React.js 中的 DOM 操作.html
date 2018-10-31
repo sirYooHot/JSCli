@@ -1,0 +1,25 @@
+<script type="text/javascript">
+01. React.js 当中提供了 ref 属性来帮助我们获取已经挂载的元素的 DOM 节点.
+
+02. 在 componentDidMount 中使用这个 DOM 元素，并且调用 this.input.focus() 的 DOM API。
+	class AutoFocusInput extends Component {
+	  componentDidMount () {
+	    this.input.focus()
+	  }
+	
+	  render () {
+	    return (
+	      <input ref={(input) => this.input = input} />
+	    )
+	  }
+	}
+	
+	ReactDOM.render(
+	  <AutoFocusInput />,
+	  document.getElementById('root')
+	)
+
+
+
+03. 能不用 ref 就不用。
+</script>

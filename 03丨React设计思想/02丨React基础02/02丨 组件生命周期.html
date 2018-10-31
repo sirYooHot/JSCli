@@ -1,0 +1,34 @@
+<script type="text/javascript">
+01. React.js 将组件渲染，并且构造 DOM 元素然后塞入页面的过程称为组件的挂载.
+
+
+02. 所有关于组件自身的状态的初始化工作都会放在 constructor 里面去做。
+
+
+03. 生命周期各阶段
+	01. componentWillMount		在组件的 render 之前调用;
+		组件启动的动作，包括像 Ajax 数据的拉取操作、一些定时器的启动等
+	
+	02. componentDidMount 		在 DOM 元素塞入页面以后调用 ;
+		组件的启动工作是依赖 DOM 的，例如动画的启动,需要在挂载后
+	
+	03. componentWillUnmount 	在组件删除之前;
+		01. 显示 --> 隐藏 会触发组件卸载事件
+		02. 需要一些数据的清理, 当时钟隐藏的时候，我们并没有清除定时器。
+			componentWillUnmount () {
+			    clearInterval(this.timer)
+			}
+
+04. setState 导致 React.js 重新渲染组件并且把组件的变化应用到 DOM 元素上的过程，这是一个组件的变化过程。
+
+
+05. shouldComponentUpdate(nextProps, nextState)：你可以通过这个方法控制组件是否重新渲染。
+		01. 如果返回 false 组件就不会重新渲染。这个生命周期在 React.js 性能优化上非常有用。
+		02. 
+		
+	componentWillReceiveProps(nextProps)：组件从父组件接收到新的 props 之前调用。
+	
+	componentWillUpdate()：组件开始重新渲染之前调用。
+	
+	componentDidUpdate()：组件重新渲染并且把更改变更到真实的 DOM 以后调用。
+</script>
